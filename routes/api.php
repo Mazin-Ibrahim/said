@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\WorkerController;
@@ -47,3 +48,9 @@ Route::get('/products/{product}', [ProductController::class, 'getProduct']);
 Route::post('/products', [ProductController::class, 'store']);
 Route::put('/products/{product}', [ProductController::class, 'update']);
 Route::delete('/products/{product}', [ProductController::class, 'delete']);
+
+Route::get('/customers', [CustomerController::class, 'index']);
+Route::get('/customers/{customer}', [CustomerController::class, 'getCustomer']);
+Route::post('/customers', [CustomerController::class, 'store']);
+Route::put('/customers/{customer}', [CustomerController::class, 'update']);
+Route::delete('/customers/{customer}', [CustomerController::class, 'delete']);
