@@ -33,8 +33,9 @@ class ProductController extends Controller
 
     public function store(storeRequest $request)
     {
+   
         $product = $this->productRepository->create($request->only(
-            ['name', 'description', 'buy_price', 'sell_price', 'category_id', 'qty']
+            ['name', 'description', 'buy_price', 'sell_price', 'category_id', 'qty','images']
         ));
 
         return response()->json($product, 201);

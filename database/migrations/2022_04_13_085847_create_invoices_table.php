@@ -21,7 +21,7 @@ class CreateInvoicesTable extends Migration
             $table->integer('discount');
             $table->integer('total_after_discount');
             $table->enum('type_of_payment',['cash','credit']);
-            $table->foreignId('maintenance_id')->constrained();
+            $table->foreignId('maintenance_id')->nullable();
             $table->timestamps();
         });
     }

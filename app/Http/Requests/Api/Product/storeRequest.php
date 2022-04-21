@@ -30,6 +30,8 @@ class storeRequest extends FormRequest
             'sell_price' => 'required|numeric',
             'category_id' => 'required|numeric|exists:categories,id',
             'qty' => 'required|numeric',
+            'images' => 'required|array',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             
         ];
     }
