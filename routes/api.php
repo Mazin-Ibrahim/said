@@ -4,6 +4,8 @@ use App\Http\Controllers\Api\Auth\authController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\DepartmentController;
+use App\Http\Controllers\Api\InvoiceController;
+use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\WorkerController;
 use Illuminate\Http\Request;
@@ -29,7 +31,7 @@ Route::post('/login', [authController::class, 'login']);
 
 
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
+// Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/categories/{category}', [CategoryController::class, 'getCategory']);
     Route::post('/categories', [CategoryController::class, 'store']);
@@ -60,4 +62,17 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/customers', [CustomerController::class, 'store']);
     Route::put('/customers/{customer}', [CustomerController::class, 'update']);
     Route::delete('/customers/{customer}', [CustomerController::class, 'delete']);
-});
+
+    Route::get('/maintenances', [MaintenanceController::class, 'index']);
+    Route::get('/maintenances/{maintenance}', [MaintenanceController::class, 'getMaintenance']);
+    Route::post('/maintenances', [MaintenanceController::class, 'store']);
+    Route::put('/maintenances/{maintenance}', [MaintenanceController::class, 'update']);
+    Route::delete('/maintenances/{maintenance}', [MaintenanceController::class, 'delete']);
+
+    Route::get('/invoices', [InvoiceController::class, 'index']);
+    Route::get('/invoices/{invoice}', [InvoiceController::class, 'getInvoice']);
+    Route::post('/invoices', [InvoiceController::class, 'store']);
+    Route::put('/invoices/{invoice}', [InvoiceController::class, 'update']);
+    Route::delete('/invoices/{invoice}', [InvoiceController::class, 'delete']);
+    
+// });

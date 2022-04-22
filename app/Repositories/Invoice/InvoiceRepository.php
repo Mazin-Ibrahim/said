@@ -2,24 +2,26 @@
 
 namespace App\Repositories\Invoice;
 
-use App\Interfaces\Invocie\InvocieRepositoryInterface;
+use App\Interfaces\Invoice\InvocieRepositoryInterface;
 use App\Models\Invoice;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
-class InvoiceRepository implements InvocieRepositoryInterface{
-   
+class InvoiceRepository implements InvocieRepositoryInterface
+{
+    
     public function getAll()
     {
-        return Invoice::all();
-    }
+        return Invoice::paginate(10);
+    } 
     public function getInvoice($invoce)
     {
-        return $invoce;
+        return $invoce->load('invoiceLines');
     }
 
     public function create($data)
     {
+       
         DB::beginTransaction();
         try {
             $invoice = new Invoice();
@@ -30,6 +32,7 @@ class InvoiceRepository implements InvocieRepositoryInterface{
             $invoice->total_after_discount = $data['total_after_discount'];
             $invoice->type_of_payment = $data['type_of_payment'];
             $invoice->save();
+            
             collect($data['invoce_items'])->each(function($item){
                 $product = Product::find($item['product_id']);
                 $product->qty = $product->qty - $item['qty'];
@@ -37,7 +40,7 @@ class InvoiceRepository implements InvocieRepositoryInterface{
                 $product->save();
             });
             collect($data['invoce_items'])->each(function($item) use ($invoice){
-                $invoice->invoiceLines->create([
+                $invoice->invoiceLines()->create([
                     'product_id' => $item['product_id'],
                     'qty' => $item['qty']
                 ]);

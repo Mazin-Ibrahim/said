@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces\Invocie;
+namespace App\Interfaces\Invoice;
 
 
 Interface InvocieRepositoryInterface {
@@ -9,6 +9,6 @@ Interface InvocieRepositoryInterface {
     public function getInvoice($invoce);
     public function create($request);
     // public function updtae($request,$invoce);
-    public function delete($invoce);
+    public function delete($invoce); 
 
-}
+} 

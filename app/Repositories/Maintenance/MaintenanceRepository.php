@@ -8,7 +8,7 @@ use App\Interfaces\Maintenance\MaintenanceRepositoryInterface;
 
 class MaintenanceRepository implements MaintenanceRepositoryInterface
 {
-    public function getAll()
+    public function getAll() 
     {
         return Maintenance::paginate(10);
     }

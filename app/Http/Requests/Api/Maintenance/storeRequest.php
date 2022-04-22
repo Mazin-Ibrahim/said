@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api\Maintenance;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ApiInvoiceupdateRequest extends FormRequest
+class storeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ApiInvoiceupdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class ApiInvoiceupdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'worker_id' => 'required|exists:workers,id',
+            'customer_id' => 'required|exists:customers,id',
+            'location_name' => 'required|string',
+            'price' => 'required|integer',
         ];
     }
 }
