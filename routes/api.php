@@ -31,7 +31,7 @@ Route::post('/login', [authController::class, 'login']);
 
 
 
-// Route::group(['middleware' => 'auth:sanctum'], function () {
+Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/categories/{category}', [CategoryController::class, 'getCategory']);
     Route::post('/categories', [CategoryController::class, 'store']);
@@ -75,4 +75,8 @@ Route::post('/login', [authController::class, 'login']);
     Route::put('/invoices/{invoice}', [InvoiceController::class, 'update']);
     Route::delete('/invoices/{invoice}', [InvoiceController::class, 'delete']);
     
-// });
+});
+
+
+
+

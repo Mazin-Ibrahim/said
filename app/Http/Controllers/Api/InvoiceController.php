@@ -32,7 +32,7 @@ class InvoiceController extends Controller
     {
         
         $invoice = $this->invocieInterface->create($request->only(
-            ['user_id','customer_id','total','discount','total_after_discount','type_of_payment','invoce_items']
+            ['customer_id','total','discount','total_after_discount','type_of_payment','invoce_items']
         ));
 
      

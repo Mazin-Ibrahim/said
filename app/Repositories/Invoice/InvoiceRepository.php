@@ -25,7 +25,7 @@ class InvoiceRepository implements InvocieRepositoryInterface
         DB::beginTransaction();
         try {
             $invoice = new Invoice();
-            $invoice->user_id = $data['user_id'];
+            $invoice->user_id = auth()->user()->id;
             $invoice->customer_id = $data['customer_id'];
             $invoice->total = $data['total'];
             $invoice->discount = $data['discount'];

@@ -31,10 +31,10 @@ class authController extends Controller
                 'message' => 'Invalid credentials'
             ], 401);
         }
-        $data =   $user->createToken('User Token')->accessToken;
+        $token = $user->createToken('user-token')->plainTextToken;
         return response()->json([
             'user' => $user,
-            'token' => $data->token,
+            'token' => $token,
         ]);
     }
 }
