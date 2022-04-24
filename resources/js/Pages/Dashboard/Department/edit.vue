@@ -25,7 +25,7 @@
        layout: Layout,
        props:{
            errors:{},
-           category:{}
+           department:{}
        },
        created(){
            
@@ -33,14 +33,14 @@
        data() {
            return {
                 form:this.$inertia.form({
-                   name:this.category.name,
+                   name:this.department.name,
                    _method:'PUT',
                }),
            }
        },
        methods: {
            update(){
-              this.$inertia.post(`/categories/${this.category.id}/update`, this.form)
+              this.$inertia.post(`/departments/${this.department.id}/update`, this.form)
            }
        }
    

@@ -2,17 +2,17 @@
    <div class="col-12">
       <div class="card shadow-sm">
          <div class="card-header">
-            <h3 class="card-title">التصنيفات</h3>
+            <h3 class="card-title">الاقسام</h3>
          </div>
          <div class="card-body">
             <div class="col-7">
                <div class="form-group">
-                  <label for="name">أسم التصنيف</label>
+                  <label for="name">أسم القسم</label>
                   <input type="text" class="form-control" id="name" v-model="form.name">
                   <span v-if="errors.name" class="text-danger mt-2">{{ errors.name }}</span>
                </div>
                <div class="form-group">
-                  <button @click="update()" class="btn btn-primary">تعديل</button>
+                  <button @click="save()" class="btn btn-primary">حفظ</button>
                </div>
             </div>
          </div>
@@ -24,8 +24,7 @@
    export default {
        layout: Layout,
        props:{
-           errors:{},
-           category:{}
+           errors:{}
        },
        created(){
            
@@ -33,14 +32,14 @@
        data() {
            return {
                 form:this.$inertia.form({
-                   name:this.category.name,
-                   _method:'PUT',
+                   name:'',
                }),
            }
        },
        methods: {
-           update(){
-              this.$inertia.post(`/categories/${this.category.id}/update`, this.form)
+           save(){
+              this.form.post(this.route('departments.store'))
+          
            }
        }
    
