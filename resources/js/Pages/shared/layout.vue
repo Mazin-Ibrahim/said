@@ -511,10 +511,16 @@
                             <div class="container">
                                 <!--begin::Dashboard-->
                                 <!--begin::Row-->
-                                <div class="row">
-                                    <div class="col-lg-6 col-xxl-4 mt-20">
-                                        <slot />
-                                    </div>
+                                <div class="row mt-10">
+                                 
+                                        
+
+                                          
+                                                 <slot />
+                                          
+                                       
+                                    
+                              <flash v-if="$page.flash" :type="$page.flash.type" :popstate="$page.popstate">{{ $page.flash.message}}</flash>
 
                                     <div
                                         class="col-lg-12 col-xxl-4 order-1 order-xxl-2"
@@ -585,5 +591,9 @@
 </template>
 
 <script>
-export default {};
+import Flash from "../shared/flash.vue";
+export default {
+   components: {Flash},
+       
+};
 </script>

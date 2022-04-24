@@ -10,7 +10,7 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
 {
     public function getAll() 
     {
-        return Maintenance::paginate(10);
+        return Maintenance::all();
     }
 
     public function getMaintenance($maintenance)

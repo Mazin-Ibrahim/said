@@ -5,18 +5,12 @@ require("./bootstrap");
 // window.Vue = require("vue");
 import Vue from "vue/dist/vue.js";
 import { createInertiaApp } from "@inertiajs/inertia-vue";
+// import { InertiaProgress } from '@inertiajs/progress'
 
-// createInertiaApp({
-//     resolve: (name) => require(`./Pages/${name}`),
-//     setup({ el, app, props }) {
-//         new Vue({
-//             metaInfo: {
-//                 titleTemplate: (title) => title,
-//             },
-//             render: (h) => h(app, props),
-//         }).$mount(el);
-//     },
-// });
+Vue.mixin({ methods: { route: window.route } })
+// InertiaProgress.init()
+
+
 
 createInertiaApp({
     resolve: (name) => require(`./Pages/${name}`),
@@ -28,3 +22,7 @@ createInertiaApp({
         }).$mount(el);
     },
 });
+
+
+require('./bootstrap');
+

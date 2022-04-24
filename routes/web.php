@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -21,3 +22,11 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/about', [HomeController::class, 'about'])->name('about');
+
+
+Route::get('/categories/create',[CategoryController::class, 'create'])->name('categories.create');
+Route::post('/categories',[CategoryController::class, 'store'])->name('categories.store');
+Route::get('/categories',[CategoryController::class, 'index'])->name('categories.index');
+Route::get('/categories/{category}/edit',[CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('/categories/{category}/update',[CategoryController::class, 'update'])->name('categories.update');
+Route::delete('/categories/{category}/delete',[CategoryController::class, 'delete'])->name('categories.delete');

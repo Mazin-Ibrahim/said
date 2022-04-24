@@ -9,7 +9,7 @@ class DepartmentRepository implements DepartmentRepositoryInterface
 {
     public function getAll()
     {
-        return Department::paginate(10);
+        return Department::all();
     }
 
     public function getDepartment($department)

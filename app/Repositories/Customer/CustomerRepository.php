@@ -10,7 +10,7 @@ class CustomerRepository implements CustomerRepositoryInterface
 {
     public function getAll()
     {
-        return Customer::paginate(10);
+        return Customer::all();
     }
 
     public function getCustomer($customer)

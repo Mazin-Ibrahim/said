@@ -9,7 +9,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 {
     public function getAll()
     {
-        return Category::paginate(10);
+        return Category::all();
     }
 
     public function getCategory($category)

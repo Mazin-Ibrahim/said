@@ -10,7 +10,7 @@ class WorkerRepository implements WorkerRepositoryInterface
 {
     public function getAll()
     {
-        return Worker::paginate(10);
+        return Worker::all();
     }
 
     public function getWorker($worker)
