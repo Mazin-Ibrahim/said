@@ -10,7 +10,7 @@ class WorkerRepository implements WorkerRepositoryInterface
 {
     public function getAll()
     {
-        return Worker::all();
+        return Worker::with('department')->get();
     }
 
     public function getWorker($worker)

@@ -16,4 +16,9 @@ class Worker extends Model
         'phone',
         'description',
     ];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DepartmentController;
+use App\Http\Controllers\Dashboard\WorkerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -39,3 +40,10 @@ Route::get('/departments',[DepartmentController::class, 'index'])->name('departm
 Route::get('/departments/{department}/edit',[DepartmentController::class, 'edit'])->name('departments.edit');
 Route::put('/departments/{department}/update',[DepartmentController::class, 'update'])->name('departments.update');
 Route::delete('/departments/{department}/delete',[DepartmentController::class, 'delete'])->name('departments.delete');
+
+Route::get('/workers/create',[WorkerController::class, 'create'])->name('workers.create');
+Route::post('/workers',[WorkerController::class, 'store'])->name('workers.store');
+Route::get('/workers',[WorkerController::class, 'index'])->name('workers.index');
+Route::get('/workers/{worker}/edit',[WorkerController::class, 'edit'])->name('workers.edit');
+Route::put('/workers/{worker}/update',[WorkerController::class, 'update'])->name('workers.update');
+Route::delete('/workers/{worker}/delete',[WorkerController::class, 'delete'])->name('workers.delete');
