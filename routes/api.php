@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\ExpenseController;
+use App\Http\Controllers\Api\ExpenseReportController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\ProductController;
@@ -87,6 +88,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/expenses', [ExpenseController::class, 'store']);
     Route::put('/expenses/{expense}', [ExpenseController::class, 'update']);
     Route::delete('/expenses/{expense}', [ExpenseController::class, 'delete']);
+    Route::post('/expenses/byDay', [ExpenseReportController::class, 'getExpensesByDay']);
+    Route::post('/expenses/byMonth', [ExpenseReportController::class, 'getExpensesByMonth']);
+    Route::post('/expenses/byYear', [ExpenseReportController::class, 'getExpensesByYear']);
+    Route::post('/expenses/byPeriod', [ExpenseReportController::class, 'getExpensesByPeriod']);
     
 });
 

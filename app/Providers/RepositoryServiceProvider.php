@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Interfaces\Category\CategoryRepositoryInterface;
 use App\Interfaces\Customer\CustomerRepositoryInterface;
 use App\Interfaces\Department\DepartmentRepositoryInterface;
+use App\Interfaces\Expense\ExpenseReportInterface;
 use App\Interfaces\Expense\ExpenseRepositoryInterface;
 use App\Interfaces\Income\IncomeRepositoryInterface;
 use App\Interfaces\Invoice\InvocieRepositoryInterface;
@@ -40,6 +41,7 @@ class RepositoryServiceProvider extends ServiceProvider
        $this->app->bind(InvocieRepositoryInterface::class, InvoiceRepository::class);
        $this->app->bind(IncomeRepositoryInterface::class, IncomeRepository::class);
        $this->app->bind(ExpenseRepositoryInterface::class, ExpenseRepository::class);
+       $this->app->bind(ExpenseReportInterface::class, ExpenseRepository::class);
 
     }
 
