@@ -190,8 +190,8 @@ class ComposerStaticInit91005cd65ffdca663f4fe5c52f23da7b
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Whoops\\' => 
         array (
@@ -339,8 +339,8 @@ class ComposerStaticInit91005cd65ffdca663f4fe5c52f23da7b
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -543,6 +543,11 @@ class ComposerStaticInit91005cd65ffdca663f4fe5c52f23da7b
         'App\\Http\\Controllers\\Api\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ProductController.php',
         'App\\Http\\Controllers\\Api\\WorkerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/WorkerController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\Dashboard\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/CategoryController.php',
+        'App\\Http\\Controllers\\Dashboard\\CustomerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/CustomerController.php',
+        'App\\Http\\Controllers\\Dashboard\\DepartmentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/DepartmentController.php',
+        'App\\Http\\Controllers\\Dashboard\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/ProductController.php',
+        'App\\Http\\Controllers\\Dashboard\\WorkerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/WorkerController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -578,7 +583,9 @@ class ComposerStaticInit91005cd65ffdca663f4fe5c52f23da7b
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Customer' => __DIR__ . '/../..' . '/app/Models/Customer.php',
         'App\\Models\\Department' => __DIR__ . '/../..' . '/app/Models/Department.php',
+        'App\\Models\\Expense' => __DIR__ . '/../..' . '/app/Models/Expense.php',
         'App\\Models\\Image' => __DIR__ . '/../..' . '/app/Models/Image.php',
+        'App\\Models\\Income' => __DIR__ . '/../..' . '/app/Models/Income.php',
         'App\\Models\\Invoice' => __DIR__ . '/../..' . '/app/Models/Invoice.php',
         'App\\Models\\InvoiceLine' => __DIR__ . '/../..' . '/app/Models/InvoiceLine.php',
         'App\\Models\\Maintenance' => __DIR__ . '/../..' . '/app/Models/Maintenance.php',
@@ -709,7 +716,10 @@ class ComposerStaticInit91005cd65ffdca663f4fe5c52f23da7b
         'Database\\Factories\\CategoryFactory' => __DIR__ . '/../..' . '/database/factories/CategoryFactory.php',
         'Database\\Factories\\CustomerFactory' => __DIR__ . '/../..' . '/database/factories/CustomerFactory.php',
         'Database\\Factories\\DepartmentFactory' => __DIR__ . '/../..' . '/database/factories/DepartmentFactory.php',
+        'Database\\Factories\\ExpenseFactory' => __DIR__ . '/../..' . '/database/factories/ExpenseFactory.php',
+        'Database\\Factories\\ExpensesFactory' => __DIR__ . '/../..' . '/database/factories/ExpensesFactory.php',
         'Database\\Factories\\ImageFactory' => __DIR__ . '/../..' . '/database/factories/ImageFactory.php',
+        'Database\\Factories\\IncomeFactory' => __DIR__ . '/../..' . '/database/factories/IncomeFactory.php',
         'Database\\Factories\\InvoiceFactory' => __DIR__ . '/../..' . '/database/factories/InvoiceFactory.php',
         'Database\\Factories\\InvoiceLineFactory' => __DIR__ . '/../..' . '/database/factories/InvoiceLineFactory.php',
         'Database\\Factories\\MaintenanceFactory' => __DIR__ . '/../..' . '/database/factories/MaintenanceFactory.php',

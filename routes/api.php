@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\authController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\DepartmentController;
+use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\ProductController;
@@ -74,6 +75,18 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/invoices', [InvoiceController::class, 'store']);
     Route::put('/invoices/{invoice}', [InvoiceController::class, 'update']);
     Route::delete('/invoices/{invoice}', [InvoiceController::class, 'delete']);
+
+    Route::get('/incomes', [IncomeController::class, 'index']);
+    Route::get('/incomes/{income}', [IncomeController::class, 'getIncome']);
+    Route::post('/incomes', [IncomeController::class, 'store']);
+    Route::put('/incomes/{income}', [IncomeController::class, 'update']);
+    Route::delete('/incomes/{income}', [IncomeController::class, 'delete']);
+    
+    Route::get('/expenses', [ExpenseController::class, 'index']);
+    Route::get('/expenses/{expense}', [ExpenseController::class, 'getExpense']);
+    Route::post('/expenses', [ExpenseController::class, 'store']);
+    Route::put('/expenses/{expense}', [ExpenseController::class, 'update']);
+    Route::delete('/expenses/{expense}', [ExpenseController::class, 'delete']);
     
 });
 
