@@ -3,20 +3,21 @@
 
 namespace App\Repositories\Product;
 
+use App\Interfaces\Product\ProductReportsInterface;
 use App\Models\Product;
 use App\Interfaces\Product\ProductRepositoryInterface;
 use App\Models\Image;
 
-class ProductRepository implements ProductRepositoryInterface
+class ProductRepository implements ProductRepositoryInterface, ProductReportsInterface
 {
     public function getAll()
     {
-        return Product::paginate(10);
+        return Product::with('images')->simplePaginate(10);
     }
 
     public function getProduct($product)
     {
-        return $product;
+        return $product->load('images');
     }
 
     public function create($data)
@@ -82,5 +83,28 @@ class ProductRepository implements ProductRepositoryInterface
     public function delete($product)
     {
         return   $product->delete();
+    }
+
+    public function getProductsCount()
+    {
+        return Product::count();
+    }
+
+    public function getProductsQuantity()
+    {
+        
+        return Product::sum('qty');
+    }
+
+    public function getProfitFromProducts()
+    {
+      
+        $products = Product::all();
+        $profit = 0;
+        foreach ($products as $product) {
+            $profit += $product->qty * $product->profit;
+        }
+
+        return $profit;
     }
 }

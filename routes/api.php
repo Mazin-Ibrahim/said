@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ExpenseReportController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ProductReportController;
 use App\Http\Controllers\Api\WorkerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/products', [ProductController::class, 'store']);
     Route::put('/products/{product}', [ProductController::class, 'update']);
     Route::delete('/products/{product}', [ProductController::class, 'delete']);
+    
+    Route::get('/products/report/quantity', [ProductReportController::class, 'getProductsQuantity']);
+    Route::get('/products/report/profit', [ProductReportController::class, 'getProductsProfit']);
+    Route::get('/products/report/count', [ProductReportController::class, 'getProductsCount']);
     
     Route::get('/customers', [CustomerController::class, 'index']);
     Route::get('/customers/{customer}', [CustomerController::class, 'getCustomer']);
