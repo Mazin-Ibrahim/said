@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\ExpenseReportController;
 use App\Http\Controllers\Api\InvoiceController;
+use App\Http\Controllers\Api\InvoiceReportController;
 use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductReportController;
@@ -81,6 +82,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/invoices', [InvoiceController::class, 'store']);
     Route::put('/invoices/{invoice}', [InvoiceController::class, 'update']);
     Route::delete('/invoices/{invoice}', [InvoiceController::class, 'delete']);
+
+
+    Route::post('/invoices/report/byDay', [InvoiceReportController::class, 'getInvoicesByDay']);
 
     Route::get('/incomes', [IncomeController::class, 'index']);
     Route::get('/incomes/{income}', [IncomeController::class, 'getIncome']);

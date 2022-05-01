@@ -2,12 +2,14 @@
 
 namespace App\Repositories\Invoice;
 
+use App\Interfaces\Invoice\InvocieReportsInterface;
 use App\Interfaces\Invoice\InvocieRepositoryInterface;
+use App\Interfaces\Invoice\InvoiceReportsInterface;
 use App\Models\Invoice;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
-class InvoiceRepository implements InvocieRepositoryInterface
+class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInterface
 {
     
     public function getAll()
@@ -61,6 +63,11 @@ class InvoiceRepository implements InvocieRepositoryInterface
     public function delete($invoce)
     {
       return $invoce->delete();
+    }
+
+    public function getInvoicesBayDay($date)
+    {
+        return Invoice::whereDate('created_at', $date)->get();
     }
    
 
