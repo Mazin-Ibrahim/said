@@ -9,6 +9,7 @@ use App\Interfaces\Expense\ExpenseReportInterface;
 use App\Interfaces\Expense\ExpenseRepositoryInterface;
 use App\Interfaces\Income\IncomeRepositoryInterface;
 use App\Interfaces\Invoice\InvocieReportsInterface;
+use App\Interfaces\Invoice\InvocieRepositoryInterface;
 use App\Interfaces\Invoice\InvoiceMaintenanceInterface;
 use App\Interfaces\Maintenance\MaintenanceRepositoryInterface;
 use App\Interfaces\Product\ProductReportsInterface;
@@ -47,6 +48,7 @@ class RepositoryServiceProvider extends ServiceProvider
        $this->app->bind(IncomeRepositoryInterface::class, IncomeRepository::class);
        $this->app->bind(ExpenseRepositoryInterface::class, ExpenseRepository::class);
        $this->app->bind(ExpenseReportInterface::class, ExpenseRepository::class);
+       $this->app->bind(InvocieRepositoryInterface::class, InvoiceRepository::class);
 
 
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\CustomerController;
 use App\Http\Controllers\Dashboard\DepartmentController;
+use App\Http\Controllers\Dashboard\InvoiceController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\WorkerController;
 use Illuminate\Support\Facades\Route;
@@ -63,3 +64,6 @@ Route::get('/products',[ProductController::class, 'index'])->name('products.inde
 Route::get('/products/{product}/edit',[ProductController::class, 'edit'])->name('products.edit');
 Route::put('/products/{product}/update',[ProductController::class, 'update'])->name('products.update');
 Route::delete('/products/{product}/delete',[ProductController::class, 'delete'])->name('products.delete');
+
+
+Route::get('/invoices/create',[InvoiceController::class, 'create'])->name('invoices.create');
