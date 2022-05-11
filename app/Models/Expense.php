@@ -9,4 +9,8 @@ class Expense extends Model
 {
     use HasFactory;
     protected $fillable = ['value', 'description', 'date'];
+
+    protected $casts = [
+        'date' => 'datetime:Y-m-d H:00',
+    ];
 }

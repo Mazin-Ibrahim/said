@@ -39,4 +39,14 @@ class ExpenseReportController extends Controller
         $endDate = $request->endDate;
         return $this->expenseReportInterface->getExpensesByPeriod($startDate, $endDate);
     }
+
+
+    public function getLastExpensesReport()
+    {
+        
+        $expense = $this->expenseReportInterface->getLastExpensesReport();
+
+        return response()->json($expense,200);
+
+    }
 }

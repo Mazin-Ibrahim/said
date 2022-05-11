@@ -63,7 +63,7 @@
                         <tr class="border-bottom border-bottom-dashed" v-for="(d,index) in dynamicFields" :key="index" >
                            <td class="pe-7"> 
                               <v-Multiselect
-                                    @select="selectProductHandelr($event)"
+                                    
                                     :close-on-select="true"
                                     selectLabel="أختار المنتج"
                                     deselectLabel="أضغط لحذف الاختيار"
@@ -79,11 +79,10 @@
                               <input class="form-control form-control-solid" type="number" min="1" @change="calcProductTotal($event,index)" placeholder="1" value="1" >
                            </td>
                            <td>
-                              <input type="text" class="form-control form-control-solid text-end"  placeholder="0.00" :value="productSelected[index]" readonly >
+                              <input type="text" class="form-control form-control-solid text-end"  placeholder="0.00"  readonly >
                            </td>
                            <td class="pt-8 text-end text-nowrap">$
-                              <span >{{ oneProductsTotal[index] }}</span>
-                              <!-- <input type="text"  v-model="oneProductsTotal[index]"> -->
+                              <span >0.00</span>
                              
                            </td>
                            <td class="pt-5 text-end">
@@ -215,23 +214,12 @@
             this.dynamicFields.push(this.form)
          },
          deleteItem(index){
-            
             this.dynamicFields.splice(index, 1)
-            this.productSelected.splice(index, 1)
-            this.oneProductsTotal.splice(index, 1)
          },
 
-         selectProductHandelr(product){
-            this.productSelected.push(product.sell_price)
-            this.oneProductsTotal.push(product.sell_price)
-   },
-   calcProductTotal(value,index){
-      this.productTotal = value.target.value * this.productSelected[index]
-      this.oneProductsTotal[index] = this.productTotal
-   }
-   },
+    
 
-  
+   },
   
    }
 </script>

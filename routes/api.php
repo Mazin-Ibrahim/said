@@ -3,9 +3,12 @@
 use App\Http\Controllers\Api\Auth\authController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\DailyReportController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\ExpenseReportController;
+use App\Http\Controllers\Api\IncomeController;
+use App\Http\Controllers\Api\IncomeReportController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\InvoiceMaintenanceController;
 use App\Http\Controllers\Api\InvoiceReportController;
@@ -61,10 +64,17 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/products', [ProductController::class, 'store']);
     Route::put('/products/{product}', [ProductController::class, 'update']);
     Route::delete('/products/{product}', [ProductController::class, 'delete']);
+
+    Route::post('/products/getProductsPurchaseByDay', [ProductReportController::class, 'getProductsPurchaseByDay']);
     
     Route::get('/products/report/quantity', [ProductReportController::class, 'getProductsQuantity']);
     Route::get('/products/report/profit', [ProductReportController::class, 'getProductsProfit']);
     Route::get('/products/report/count', [ProductReportController::class, 'getProductsCount']);
+    Route::post('/products/report/productsCreatedToday', [ProductReportController::class, 'productsCreatedToday']);
+
+    Route::get('/products/report/getStockInformations', [ProductReportController::class, 'getStockInformations']);
+    Route::get('/daily/report/getDailyReports', [DailyReportController::class, 'getDailyReports']);
+
     
     Route::get('/customers', [CustomerController::class, 'index']);
     Route::get('/customers/{customer}', [CustomerController::class, 'getCustomer']);
@@ -86,6 +96,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
 
     Route::post('/invoices/report/byDay', [InvoiceReportController::class, 'getInvoicesByDay']);
+    Route::post('/invoices/report/getSalesByPeriodDate', [InvoiceReportController::class, 'getSalesByPeriodDate']);
+    Route::post('/invoices/report/getSalesBySpecificCustomer', [InvoiceReportController::class, 'getSalesBySpecificCustomer']);
+    Route::post('/invoices/report/getProductSalesByPeroidDate', [InvoiceReportController::class, 'getProductSalesByPeroidDate']);
+    
 
     Route::post('/invoices/maintenance',[InvoiceMaintenanceController::class,'createInvoiceMaintenance']);
 
@@ -94,6 +108,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/incomes', [IncomeController::class, 'store']);
     Route::put('/incomes/{income}', [IncomeController::class, 'update']);
     Route::delete('/incomes/{income}', [IncomeController::class, 'delete']);
+    Route::post('/incomes/byDay', [IncomeReportController::class, 'getIncomesByDay']);
+    Route::post('/incomes/byMonth', [IncomeReportController::class, 'getIncomesByMonth']);
+    Route::post('/incomes/byYear', [IncomeReportController::class, 'getIncomesByYear']);
+    Route::post('/incomes/byPeriod', [IncomeReportController::class, 'getIncomesByPeriod']);
     
     Route::get('/expenses', [ExpenseController::class, 'index']);
     Route::get('/expenses/{expense}', [ExpenseController::class, 'getExpense']);
@@ -104,6 +122,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/expenses/byMonth', [ExpenseReportController::class, 'getExpensesByMonth']);
     Route::post('/expenses/byYear', [ExpenseReportController::class, 'getExpensesByYear']);
     Route::post('/expenses/byPeriod', [ExpenseReportController::class, 'getExpensesByPeriod']);
+    Route::get('/getLastExpensesReport', [ExpenseReportController::class, 'getLastExpensesReport']);
     
 });
 

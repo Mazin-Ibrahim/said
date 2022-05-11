@@ -8,6 +8,8 @@ use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\WorkerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Models\Expense;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // dd(Expense::find(2)->date);
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

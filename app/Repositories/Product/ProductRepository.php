@@ -7,12 +7,15 @@ use App\Interfaces\Product\ProductReportsInterface;
 use App\Models\Product;
 use App\Interfaces\Product\ProductRepositoryInterface;
 use App\Models\Image;
+use App\Models\Invoice;
+use Carbon\Carbon;
 
 class ProductRepository implements ProductRepositoryInterface, ProductReportsInterface
 {
-    public function getAll()
-    {
-        return Product::with('images')->simplePaginate(10);
+    public function getAll($request)
+    { 
+        
+        return Product::with('images')->take($request->display_count)->get();
     }
 
     public function getProduct($product)
@@ -106,5 +109,46 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
         }
 
         return $profit;
+    }
+
+
+    public function getProductsPurchaseByDay($date)
+    {
+       
+        $invoices = Invoice::whereDate('created_at', Carbon::parse($date))->with('invoiceLines.product')->get();
+        return $invoices;
+        
+    }
+
+    public function productsCreatedToday($date)
+    {
+        
+       $products = Product::whereDate('created_at', Carbon::parse($date))->with('images')->get();
+       return $products;
+    }
+
+    public function getStockInformations()
+    {
+       $countProducts = Product::count();
+       $products = Product::all();
+       $totalWithoutProfit = 0;
+       foreach ($products as $product) {
+        $totalWithoutProfit  += $product->qty * $product->buy_price;
+     }
+       
+       $totalWithProfit  = 0;
+       foreach ($products as $product) {
+          $totalWithProfit  += $product->qty * $product->profit;
+       }
+
+       $totalProfit = Product::sum('profit');
+
+       return [
+           'countProducts' => $countProducts,
+           'totalWithoutProfit' => $totalWithoutProfit,
+           'totalWithProfit' => $totalWithProfit,
+           'totalProfit' => $totalProfit,
+       ];
+
     }
 }

@@ -49,5 +49,21 @@ class ExpenseRepository  implements ExpenseRepositoryInterface, ExpenseReportInt
             $endDate = Carbon::parse($endDate)->toDateTimeString();
             return Expense::whereBetween('date', [$startDate, $endDate])->get();
         }
+
+        public function getLastExpensesReport()
+        {
+            $expensesDay = Expense::whereDate('created_at',Carbon::today())->sum('value');
+            $expensesMonth = Expense::whereMonth('created_at',Carbon::now()->month)->sum('value');
+            $expensesYear = Expense::whereYear('created_at',Carbon::now()->year)->sum('value');
+
+            return [
+                'expensesDay' => $expensesDay,
+                'expensesMonth' => $expensesMonth,
+                'expensesYear' => $expensesYear
+
+            ];
+
+
+        }
     
 }

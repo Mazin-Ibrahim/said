@@ -8,4 +8,5 @@ Interface ExpenseReportInterface {
     public function getExpensesByMonth($month);
     public function getExpensesByYear($year);
     public function getExpensesByPeriod($startDate, $endDate);
+    public function getLastExpensesReport();
 }

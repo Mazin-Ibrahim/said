@@ -26,13 +26,13 @@ class storeInvoiceMaintenance extends FormRequest
         return [
             
             'customer_id' => 'required|exists:customers,id',
-            'total' => 'required|integer',
-            'discount' => 'required|integer',
-            'total_after_discount' => 'required|integer',
+            'total' => 'required|numeric',
+            'discount' => 'required|numeric',
+            'total_after_discount' => 'required|numeric',
             'type_of_payment' => 'required|in:cash,credit',
             'invoce_items' => 'required|array',
             'invoce_items.*.product_id' => 'required|exists:products,id',
-            'invoce_items.*.qty' => 'required|integer',
+            'invoce_items.*.qty' => 'required|numeric',
             'maintenance_id' => 'required|exists:maintenances,id',
         ];
     }

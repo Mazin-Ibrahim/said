@@ -13,7 +13,7 @@ class updateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class updateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'value' => 'required|numeric',
+            'description' => 'required|string',
+            'date' => 'required|date',
+        
         ];
     }
 }

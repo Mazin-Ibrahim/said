@@ -17,7 +17,7 @@ class CreateWorkersTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('department_id');
-            $table->integer('salary');
+            $table->double('salary');
             $table->string('phone');
             $table->text('description');
             $table->timestamps();

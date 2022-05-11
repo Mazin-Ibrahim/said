@@ -17,9 +17,9 @@ class ProductController extends Controller
         $this->productRepository = $productRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $products = $this->productRepository->getAll();
+        $products = $this->productRepository->getAll($request);
 
         return response()->json($products, 200);
     }

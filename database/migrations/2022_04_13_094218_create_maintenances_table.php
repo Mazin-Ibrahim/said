@@ -18,7 +18,7 @@ class CreateMaintenancesTable extends Migration
             $table->foreignId('worker_id')->constrained();
             $table->foreignId('customer_id')->constrained();
             $table->string('location_name');
-            $table->integer('price');
+            $table->double('price');
             $table->timestamps();
         });
     }

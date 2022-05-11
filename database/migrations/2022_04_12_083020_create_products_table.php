@@ -17,10 +17,10 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('category_id');
-            $table->integer('buy_price');
-            $table->integer('sell_price');
+            $table->double('buy_price');
+            $table->double('sell_price');
             $table->integer('qty');
-            $table->integer('profit')->nullable();
+            $table->double('profit')->nullable();
             $table->text('description');
             $table->timestamps();
         });

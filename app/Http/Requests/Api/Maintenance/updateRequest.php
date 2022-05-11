@@ -24,7 +24,10 @@ class updateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'worker_id' => 'required|exists:workers,id',
+            'customer_id' => 'required|exists:customers,id',
+            'location_name' => 'required|string',
+            'price' => 'required',
         ];
     }
 }

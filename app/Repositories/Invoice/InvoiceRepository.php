@@ -6,16 +6,20 @@ use App\Interfaces\Invoice\InvocieReportsInterface;
 use App\Interfaces\Invoice\InvocieRepositoryInterface;
 use App\Interfaces\Invoice\InvoiceMaintenanceInterface;
 use App\Interfaces\Invoice\InvoiceReportsInterface;
+use App\Models\Customer;
 use App\Models\Invoice;
+use App\Models\InvoiceLine;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInterface,InvoiceMaintenanceInterface
 {
     
-    public function getAll()
+    public function getAll($request)
     {
-        return Invoice::paginate(10);
+        
+        return Invoice::take($request->dispaly_count)->with('invoiceLines.product')->get();
     } 
     public function getInvoice($invoce)
     {
@@ -49,7 +53,7 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
                 ]);
             });
             DB::commit();
-            return $invoice;
+            return $invoice->load('invoiceLines.product');
         } catch (\Exception $e) {
             DB::rollback();
             throw $e;
@@ -68,7 +72,7 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
 
     public function getInvoicesBayDay($date)
     {
-        return Invoice::whereDate('created_at', $date)->get();
+        return Invoice::whereDate('created_at', $date)->with('invoiceLines.product')->get();
     }
 
 
@@ -100,11 +104,38 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
                 ]);
             });
             DB::commit();
-            return $invoice;
+            return $invoice->load('invoiceLines.product');
         } catch (\Exception $e) {
             DB::rollback();
             throw $e;
         }
+    }
+
+
+
+    public function getSalesByPeriodDate($startDate, $endDate)
+    {
+        $startDate = Carbon::parse($startDate)->toDateTimeString();
+        $endDate = Carbon::parse($endDate)->toDateTimeString();
+        $sales = Invoice::whereBetween('created_at', [$startDate, $endDate])->get();
+
+        return $sales;
+    }
+
+    public function getSalesBySpecificCustomer($customer_id)
+    {
+        $customer = Customer::find($customer_id);
+
+        return $customer->load('invoices.invoiceLines');
+    }
+
+    public function getProductSalesByPeroidDate($startDate, $endDate,$product_id)
+    {
+        $startDate = Carbon::parse($startDate)->toDateTimeString();
+        $endDate = Carbon::parse($endDate)->toDateTimeString();
+
+        $productSales = InvoiceLine::whereBetween('created_at',[$startDate,$endDate])->where('product_id',$product_id)->sum('qty');
+        return $productSales;
     }
    
 

@@ -16,9 +16,9 @@ class InvoiceController extends Controller
         $this->invocieInterface = $invocieInterface;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $invoices = $this->invocieInterface->getAll();
+        $invoices = $this->invocieInterface->getAll($request);
         return response()->json($invoices,200);
     }
 

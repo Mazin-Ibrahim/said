@@ -27,7 +27,7 @@ class storeRequest extends FormRequest
             'worker_id' => 'required|exists:workers,id',
             'customer_id' => 'required|exists:customers,id',
             'location_name' => 'required|string',
-            'price' => 'required|integer',
+            'price' => 'required',
         ];
     }
 }

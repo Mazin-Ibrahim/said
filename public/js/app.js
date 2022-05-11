@@ -2874,7 +2874,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   layout: _shared_layout__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -2907,16 +2906,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteItem: function deleteItem(index) {
       this.dynamicFields.splice(index, 1);
-      this.productSelected.splice(index, 1);
-      this.oneProductsTotal.splice(index, 1);
-    },
-    selectProductHandelr: function selectProductHandelr(product) {
-      this.productSelected.push(product.sell_price);
-      this.oneProductsTotal.push(product.sell_price);
-    },
-    calcProductTotal: function calcProductTotal(value, index) {
-      this.productTotal = value.target.value * this.productSelected[index];
-      this.oneProductsTotal[index] = this.productTotal;
     }
   }
 });
@@ -30687,11 +30676,6 @@ var render = function () {
                                   label: "name",
                                   options: _vm.products,
                                 },
-                                on: {
-                                  select: function ($event) {
-                                    return _vm.selectProductHandelr($event)
-                                  },
-                                },
                                 model: {
                                   value: _vm.form.product_id,
                                   callback: function ($$v) {
@@ -30721,29 +30705,9 @@ var render = function () {
                             }),
                           ]),
                           _vm._v(" "),
-                          _c("td", [
-                            _c("input", {
-                              staticClass:
-                                "form-control form-control-solid text-end",
-                              attrs: {
-                                type: "text",
-                                placeholder: "0.00",
-                                readonly: "",
-                              },
-                              domProps: { value: _vm.productSelected[index] },
-                            }),
-                          ]),
+                          _vm._m(1, true),
                           _vm._v(" "),
-                          _c(
-                            "td",
-                            { staticClass: "pt-8 text-end text-nowrap" },
-                            [
-                              _vm._v("$\n                           "),
-                              _c("span", [
-                                _vm._v(_vm._s(_vm.oneProductsTotal[index])),
-                              ]),
-                            ]
-                          ),
+                          _vm._m(2, true),
                           _vm._v(" "),
                           _c("td", { staticClass: "pt-5 text-end" }, [
                             _c(
@@ -30833,13 +30797,13 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-                        _vm._m(1),
+                        _vm._m(3),
                         _vm._v(" "),
-                        _vm._m(2),
+                        _vm._m(4),
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(3),
+                    _vm._m(5),
                   ]),
                 ]
               ),
@@ -30853,11 +30817,11 @@ var render = function () {
                   [
                     _c("td", { staticClass: "pe-7" }),
                     _vm._v(" "),
-                    _vm._m(4),
-                    _vm._v(" "),
-                    _vm._m(5),
-                    _vm._v(" "),
                     _vm._m(6),
+                    _vm._v(" "),
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _vm._m(8),
                     _vm._v(" "),
                     _c("td", { staticClass: "pt-5 text-end" }, [
                       _c(
@@ -30914,7 +30878,7 @@ var render = function () {
               ]),
             ]),
             _vm._v(" "),
-            _vm._m(7),
+            _vm._m(9),
           ]),
         ]
       ),
@@ -30951,6 +30915,26 @@ var staticRenderFns = [
           ]),
         ]
       ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("input", {
+        staticClass: "form-control form-control-solid text-end",
+        attrs: { type: "text", placeholder: "0.00", readonly: "" },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "pt-8 text-end text-nowrap" }, [
+      _vm._v("$\n                           "),
+      _c("span", [_vm._v("0.00")]),
     ])
   },
   function () {

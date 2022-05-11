@@ -2,10 +2,12 @@
 
 namespace App\Repositories\Income;
 
+use App\Interfaces\Income\IncomeReportInterface;
 use App\Interfaces\Income\IncomeRepositoryInterface;
 use App\Models\Income;
+use Carbon\Carbon;
 
-class IncomeRepository implements IncomeRepositoryInterface
+class IncomeRepository implements IncomeRepositoryInterface,IncomeReportInterface
 {
     public function getAll()
     {
@@ -30,5 +32,24 @@ class IncomeRepository implements IncomeRepositoryInterface
     public function delete($income)
     {
        return $income->delete();
+    }
+
+    public function getIncomesByDay($day) {
+        return Income::whereDate('date', $day)->get();
+    }
+
+    public function getIncomesByMonth($month) {
+        return Income::whereMonth('date', $month)->get();
+    }
+
+    public function getIncomesByYear($year) {
+        return Income::whereYear('date', $year)->get();
+    }
+
+    public function getIncomesByPeriod($startDate, $endDate) {
+       
+        $startDate = Carbon::parse($startDate)->toDateTimeString();
+        $endDate = Carbon::parse($endDate)->toDateTimeString();
+        return Income::whereBetween('date', [$startDate, $endDate])->get();
     }
 }
