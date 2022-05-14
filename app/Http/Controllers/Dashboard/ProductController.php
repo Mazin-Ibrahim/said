@@ -19,9 +19,9 @@ class ProductController extends Controller
         $this->productInterface = $productInterface;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $products = $this->productInterface->getAll();
+        $products = $this->productInterface->getAll($request);
         return inertia('Dashboard/Product/index',[
             'products' => $products
         ]);
@@ -30,6 +30,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
+       
         return inertia('Dashboard/Product/create',[
             'categories' => $categories
         
@@ -38,22 +39,32 @@ class ProductController extends Controller
 
     public function store(storeRequest $request)
     {
+        
         $this->productInterface->create($request->only(['name','category_id','buy_price','sell_price','qty','profit','description','images']));
-        return redirect()->route('dashboard.products.index');
+        return redirect()->route('products.index');
     }
 
     public function edit(Product $product)
     {
-        
+        $categories = Category::all();
         return inertia('Dashboard/Product/edit',[
-            'product' => $product
+            'product' => $product,
+            'categories' => $categories
         ]);
     }
 
     public function update(updateRequest $request, Product $product)
     {
         $this->productInterface->update($product, $request->only(['name','category_id','buy_price','sell_price','qty','profit','description','images']));
-        return redirect()->route('dashboard.products.index');
+        return redirect()->route('products.index');
+    }
+
+    public function delete(Product $product)
+    { 
+        $product->images()->delete();
+        $product->delete();
+        return redirect()->route('products.index');
+
     }
  
 }

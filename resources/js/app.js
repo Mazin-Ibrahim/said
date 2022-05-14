@@ -7,10 +7,12 @@ import Vue from "vue/dist/vue.js";
 import { createInertiaApp } from "@inertiajs/inertia-vue";
 // import { InertiaProgress } from '@inertiajs/progress'
 import Multiselect from 'vue-multiselect'
+import UploadImage from "vue-upload-image";
 
 Vue.mixin({ methods: { route: window.route } })
 // InertiaProgress.init()
 Vue.component("v-Multiselect", Multiselect);
+// Vue.component("upload-image", UploadImage);
 
 
 

@@ -21,7 +21,9 @@
         "@inertiajs/inertia": "^0.11.0",
         "@inertiajs/inertia-vue": "^0.8.0",
         "vue": "^2.6.14",
-        "ziggy-js": "^1.4.6",
-        "vue-multiselect": "^2.1.6"
+        "vue-multiselect": "^2.1.6",
+        "vue-upload-drop-images": "^1.0.7",
+        "vue-upload-image": "^1.1.5",
+        "ziggy-js": "^1.4.6"
     }
 }

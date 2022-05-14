@@ -41,6 +41,12 @@
                     </select>
                     <span v-if="errors.category_id" class="text-danger mt-2">{{ errors.category_id }}</span>  
                 </div>
+
+                <div class="form-group">
+                    <label for="category">الصور</label>
+                    <UploadImages uploadMsg="أرفع صور المنتج " @changed="handleImage" />
+                    <span v-if="errors.category_id" class="text-danger mt-2">{{ errors.category_id }}</span>  
+                </div>
                <div class="form-group">
                   <button @click="save()" class="btn btn-primary">حفظ</button>
                </div>
@@ -51,8 +57,12 @@
 </template>
 <script>
    import Layout from "../../shared/layout";
+   import UploadImages from "vue-upload-drop-images";
    export default {
        layout: Layout,
+       components:{
+          UploadImages
+       },
        props:{
            errors:{},
           categories:[]
@@ -62,6 +72,7 @@
        },
        data() {
            return {
+               images:[],
                 form:this.$inertia.form({
                    name:'',
                    description:'',
@@ -75,10 +86,29 @@
        },
        methods: {
            save(){
-              this.form.post(this.route('categories.store'))
+            //   this.form.post(this.route('categories.store'))
+             var data = new FormData();
+              for (let i = 0; i < this.images.length; i++) {
+                let file = this.images[i];
+                data.append("images[" + i + "]", file);
+            }
+            data.append('name',this.form.name);
+            data.append('description',this.form.description);
+            data.append('buy_price',this.form.buy_price)
+            data.append('sell_price',this.form.sell_price)
+            data.append('qty',this.form.qty)
+            data.append('category_id',this.form.category_id)
+            this.$inertia.post("/products", data);
           
-           }
+           },
+            handleImage(files) {
+            
+           
+            for (let i = 0; i < files.length; i++) {
+                this.images.push(files[i]);
+            }
        }
    
+   }
    }
 </script>

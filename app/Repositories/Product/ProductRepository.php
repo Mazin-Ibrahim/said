@@ -14,8 +14,13 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
 {
     public function getAll($request)
     { 
-        
-        return Product::with('images')->take($request->display_count)->get();
+       
+        if($request->display_count){
+
+            return Product::with('images','category')->take($request->display_count)->get();
+        }
+
+        return Product::with('images','category')->get();
     }
 
     public function getProduct($product)
@@ -65,19 +70,23 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
             'category_id' => $data['category_id'],
             'qty' => $data['qty'],
         ]);
-
+       
         $imagesPath = [];
-        foreach ($data['images'] as $image) {
-            $extension = $image->getClientOriginalExtension();
-            array_push($imagesPath, $image->move('images', time().'-'.rand(10, 10000).'.'.$extension));
+        if (array_key_exists("images",$data)){
+            foreach ($data['images'] as $image) {
+                $extension = $image->getClientOriginalExtension();
+                array_push($imagesPath, $image->move('images', time().'-'.rand(10, 10000).'.'.$extension));
+            }
+    
+            collect($imagesPath)->each(function ($image) use ($product) {
+                $product->images()->update([
+                    'path' => $image->getFilename(),
+                    'imageable_type' => get_class($product),
+                ]);
+            });
         }
-
-        collect($imagesPath)->each(function ($image) use ($product) {
-            $product->images()->update([
-                'path' => $image->getFilename(),
-                'imageable_type' => get_class($product),
-            ]);
-        });
+       
+        
 
 
         return $product;
