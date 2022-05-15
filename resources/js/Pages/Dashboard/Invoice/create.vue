@@ -3,7 +3,7 @@
       <div class="card shadow-sm p-12">
          
          <!--begin::Form-->
-         <form action="" @submit.prevent="createInvoice"   id="kt_invoice_form">
+         <form action=""  @submit.prevent="createInvoice"  id="kt_invoice_form">
             <!--begin::Wrapper-->
           <h1 class="fs-2x fw-bolder text-gray-800">أنشاء فاتورة</h1>
             <!--end::Top-->
@@ -24,7 +24,7 @@
                                     selectLabel="أختار العميل"
                                     deselectLabel="أضغط لحذف الاختيار"
                                     placeholder=""
-                                    v-model="form.customer_id"
+                                    v-model = "customer"
                                     label="name"
                                     :options="customers"
                                 ></v-Multiselect>
@@ -60,7 +60,7 @@
                      <!--end::Table head-->
                      <!--begin::Table body-->
                      <tbody>
-                        <tr class="border-bottom border-bottom-dashed" v-for="(d,index) in dynamicFields" :key="index" >
+                        <tr class="border-bottom border-bottom-dashed"  v-for="(invoiceLine,index) in invoiceLines" :key="index">
                            <td class="pe-7"> 
                               <v-Multiselect
                                     
@@ -68,25 +68,27 @@
                                     selectLabel="أختار المنتج"
                                     deselectLabel="أضغط لحذف الاختيار"
                                     placeholder=""
-                                    v-model="form.product_id"
+                                    v-model="invoiceLines[index]"
                                     label="name"
                                     :options="products"
+                                   
+                                    @input="selectProduct($event,index)"
                                 >
                                 </v-Multiselect>
                               <!-- <input type="text" class="form-control form-control-solid" name="description[]" placeholder="Description"> -->
                            </td>
                            <td class="ps-0">
-                              <input class="form-control form-control-solid" type="number" min="1" @change="calcProductTotal($event,index)" placeholder="1" value="1" >
+                              <input class="form-control form-control-solid" type="number" min="1" placeholder="1" value="1" @change="updateQty($event,index)">
                            </td>
                            <td>
-                              <input type="text" class="form-control form-control-solid text-end"  placeholder="0.00"  readonly >
+                              <input type="text" class="form-control form-control-solid text-end"  placeholder="0.00"  readonly :value="invoiceLines[index].sell_price">
                            </td>
                            <td class="pt-8 text-end text-nowrap">$
-                              <span >0.00</span>
+                              <span >{{ invoiceLines[index].productQty * invoiceLines[index].sell_price }}</span>
                              
                            </td>
                            <td class="pt-5 text-end">
-                              <button type="button" class="btn btn-sm btn-icon btn-active-color-primary" @click="deleteItem(index)">
+                              <button type="button" class="btn btn-sm btn-icon btn-active-color-primary" @click="deleteInvoiceLine(index)" >
                                  <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                  <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -105,23 +107,28 @@
                      <tfoot>
                         <tr class="border-top border-top-dashed align-top fs-6 fw-bolder text-gray-700">
                            <th class="text-primary">
-                              <button class="btn btn-info py-1" @click="addItem()">أضافة منتج جديد</button>
+                              <button type="button" class="btn btn-info py-1" @click="addInvoiceLine()">أضافة منتج جديد</button>
                            </th>
-                           <th colspan="2" class="border-bottom border-bottom-dashed ps-0">
-                              <div class="d-flex flex-column align-items-start">
-                                 <button class="btn btn-link py-1">Add discount</button>0.00
-                              </div>
+                         
+                           
+                        </tr>
+                        <tr  class="align-top fw-bolder text-gray-700">
+                           <th></th>
+                           <th colspan="2" class="fs-4 ps-0">
+                              الخصم
                            </th>
-                           <th colspan="2" class="border-bottom border-bottom-dashed text-end">$
-                              <span >0.00</span>
+                           <th>
+                              <input class="form-control" type="text" placeholder="أدخل الخصم" v-model="discount">
                            </th>
                         </tr>
                         <tr class="align-top fw-bolder text-gray-700">
                            <th></th>
-                           <th colspan="2" class="fs-4 ps-0">Total</th>
+                           <th colspan="2" class="fs-4 ps-0">الاجمالي الكلي</th>
                            <th colspan="2" class="text-end fs-4 text-nowrap">$
-                              <span>0.00</span>
+                              <span>{{ totalPrice }}</span>
                            </th>
+
+                          
                         </tr>
                      </tfoot>
                      <!--end::Table foot-->
@@ -129,98 +136,103 @@
                </div>
                <!--end::Table-->
                <!--begin::Item template-->
-               <table class="table d-none" >
-                  <tbody>
-                     <tr class="border-bottom border-bottom-dashed">
-                        <td class="pe-7">
-                          
-                          
-                        </td>
-                        <td class="ps-0">
-                           <input class="form-control form-control-solid" type="number" min="1" name="quantity[]" placeholder="1" >
-                        </td>
-                        <td>
-                           <input type="text" class="form-control form-control-solid text-end" name="price[]" placeholder="0.00">
-                        </td>
-                        <td class="pt-8 text-end">$
-                           <span >0.0220</span>
-                        </td>
-                        <td class="pt-5 text-end">
-                           <button type="button" class="btn btn-sm btn-icon btn-active-color-primary"  >
-                              <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-                              <span class="svg-icon svg-icon-3">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"></path>
-                                    <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor"></path>
-                                    <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor"></path>
-                                 </svg>
-                              </span>
-                              <!--end::Svg Icon-->
-                           </button>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
-               <table class="table d-none" >
-                  <tbody>
-                     <tr >
-                        <th colspan="5" class="text-muted text-center py-10">No items</th>
-                     </tr>
-                  </tbody>
-               </table>
+               
+               
                <!--end::Item template-->
                <!--begin::Notes-->
               
                <!--end::Notes-->
             </div>
             <!--end::Wrapper-->
+            <button type="submit">send</button>
          </form>
          <!--end::Form-->
       </div>
    </div>
 </template>
+
 <script>
-   import Layout from "../../shared/layout";
+import Layout from "../../shared/layout";
    export default {
-       layout: Layout,
-       props:{
-           errors:{},
-           customers:[],
-           products:[],
-       },
-       data(){
-           return{
-              dynamicFields: [],
-              productSelected:[],
-              productTotal:0,
-              oneProductsTotal:[],
-               form:{
-                     customer_id:null,
-                     product_id:null,
-                     qty:null,
-                     price:null,
-                     total:null,
-                     total_after_discount:null,
-                     type_of_payment:null,
-                   }
-           }
-   },
-  
-   methods:{
-      createInvoice(){
-      
+      layout: Layout,
+
+      props:{
+         products:[],
+         customers:[],
       },
-         addItem(){
-            this.dynamicFields.push(this.form)
+
+      computed:{
+         totalPrice() {  let total = 0;  
+         for(let totalInvoice of this.invoiceLines) {
+                total += (totalInvoice.sell_price * totalInvoice.productQty);  
+                }  
+         this.total = total;
+         this.total_after_discount = total - this.discount;
+         return this.total_after_discount
+         }
+      },
+      data(){
+         return{
+            invoiceLines:[],
+            productsSelected:[],
+            discount:0,
+            customer:null,
+            total:null,
+            total_after_discount:0,
+            type_of_payment:null
+            
+         }
+      },
+      methods:{
+         createInvoice(){
+          
+           let data  = new FormData
+           data.append('discount', this.discount)
+         //   data.append('customer_id', this.customer.id)
+           data.append('total', this.total)
+           data.append('total_after_discount', this.total_after_discount)
+           data.append('type_of_payment', 'cash')
+         
+
+            let lastInvoiceLines = this.invoiceLines.map( function(item) {     
+                         return  { 
+                                       "product_id" : item.id,
+                                       "qty" : item.productQty
+                                };
+     
+                         });
+           for (let i = 0; i < lastInvoiceLines.length; i++) {
+               for (let key of Object.keys(this.lastInvoiceLines[i])) {
+                  data.append(`invoce_items[${i}][${key}]`,lastInvoiceLines[i][key]);
+               }
+           }
+            this.$inertia.post("/invoices", data);
          },
-         deleteItem(index){
-            this.dynamicFields.splice(index, 1)
+         addInvoiceLine(){
+            this.invoiceLines.push(
+            {
+             
+              sell_price:null,
+              product_id:null,
+              productQty:1
+              
+            }
+            )
+         },
+         deleteInvoiceLine(index){
+            this.invoiceLines.splice(index,1);
+         },
+         selectProduct(product,index){
+           this.invoiceLines[index].sell_price = product.sell_price;
+         },
+         updateQty(event,index){
+            
+            this.invoiceLines[index].productQty = event.target.value
          },
 
-    
-
-   },
-  
+         
+      }
    }
 </script>
+
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
