@@ -14,11 +14,11 @@ class authController extends Controller
     {
 
         $request->validate([
-            'email' => 'required|string|email',
+            'phone' => 'required',
             'password' => 'required|string',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('phone', $request->phone)->first();
         
         if(!$user){
             return response()->json([
