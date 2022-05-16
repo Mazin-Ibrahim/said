@@ -2852,6 +2852,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   layout: _shared_layout__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -2896,11 +2902,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   methods: {
     createInvoice: function createInvoice() {
       var data = new FormData();
-      data.append('discount', this.discount); //   data.append('customer_id', this.customer.id)
-
+      data.append('discount', this.discount);
+      data.append('customer_id', this.customer.id);
       data.append('total', this.total);
       data.append('total_after_discount', this.total_after_discount);
-      data.append('type_of_payment', 'cash');
+      data.append('type_of_payment', this.type_of_payment);
       var lastInvoiceLines = this.invoiceLines.map(function (item) {
         return {
           "product_id": item.id,
@@ -2909,7 +2915,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
 
       for (var i = 0; i < lastInvoiceLines.length; i++) {
-        for (var _i = 0, _Object$keys = Object.keys(this.lastInvoiceLines[i]); _i < _Object$keys.length; _i++) {
+        for (var _i = 0, _Object$keys = Object.keys(lastInvoiceLines[i]); _i < _Object$keys.length; _i++) {
           var key = _Object$keys[_i];
           data.append("invoce_items[".concat(i, "][").concat(key, "]"), lastInvoiceLines[i][key]);
         }
@@ -32235,6 +32241,53 @@ var render = function () {
                   1
                 ),
               ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-label fs-6 fw-bolder text-gray-700 mb-3",
+                  },
+                  [_vm._v("طريقة الدفع")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.type_of_payment,
+                        expression: "type_of_payment",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    on: {
+                      change: function ($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function (o) {
+                            return o.selected
+                          })
+                          .map(function (o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.type_of_payment = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                    },
+                  },
+                  [
+                    _c("option", { attrs: { value: "cash" } }, [_vm._v("كاش")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "credit" } }, [
+                      _vm._v("بنكك"),
+                    ]),
+                  ]
+                ),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "table-responsive mb-10" }, [
@@ -32496,7 +32549,11 @@ var render = function () {
             ]),
           ]),
           _vm._v(" "),
-          _c("button", { attrs: { type: "submit" } }, [_vm._v("send")]),
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+            [_vm._v("أرسال")]
+          ),
         ]
       ),
     ]),

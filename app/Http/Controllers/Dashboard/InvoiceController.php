@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Invoice\storeRequest;
+use App\Interfaces\Invoice\InvocieRepositoryInterface;
 use App\Models\Customer;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -11,6 +12,11 @@ use Inertia\Inertia;
 
 class InvoiceController extends Controller
 {
+    protected $invocieInterface;
+    public function __construct(InvocieRepositoryInterface $invocieInterface)
+    {
+        $this->invocieInterface = $invocieInterface;
+    }
     public function create()
     {
         $customers = Customer::all();
@@ -32,7 +38,13 @@ class InvoiceController extends Controller
 
     public function store(storeRequest $request)
     {
-        dd($request->all());
+        $invoice = $this->invocieInterface->create($request->only(
+            ['customer_id','total','discount','total_after_discount','type_of_payment','invoce_items']
+        ));
+
+        dd($invoice);
+
+
     }
     
 }

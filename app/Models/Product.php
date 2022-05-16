@@ -39,4 +39,9 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function invoiceLines()
+    {
+        return $this->hasMany(InvoiceLine::class);
+    }
 }

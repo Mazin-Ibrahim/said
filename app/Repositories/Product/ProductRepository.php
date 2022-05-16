@@ -94,7 +94,8 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
 
     public function delete($product)
     {
-        return   $product->delete();
+        $product->invoiceLines()->delete();
+       $product->delete();
     }
 
     public function getProductsCount()

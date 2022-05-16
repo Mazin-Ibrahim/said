@@ -39,7 +39,13 @@
                   </div>
                   <!--end::Col-->
                   <!--begin::Col-->
-           
+                   <div class="col-lg-12">
+                      <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">طريقة الدفع</label>
+                       <select v-model="type_of_payment" class="form-control">
+                          <option value="cash">كاش</option>
+                           <option value="credit">بنكك</option>
+                       </select>
+                   </div>
                   <!--end::Col-->
                </div>
                <!--end::Row-->
@@ -144,7 +150,7 @@
                <!--end::Notes-->
             </div>
             <!--end::Wrapper-->
-            <button type="submit">send</button>
+            <button type="submit" class="btn btn-primary">أرسال</button>
          </form>
          <!--end::Form-->
       </div>
@@ -188,10 +194,10 @@ import Layout from "../../shared/layout";
           
            let data  = new FormData
            data.append('discount', this.discount)
-         //   data.append('customer_id', this.customer.id)
+           data.append('customer_id', this.customer.id)
            data.append('total', this.total)
            data.append('total_after_discount', this.total_after_discount)
-           data.append('type_of_payment', 'cash')
+           data.append('type_of_payment', this.type_of_payment)
          
 
             let lastInvoiceLines = this.invoiceLines.map( function(item) {     
@@ -202,7 +208,7 @@ import Layout from "../../shared/layout";
      
                          });
            for (let i = 0; i < lastInvoiceLines.length; i++) {
-               for (let key of Object.keys(this.lastInvoiceLines[i])) {
+               for (let key of Object.keys(lastInvoiceLines[i])) {
                   data.append(`invoce_items[${i}][${key}]`,lastInvoiceLines[i][key]);
                }
            }
