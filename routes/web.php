@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\CustomerController;
 use App\Http\Controllers\Dashboard\DepartmentController;
@@ -70,3 +71,7 @@ Route::delete('/products/{product}/delete',[ProductController::class, 'delete'])
 
 Route::get('/invoices/create',[InvoiceController::class, 'create'])->name('invoices.create');
 Route::post('/invoices',[InvoiceController::class,'store'])->name('invoices.store');
+
+
+Route::get('/login',[AuthController::class, 'showLoginForm'])->name('showLoginForm');
+Route::post('/login',[AuthController::class, 'login'])->name('login');
