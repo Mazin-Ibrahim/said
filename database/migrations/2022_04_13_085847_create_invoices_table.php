@@ -15,8 +15,8 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('customer_id')->constrained();
+            $table->foreignId('user_id');
+            $table->foreignId('customer_id');
             $table->integer('total');
             $table->double('discount');
             $table->double('total_after_discount');

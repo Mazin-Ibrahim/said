@@ -43,5 +43,12 @@ class InvoiceReportController extends Controller
         $productSales = $this->ivoiceReportInterface->getProductSalesByPeroidDate($request->startDate, $request->endDate,$request->product_id);
         return response()->json($productSales, 200);
     }
+
+
+    public function getTotalSalesOnMonth()
+    {
+        $totalSales = $this->ivoiceReportInterface->getTotalSalesOnMonth();
+        return response()->json($totalSales, 200);
+    }
   
 }

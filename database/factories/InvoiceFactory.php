@@ -22,7 +22,14 @@ class InvoiceFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => $this->faker->numberBetween(1, 10),
+            'customer_id' => $this->faker->numberBetween(1, 10),
+            'total' => $this->faker->numberBetween(100, 1000),
+            'discount' => $this->faker->numberBetween(1,10),
+            'total_after_discount' => Invoice::calculateTotalAfterDiscount($this->faker->numberBetween(100, 1000), $this->faker->numberBetween(1, 10)),
+            'type_of_payment' => $this->faker->randomElement(['cash','credit']),
+            'maintenance_id' => $this->faker->numberBetween(1, 10), 
+            'created_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
         ];
     }
 }

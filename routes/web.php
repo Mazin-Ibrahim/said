@@ -74,5 +74,7 @@ Route::post('/invoices',[InvoiceController::class,'store'])->name('invoices.stor
 Route::get('/invoices',[InvoiceController::class,'index'])->name('invoices.index');
 
 
+
+
 Route::get('/login',[AuthController::class, 'showLoginForm'])->name('showLoginForm');
 Route::post('/login',[AuthController::class, 'login'])->name('login');

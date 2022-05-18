@@ -94,15 +94,17 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::put('/invoices/{invoice}', [InvoiceController::class, 'update']);
     Route::delete('/invoices/{invoice}', [InvoiceController::class, 'delete']);
 
-
+    
     Route::post('/invoices/report/byDay', [InvoiceReportController::class, 'getInvoicesByDay']);
     Route::post('/invoices/report/getSalesByPeriodDate', [InvoiceReportController::class, 'getSalesByPeriodDate']);
     Route::post('/invoices/report/getSalesBySpecificCustomer', [InvoiceReportController::class, 'getSalesBySpecificCustomer']);
     Route::post('/invoices/report/getProductSalesByPeroidDate', [InvoiceReportController::class, 'getProductSalesByPeroidDate']);
     
-
+    
+    Route::get('/invoices/report/getTotalSalesOnMonth', [InvoiceReportController::class, 'getTotalSalesOnMonth']);
+    
     Route::post('/invoices/maintenance',[InvoiceMaintenanceController::class,'createInvoiceMaintenance']);
-
+    
     Route::get('/incomes', [IncomeController::class, 'index']);
     Route::get('/incomes/{income}', [IncomeController::class, 'getIncome']);
     Route::post('/incomes', [IncomeController::class, 'store']);

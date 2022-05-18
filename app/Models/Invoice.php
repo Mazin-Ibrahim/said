@@ -26,4 +26,9 @@ class Invoice extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+   public static function calculateTotalAfterDiscount($total, $discount)
+    {
+        return $total - $discount;
+    }
 }
