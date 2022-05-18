@@ -18,8 +18,12 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
     
     public function getAll($request)
     {
-        
-        return Invoice::take($request->dispaly_count)->with('invoiceLines.product')->get();
+        if($request->display_count){
+
+            return Invoice::take($request->dispaly_count)->with('invoiceLines.product')->get();
+        }
+        return Invoice::with('invoiceLines.product','customer')->get();
+
     } 
     public function getInvoice($invoce)
     {

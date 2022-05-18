@@ -8,11 +8,12 @@ import { createInertiaApp } from "@inertiajs/inertia-vue";
 // import { InertiaProgress } from '@inertiajs/progress'
 import Multiselect from 'vue-multiselect'
 import UploadImage from "vue-upload-image";
+// import VModal from 'vue-js-modal'
 
 Vue.mixin({ methods: { route: window.route } })
 // InertiaProgress.init()
 Vue.component("v-Multiselect", Multiselect);
-// Vue.component("upload-image", UploadImage);
+// Vue.component("modal", VModal);
 
 
 

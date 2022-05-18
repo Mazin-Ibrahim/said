@@ -17,6 +17,16 @@ class InvoiceController extends Controller
     {
         $this->invocieInterface = $invocieInterface;
     }
+
+    public function index(Request $request)
+    {
+        
+        $invoices = $this->invocieInterface->getAll($request);
+        return Inertia::render('Dashboard/Invoice/index', [
+            'invoices' => $invoices,
+        ]);
+    }
+ 
     public function create()
     {
         $customers = Customer::all();

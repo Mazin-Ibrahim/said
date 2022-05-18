@@ -71,6 +71,7 @@ Route::delete('/products/{product}/delete',[ProductController::class, 'delete'])
 
 Route::get('/invoices/create',[InvoiceController::class, 'create'])->name('invoices.create');
 Route::post('/invoices',[InvoiceController::class,'store'])->name('invoices.store');
+Route::get('/invoices',[InvoiceController::class,'index'])->name('invoices.index');
 
 
 Route::get('/login',[AuthController::class, 'showLoginForm'])->name('showLoginForm');
