@@ -10,5 +10,6 @@ Interface ProductReportsInterface
     public function getProductsPurchaseByDay($date);
     public function productsCreatedToday($date);
     public function getStockInformations();
+    public function getProductsInDangerZone();
     
 }

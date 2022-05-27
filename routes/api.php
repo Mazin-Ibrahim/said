@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\IncomeReportController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\InvoiceMaintenanceController;
 use App\Http\Controllers\Api\InvoiceReportController;
+use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductReportController;
@@ -71,6 +72,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/products/report/profit', [ProductReportController::class, 'getProductsProfit']);
     Route::get('/products/report/count', [ProductReportController::class, 'getProductsCount']);
     Route::post('/products/report/productsCreatedToday', [ProductReportController::class, 'productsCreatedToday']);
+    Route::get('/products/report/danger-zone', [ProductReportController::class, 'getProductsInDangerZone']);
 
     Route::get('/products/report/getStockInformations', [ProductReportController::class, 'getStockInformations']);
     Route::get('/daily/report/getDailyReports', [DailyReportController::class, 'getDailyReports']);
@@ -125,6 +127,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/expenses/byYear', [ExpenseReportController::class, 'getExpensesByYear']);
     Route::post('/expenses/byPeriod', [ExpenseReportController::class, 'getExpensesByPeriod']);
     Route::get('/getLastExpensesReport', [ExpenseReportController::class, 'getLastExpensesReport']);
+
+
+    Route::post('/locations',[LocationController::class, 'store']);
+    Route::get('/locations',[LocationController::class, 'index']);
+    Route::get('/locations/{location}',[LocationController::class, 'show']);
     
 });
 

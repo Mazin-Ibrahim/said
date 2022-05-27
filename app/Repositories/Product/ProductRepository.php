@@ -161,4 +161,13 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
        ];
 
     }
+
+
+    public function getProductsInDangerZone()
+    {
+     
+        $products = Product::where('qty', '<=',15)->get();
+
+        return $products;
+    }
 }

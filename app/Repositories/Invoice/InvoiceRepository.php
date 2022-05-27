@@ -64,10 +64,56 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
         }
     }
 
-    // public function update($data, $invoice)
-    // {
-    
-    // }
+    public function update($data, $invoice)
+    { 
+        // $dd = $invoice->invoiceLines()->where('product_id', 5)->first()->qty;
+        // dd($dd);
+        
+        DB::beginTransaction();
+        try {
+            $invoice->customer_id = $data['customer_id'];
+            $invoice->total = $data['total'];
+            $invoice->discount = $data['discount'];
+            $invoice->total_after_discount = $data['total_after_discount'];
+            $invoice->type_of_payment = $data['type_of_payment'];
+            $invoice->save();
+            collect($data['invoce_items'])->each(function($item){
+                 if($item['type'] == 'add'){
+                    $product = Product::find($item['product_id']);
+                    $product->qty = $product->qty - $item['qty'];
+                    $product->save();
+                 }elseif($item['type'] == 'sub'){
+                    $product = Product::find($item['product_id']);
+                    $product->qty = $product->qty + $item['qty'];
+                    $product->save();
+                 }
+               
+            });
+
+        
+
+             collect($data['invoce_items'])->each(function($item) use ($invoice){  
+                if($item['type'] == 'add'){
+                    InvoiceLine::where('product_id', $item['product_id'])->where('invoice_id', $invoice->id)->update([
+                        'product_id' => $item['product_id'],
+                        'qty' =>$invoice->invoiceLines()->where('product_id',  $item['product_id'])->first()->qty +  $item['qty']
+                    ]);
+                }elseif($item['type'] == 'sub'){
+                    InvoiceLine::where('product_id', $item['product_id'])->where('invoice_id', $invoice->id)->update([
+                        'product_id' => $item['product_id'],
+                        'qty' => $invoice->invoiceLines()->where('product_id',  $item['product_id'])->first()->qty -  $item['qty']  
+                    ]);
+                }
+               
+            });
+
+            DB::commit();
+            return $invoice->load('invoiceLines.product');
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
+    }
 
     public function delete($invoce)
     {
@@ -172,7 +218,7 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
                 // $convertMonths[$month] => Invoice::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',$month)->sum('total')
                 
                     'month' => $convertMonths[$month],
-                    'value' =>Invoice::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',$month)->sum('total')
+                    'value' => (float) Invoice::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',$month)->sum('total')
                 
             ];
           

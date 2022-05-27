@@ -44,4 +44,9 @@ class Product extends Model
     {
         return $this->hasMany(InvoiceLine::class);
     }
+
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class);
+    }
 }

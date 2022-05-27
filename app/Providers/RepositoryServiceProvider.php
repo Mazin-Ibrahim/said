@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Interfaces\Location\LocationRepositoryInterface;
 use App\Interfaces\Category\CategoryRepositoryInterface;
 use App\Interfaces\Customer\CustomerRepositoryInterface;
 use App\Interfaces\DailyReport\DailyReportInterface;
@@ -26,6 +27,7 @@ use App\Repositories\DailyReport\DailyReportRepository;
 use App\Repositories\Expense\ExpenseRepository;
 use App\Repositories\Income\IncomeRepository;
 use App\Repositories\Invoice\InvoiceRepository;
+use App\Repositories\Location\LocationRepository;
 use App\Repositories\Maintenance\MaintenanceRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -54,6 +56,7 @@ class RepositoryServiceProvider extends ServiceProvider
        $this->app->bind(ExpenseReportInterface::class, ExpenseRepository::class);
        $this->app->bind(InvocieRepositoryInterface::class, InvoiceRepository::class);
        $this->app->bind(DailyReportInterface::class,DailyReportRepository::class);
+       $this->app->bind(LocationRepositoryInterface::class, LocationRepository::class);
 
 
     }

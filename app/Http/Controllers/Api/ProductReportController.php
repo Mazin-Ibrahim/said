@@ -55,5 +55,14 @@ class ProductReportController extends Controller
 
         return response()->json($stockInformations, 200);
     }
+
+// Bringing products that are in low quantity
+    public function getProductsInDangerZone()
+    {
+        $products = $this->productReportInterface->getProductsInDangerZone();
+
+
+        return response()->json($products, 200);
+    }
   
 }

@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-       
+        // dd($categories);
         return inertia('Dashboard/Product/create',[
             'categories' => $categories
         
