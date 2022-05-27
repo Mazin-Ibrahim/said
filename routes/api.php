@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\authController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\DailyReportController;
+use App\Http\Controllers\Api\DebtController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\ExpenseReportController;
@@ -59,6 +60,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/workers', [WorkerController::class, 'store']);
     Route::put('/workers/{worker}', [WorkerController::class, 'update']);
     Route::delete('/workers/{worker}', [WorkerController::class, 'delete']);
+
+    Route::post('/workers/{worker}/debts', [DebtController::class,'store']);
+    Route::get('/workers/{worker}/debts', [DebtController::class,'getWorkesDebts']);
     
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/products/{product}', [ProductController::class, 'getProduct']);

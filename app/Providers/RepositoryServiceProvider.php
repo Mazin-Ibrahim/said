@@ -17,6 +17,7 @@ use App\Interfaces\Invoice\InvoiceMaintenanceInterface;
 use App\Interfaces\Maintenance\MaintenanceRepositoryInterface;
 use App\Interfaces\Product\ProductReportsInterface;
 use App\Interfaces\Product\ProductRepositoryInterface;
+use App\Interfaces\Worker\WorkerDebtInterface;
 use App\Interfaces\Worker\WorkerRepositoryInterface;
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Department\DepartmentRepository;
@@ -43,6 +44,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(DepartmentRepositoryInterface::class, DepartmentRepository::class);
         $this->app->bind(WorkerRepositoryInterface::class, WorkerRepository::class);
+        $this->app->bind(WorkerDebtInterface::class, WorkerRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(ProductReportsInterface::class, ProductRepository::class);
         $this->app->bind(CustomerRepositoryInterface::class, CustomerRepository::class);
