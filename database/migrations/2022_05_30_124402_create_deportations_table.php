@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDebtsTable extends Migration
+class CreateDeportationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateDebtsTable extends Migration
      */
     public function up()
     {
-        Schema::create('debts', function (Blueprint $table) {
+        Schema::create('deportations', function (Blueprint $table) {
             $table->id();
-            $table->integer('worker_id');
-            $table->double('value');
-            $table->date('date');
+            $table->integer('location_id')->nullable();
             $table->text('description');
+            $table->string('product_name');
+            $table->string('location_name')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateDebtsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('debts');
+        Schema::dropIfExists('deportations');
     }
 }

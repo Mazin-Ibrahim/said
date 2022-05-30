@@ -33,9 +33,9 @@ class ProductController extends Controller
 
     public function store(storeRequest $request)
     {
-   
+        
         $product = $this->productRepository->create($request->only(
-            ['name', 'description', 'buy_price', 'sell_price', 'category_id', 'qty','images']
+            ['name', 'description', 'buy_price', 'sell_price', 'category_id', 'qty','images','danger_amount']
         ));
 
         return response()->json($product, 201);
@@ -44,7 +44,7 @@ class ProductController extends Controller
     public function update(Product $product, updateRequest $request)
     {
         $product = $this->productRepository->update($product, $request->only(
-            ['name', 'description',  'buy_price', 'sell_price', 'category_id', 'qty']
+            ['name', 'description',  'buy_price', 'sell_price', 'category_id', 'qty','danger_amount']
         ));
 
         return response()->json($product, 200);

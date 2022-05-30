@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\DailyReportController;
 use App\Http\Controllers\Api\DebtController;
 use App\Http\Controllers\Api\DepartmentController;
+use App\Http\Controllers\Api\DeportationController;
 use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\ExpenseReportController;
 use App\Http\Controllers\Api\IncomeController;
@@ -136,6 +137,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/locations',[LocationController::class, 'store']);
     Route::get('/locations',[LocationController::class, 'index']);
     Route::get('/locations/{location}',[LocationController::class, 'show']);
+
+
+    Route::get('/deportations',[DeportationController::class, 'index']);
+    Route::post('/deportations',[DeportationController::class, 'store']);
+    Route::put('/deportations/{deportation}',[DeportationController::class, 'update']);
+    Route::delete('/deportations/{deportation}',[DeportationController::class, 'update']);
+    
     
 });
 

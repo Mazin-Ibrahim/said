@@ -38,7 +38,8 @@ class WorkerRepository implements WorkerRepositoryInterface ,WorkerDebtInterface
     {
         $worker->debts()->create([
             'value' => $data['value'],
-            'date' => $data['date']
+            'date' => $data['date'],
+            'description' => $data['description']
         ]);
 
         return $worker->load('debts');

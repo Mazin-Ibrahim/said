@@ -9,7 +9,7 @@ class Debt extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['worker_id','value','date'];
+    protected $fillable = ['worker_id','value','date','description'];
 
 
     public function worker()

@@ -7,6 +7,7 @@ use App\Interfaces\Category\CategoryRepositoryInterface;
 use App\Interfaces\Customer\CustomerRepositoryInterface;
 use App\Interfaces\DailyReport\DailyReportInterface;
 use App\Interfaces\Department\DepartmentRepositoryInterface;
+use App\Interfaces\Deportation\DeportationRepositoryInterface;
 use App\Interfaces\Expense\ExpenseReportInterface;
 use App\Interfaces\Expense\ExpenseRepositoryInterface;
 use App\Interfaces\Income\IncomeReportInterface;
@@ -25,6 +26,7 @@ use App\Repositories\Product\ProductRepository;
 use App\Repositories\Worker\WorkerRepository;
 use App\Repositories\Customer\CustomerRepository;
 use App\Repositories\DailyReport\DailyReportRepository;
+use App\Repositories\Deportation\DeportationRepository;
 use App\Repositories\Expense\ExpenseRepository;
 use App\Repositories\Income\IncomeRepository;
 use App\Repositories\Invoice\InvoiceRepository;
@@ -59,6 +61,7 @@ class RepositoryServiceProvider extends ServiceProvider
        $this->app->bind(InvocieRepositoryInterface::class, InvoiceRepository::class);
        $this->app->bind(DailyReportInterface::class,DailyReportRepository::class);
        $this->app->bind(LocationRepositoryInterface::class, LocationRepository::class);
+       $this->app->bind(DeportationRepositoryInterface::class,DeportationRepository::class);
 
 
     }

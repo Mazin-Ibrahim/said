@@ -26,6 +26,7 @@ class storeRequest extends FormRequest
         return [
             'value' => 'required',
             'date' => 'required|date',
+            'description' =>'required'
         ];
     }
 }

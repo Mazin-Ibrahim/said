@@ -36,25 +36,29 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
             'buy_price' => $data['buy_price'],
             'sell_price' => $data['sell_price'],
             'category_id' => $data['category_id'],
+            'danger_amount' => $data['danger_amount'],
             'qty' => $data['qty'],
         ]);
 
-     
         $imagesPath = [];
-        foreach ($data['images'] as $image) {
-            $extension = $image->getClientOriginalExtension();
-            array_push($imagesPath, $image->move('images', time().'-'.rand(10, 10000).'.'.$extension));
+        if(array_key_exists("images",$data)){
+
+            foreach ($data['images'] as $image) {
+                $extension = $image->getClientOriginalExtension();
+                array_push($imagesPath, $image->move('images', time().'-'.rand(10, 10000).'.'.$extension));
+            }
+
+            collect($imagesPath)->each(function ($image) use ($product) {
+                   Image::create([
+                       'path' => $image->getFilename(),
+                       'imageable_id' => $product->id,
+                       'imageable_type' => get_class($product),
+                   ]);
+               });
         }
 
-
-     collect($imagesPath)->each(function ($image) use ($product) {
-            Image::create([
-                'path' => $image->getFilename(),
-                'imageable_id' => $product->id,
-                'imageable_type' => get_class($product),
-            ]);
-        });
-
+     
+       
         return $product;
 
        
@@ -69,6 +73,7 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
             'sell_price' => $data['sell_price'],
             'category_id' => $data['category_id'],
             'qty' => $data['qty'],
+            'danger_amount' => $data['danger_amount']
         ]);
        
         $imagesPath = [];
@@ -165,8 +170,8 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
 
     public function getProductsInDangerZone()
     {
-     
-        $products = Product::where('qty', '<=',15)->get();
+        
+        $products = Product::whereColumn('qty', '<=','danger_amount')->get();
 
         return $products;
     }

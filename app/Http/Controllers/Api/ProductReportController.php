@@ -60,7 +60,7 @@ class ProductReportController extends Controller
     public function getProductsInDangerZone()
     {
         $products = $this->productReportInterface->getProductsInDangerZone();
-
+        
 
         return response()->json($products, 200);
     }

@@ -25,7 +25,7 @@
       <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
       <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600&display=swap" rel="stylesheet">
    </head>
-    <body class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable">
+    <body style="font-family: 'Cairo', sans-serif; font-size:20px;" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable">
       @inertia
      
       

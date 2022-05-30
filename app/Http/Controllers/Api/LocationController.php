@@ -46,7 +46,7 @@ class LocationController extends Controller
     {
         $oneLoaction = $this->locationInterface->getLocation($location);
 
-        return response()->json($location,200);
+        return response()->json($oneLoaction,200);
     }
 }
 

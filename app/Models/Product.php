@@ -16,6 +16,7 @@ class Product extends Model
         'sell_price',
         'category_id',
         'qty',
+        'danger_amount'
     ];
 
     public function setProfit()
