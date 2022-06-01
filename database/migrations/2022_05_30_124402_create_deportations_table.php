@@ -19,6 +19,7 @@ class CreateDeportationsTable extends Migration
             $table->text('description');
             $table->string('product_name');
             $table->string('location_name')->nullable();
+            $table->double('value');
             $table->timestamps();
         });
     }

@@ -36,6 +36,7 @@ class DeportationController extends Controller
         $request->validate([
             'description' => 'required',
             'product_name' => 'required',
+            'value' => 'required'
         ]);
         $deportation = $this->deportationInterface->create($request);
 
@@ -47,6 +48,7 @@ class DeportationController extends Controller
         $request->validate([
             'description' => 'required',
             'product_name' => 'required',
+            'value' => 'required'
         ]);
         $deportation = $this->deportationInterface->update($request, $deportation);
 

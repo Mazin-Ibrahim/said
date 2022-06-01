@@ -13,7 +13,8 @@ class Deportation extends Model
         'location_id',
         'description',
         'product_name',
-        'location_name'
+        'location_name',
+        'value'
     ];
 
     public function location()

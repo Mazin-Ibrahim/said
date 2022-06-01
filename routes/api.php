@@ -137,6 +137,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/locations',[LocationController::class, 'store']);
     Route::get('/locations',[LocationController::class, 'index']);
     Route::get('/locations/{location}',[LocationController::class, 'show']);
+    Route::get('/locations/{location}/paymentDetails',[LocationController::class, 'getLocationPaymentDetails']);
+    Route::post('/locations/{location}/collectionLocationPayment',[LocationController::class, 'collectionLocationPayment']);
 
 
     Route::get('/deportations',[DeportationController::class, 'index']);

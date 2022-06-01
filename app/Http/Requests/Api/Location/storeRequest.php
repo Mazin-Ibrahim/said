@@ -25,7 +25,7 @@ class storeRequest extends FormRequest
     public function rules()
     {
         return [
-            'customer_id' => 'required|exists:customers,id',
+           
             'address' =>'required',
             'contract_price' => 'required',
             'description' =>'required',
@@ -33,6 +33,7 @@ class storeRequest extends FormRequest
             'delivery_date' => 'required|date',
             'products' =>'required|array',
             'products.*' => 'required',
+            
             'payment_details' => 'required|array',
             'payment_details.*.amount' => 'required',
             'payment_details.*.payment_received_date' => 'required',

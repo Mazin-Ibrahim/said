@@ -27,7 +27,7 @@ class LocationController extends Controller
 
     public function store(storeRequest $request)
     {
-        
+    
        $location =  $this->locationInterface->create($request->only([
              'customer_id',
              'address',
@@ -37,6 +37,7 @@ class LocationController extends Controller
              'delivery_date',
              'products',
              'payment_details',
+             "location_name"
          ]));
 
          return response()->json($location,201);
@@ -48,6 +49,22 @@ class LocationController extends Controller
 
         return response()->json($oneLoaction,200);
     }
+
+    public function getLocationPaymentDetails(Location $location)
+    {
+        $location = $this->locationInterface->getPaymentDetails($location);
+
+        return response()->json($location,200);
+    }
+
+    public function collectionLocationPayment(Location $location,Request $request)
+    {
+        $location = $this->locationInterface->collectionLocationPayment($location,$request);
+
+        return response()->json($location,200);
+    }
+    
+   
 }
 
 
