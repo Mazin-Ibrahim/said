@@ -48,23 +48,23 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/categories', [CategoryController::class, 'store']);
     Route::put('/categories/{category}', [CategoryController::class, 'update']);
     Route::delete('/categories/{category}', [CategoryController::class, 'delete']);
-    
-    
+
+
     Route::get('/departments', [DepartmentController::class, 'index']);
     Route::get('/departments/{department}', [DepartmentController::class, 'getDepartment']);
     Route::post('/departments', [DepartmentController::class, 'store']);
     Route::put('/departments/{department}', [DepartmentController::class, 'update']);
     Route::delete('/departments/{department}', [DepartmentController::class, 'delete']);
-    
+
     Route::get('/workers', [WorkerController::class, 'index']);
     Route::get('/workers/{worker}', [WorkerController::class, 'getWorker']);
     Route::post('/workers', [WorkerController::class, 'store']);
     Route::put('/workers/{worker}', [WorkerController::class, 'update']);
     Route::delete('/workers/{worker}', [WorkerController::class, 'delete']);
 
-    Route::post('/workers/{worker}/debts', [DebtController::class,'store']);
-    Route::get('/workers/{worker}/debts', [DebtController::class,'getWorkesDebts']);
-    
+    Route::post('/workers/{worker}/debts', [DebtController::class, 'store']);
+    Route::get('/workers/{worker}/debts', [DebtController::class, 'getWorkesDebts']);
+
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/products/{product}', [ProductController::class, 'getProduct']);
     Route::post('/products', [ProductController::class, 'store']);
@@ -72,7 +72,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::delete('/products/{product}', [ProductController::class, 'delete']);
 
     Route::post('/products/getProductsPurchaseByDay', [ProductReportController::class, 'getProductsPurchaseByDay']);
-    
+
     Route::get('/products/report/quantity', [ProductReportController::class, 'getProductsQuantity']);
     Route::get('/products/report/profit', [ProductReportController::class, 'getProductsProfit']);
     Route::get('/products/report/count', [ProductReportController::class, 'getProductsCount']);
@@ -82,7 +82,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/products/report/getStockInformations', [ProductReportController::class, 'getStockInformations']);
     Route::get('/daily/report/getDailyReports', [DailyReportController::class, 'getDailyReports']);
 
-    
+
     Route::get('/customers', [CustomerController::class, 'index']);
     Route::get('/customers/{customer}', [CustomerController::class, 'getCustomer']);
     Route::post('/customers', [CustomerController::class, 'store']);
@@ -101,17 +101,17 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::put('/invoices/{invoice}', [InvoiceController::class, 'update']);
     Route::delete('/invoices/{invoice}', [InvoiceController::class, 'delete']);
 
-    
+
     Route::post('/invoices/report/byDay', [InvoiceReportController::class, 'getInvoicesByDay']);
     Route::post('/invoices/report/getSalesByPeriodDate', [InvoiceReportController::class, 'getSalesByPeriodDate']);
     Route::post('/invoices/report/getSalesBySpecificCustomer', [InvoiceReportController::class, 'getSalesBySpecificCustomer']);
     Route::post('/invoices/report/getProductSalesByPeroidDate', [InvoiceReportController::class, 'getProductSalesByPeroidDate']);
-    
-    
+
+
     Route::get('/invoices/report/getTotalSalesOnMonth', [InvoiceReportController::class, 'getTotalSalesOnMonth']);
-    
-    Route::post('/invoices/maintenance',[InvoiceMaintenanceController::class,'createInvoiceMaintenance']);
-    
+
+    Route::post('/invoices/maintenance', [InvoiceMaintenanceController::class, 'createInvoiceMaintenance']);
+
     Route::get('/incomes', [IncomeController::class, 'index']);
     Route::get('/incomes/{income}', [IncomeController::class, 'getIncome']);
     Route::post('/incomes', [IncomeController::class, 'store']);
@@ -121,7 +121,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/incomes/byMonth', [IncomeReportController::class, 'getIncomesByMonth']);
     Route::post('/incomes/byYear', [IncomeReportController::class, 'getIncomesByYear']);
     Route::post('/incomes/byPeriod', [IncomeReportController::class, 'getIncomesByPeriod']);
-    
+
     Route::get('/expenses', [ExpenseController::class, 'index']);
     Route::get('/expenses/{expense}', [ExpenseController::class, 'getExpense']);
     Route::post('/expenses', [ExpenseController::class, 'store']);
@@ -134,23 +134,16 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/getLastExpensesReport', [ExpenseReportController::class, 'getLastExpensesReport']);
 
 
-    Route::post('/locations',[LocationController::class, 'store']);
-    Route::get('/locations',[LocationController::class, 'index']);
-    Route::get('/locations/{location}',[LocationController::class, 'show']);
-    Route::get('/locations/{location}/paymentDetails',[LocationController::class, 'getLocationPaymentDetails']);
-    Route::post('/locations/{location}/collectionLocationPayment',[LocationController::class, 'collectionLocationPayment']);
+    Route::post('/locations', [LocationController::class, 'store']);
+    Route::get('/locations', [LocationController::class, 'index']);
+    Route::get('/locations/{location}', [LocationController::class, 'show']);
+    Route::get('/locations/{location}/paymentDetails', [LocationController::class, 'getLocationPaymentDetails']);
+    Route::post('/locations/{location}/collectionLocationPayment', [LocationController::class, 'collectionLocationPayment']);
+    Route::put('/locations/{location}/updateProducts', [LocationController::class, 'updateProductsStatusBelongToLocation']);
 
 
-    Route::get('/deportations',[DeportationController::class, 'index']);
-    Route::post('/deportations',[DeportationController::class, 'store']);
-    Route::put('/deportations/{deportation}',[DeportationController::class, 'update']);
-    Route::delete('/deportations/{deportation}',[DeportationController::class, 'update']);
-    
-    
+    Route::get('/deportations', [DeportationController::class, 'index']);
+    Route::post('/deportations', [DeportationController::class, 'store']);
+    Route::put('/deportations/{deportation}', [DeportationController::class, 'update']);
+    Route::delete('/deportations/{deportation}', [DeportationController::class, 'update']);
 });
-
-
-
-
-
-

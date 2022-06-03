@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 namespace App\Repositories\Location;
@@ -9,41 +9,40 @@ use App\Models\Product;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class LocationRepository implements LocationRepositoryInterface {
+class LocationRepository implements LocationRepositoryInterface
+{
 
     public function getAll()
     {
-       return Location::with('products','paymentDetails')->get();
+        return Location::with('products', 'paymentDetails')->get();
     }
 
     public function getLocation($location)
     {
-        return $location->load('products','paymentDetails');
+        return $location->load('products', 'paymentDetails');
     }
 
     public function create($data)
     {
         DB::beginTransaction();
-        try{
-            collect($data['products'])->each(function($item){
-                if($item['status'] =='delivered'){
+        try {
+            collect($data['products'])->each(function ($item) {
+                if ($item['status'] == 'delivered') {
                     $product = Product::find($item['id']);
                     $data['productsQty1'] = $product->qty;
                     $data['ItemQty'] = $item['qty'];
                     $product->qty = $product->qty - $item['qty'];
                     $product->save();
                     $data['productsQty2'] = $product->qty;
-                 
                 }
-              
             });
-            $productLocationData= collect($data['products'])->groupBy('id')->toArray();
+            $productLocationData = collect($data['products'])->groupBy('id')->toArray();
             $productLocationDataCollection = new Collection($productLocationData);
-    
-            $products =$productLocationDataCollection->map(function($item,$key){
-                return collect($item)->map(function($item){
+
+            $products = $productLocationDataCollection->map(function ($item, $key) {
+                return collect($item)->map(function ($item) {
                     return [
-    
+
                         'qty' => $item['qty'],
                         'status' => $item['status']
                     ];
@@ -60,34 +59,27 @@ class LocationRepository implements LocationRepositoryInterface {
                 'location_name' => $data['location_name']
             ]);
             $location->products()->sync($products);
-      
 
-        collect($data['payment_details'])->each(function($payment) use($location){
-            $location->paymentDetails()->create([
-                'amount' => $payment['amount'],
-                'payment_received_date' => $payment['payment_received_date'],
-            ]);
-        });
-        
-        DB::commit();
-        return $location->load('products','paymentDetails');
-            
-        }catch (\Exception $e) {
+
+            collect($data['payment_details'])->each(function ($payment) use ($location) {
+                $location->paymentDetails()->create([
+                    'amount' => $payment['amount'],
+                    'payment_received_date' => $payment['payment_received_date'],
+                ]);
+            });
+
+            DB::commit();
+            return $location->load('products', 'paymentDetails');
+        } catch (\Exception $e) {
             DB::rollback();
             throw $e;
         }
-    
-       
-      
-
-    
-        
     }
 
     public function update($data, $location)
     {
         # code...
-    } 
+    }
 
     public function delete($location)
     {
@@ -100,13 +92,25 @@ class LocationRepository implements LocationRepositoryInterface {
         return $location->load('paymentDetails');
     }
 
-    public function collectionLocationPayment($location,$request)
+    public function collectionLocationPayment($location, $request)
     {
         $location->paymentDetails()->find($request->payment_id)->update([
-          'status' => $request->status,
+            'status' => $request->status,
         ]);
 
         return $location->load('paymentDetails');
     }
-   
+
+    public function updateStatusProduct($location, $request)
+    {
+        collect($request->products)->each(function ($item) use ($location) {
+            $product = Product::find($item['id']);
+            $product->qty = $product->qty - $item['qty'];
+            $product->save();
+            $location->products()->where('product_id', $item['id'])->update([
+                'status' => $item['status'],
+            ]);
+        });
+        return $location->load('products');
+    }
 }

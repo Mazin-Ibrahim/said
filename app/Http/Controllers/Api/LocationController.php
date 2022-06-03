@@ -12,8 +12,9 @@ class LocationController extends Controller
 {
     protected $locationInterface;
 
-   public function __construct(LocationRepositoryInterface $locationRepositoryInterface){
-           $this->locationInterface = $locationRepositoryInterface;
+    public function __construct(LocationRepositoryInterface $locationRepositoryInterface)
+    {
+        $this->locationInterface = $locationRepositoryInterface;
     }
 
 
@@ -21,50 +22,58 @@ class LocationController extends Controller
     {
         $locations = $this->locationInterface->getAll();
 
-        return response()->json($locations,200);
+        return response()->json($locations, 200);
     }
 
 
     public function store(storeRequest $request)
     {
-    
-       $location =  $this->locationInterface->create($request->only([
-             'customer_id',
-             'address',
-             'contract_price',
-             'description',
-             'received_date',
-             'delivery_date',
-             'products',
-             'payment_details',
-             "location_name"
-         ]));
 
-         return response()->json($location,201);
+        $location =  $this->locationInterface->create($request->only([
+            'customer_id',
+            'address',
+            'contract_price',
+            'description',
+            'received_date',
+            'delivery_date',
+            'products',
+            'payment_details',
+            "location_name"
+        ]));
+
+        return response()->json($location, 201);
     }
 
     public function show(Location $location)
     {
         $oneLoaction = $this->locationInterface->getLocation($location);
 
-        return response()->json($oneLoaction,200);
+        return response()->json($oneLoaction, 200);
     }
 
     public function getLocationPaymentDetails(Location $location)
     {
         $location = $this->locationInterface->getPaymentDetails($location);
 
-        return response()->json($location,200);
+        return response()->json($location, 200);
     }
 
-    public function collectionLocationPayment(Location $location,Request $request)
+    public function collectionLocationPayment(Location $location, Request $request)
     {
-        $location = $this->locationInterface->collectionLocationPayment($location,$request);
+        $location = $this->locationInterface->collectionLocationPayment($location, $request);
 
-        return response()->json($location,200);
+        return response()->json($location, 200);
     }
-    
-   
+
+    public function updateProductsStatusBelongToLocation(Location $location, Request $request)
+    {
+
+        $request->validate([
+            'products' => 'required|array',
+            'products.*' => 'required',
+        ]);
+        $location = $this->locationInterface->updateStatusProduct($location, $request);
+
+        return response()->json($location, 204);
+    }
 }
-
-
