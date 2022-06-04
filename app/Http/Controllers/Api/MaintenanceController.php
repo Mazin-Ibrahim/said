@@ -74,4 +74,18 @@ class MaintenanceController extends Controller
         $maintenance = $this->maintenanceInterface->updateMaintenanceVisit($request->only(['visits']), $maintenance);
         return response()->json($maintenance, 204);
     }
+
+    public function updateMaintenancePayment(Request $request, Maintenance $maintenance)
+    {
+        $request->validate([
+            'payments' => 'required|array',
+            'payments.*.date' => 'required|date',
+            'payments.*.description' => 'required',
+            'payments.*.status' => 'required',
+        ]);
+
+        $maintenance = $this->maintenanceInterface->updateMaintenancePayment($request->only(['payments']), $maintenance);
+
+        return response()->json($maintenance, 204);
+    }
 }

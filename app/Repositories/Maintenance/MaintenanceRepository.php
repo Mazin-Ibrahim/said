@@ -80,4 +80,16 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
 
         return $maintenance;
     }
+    public function updateMaintenancePayment($data, $maintenance)
+    {
+
+        collect($data['payments'])->each(function ($payment) use ($maintenance) {
+            $maintenance->maintenancesPaymentDetails()->where('date', $payment['date'])->update([
+                'status' => $payment['status'],
+                'description' => $payment['description'],
+            ]);
+        });
+
+        return $maintenance;
+    }
 }

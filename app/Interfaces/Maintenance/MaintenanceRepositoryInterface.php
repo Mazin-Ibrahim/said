@@ -11,4 +11,5 @@ interface MaintenanceRepositoryInterface
     public function update($request, $maintenance);
     public function delete($maintenance);
     public function updateMaintenanceVisit($request, $maintenance);
+    public function updateMaintenancePayment($request, $maintenance);
 }
