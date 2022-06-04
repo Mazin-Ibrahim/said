@@ -94,6 +94,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/maintenances', [MaintenanceController::class, 'store']);
     Route::put('/maintenances/{maintenance}', [MaintenanceController::class, 'update']);
     Route::delete('/maintenances/{maintenance}', [MaintenanceController::class, 'delete']);
+    Route::put('/maintenances/{maintenance}/updateMaintenanceVisit', [MaintenanceController::class, 'updateMaintenanceVisit']);
 
     Route::get('/invoices', [InvoiceController::class, 'index']);
     Route::get('/invoices/{invoice}', [InvoiceController::class, 'getInvoice']);

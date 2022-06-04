@@ -18,32 +18,60 @@ class MaintenanceController extends Controller
 
     public function index()
     {
-        $maintenances=  $this->maintenanceInterface->getAll();
-        return response()->json($maintenances,200);
+        $maintenances =  $this->maintenanceInterface->getAll();
+        return response()->json($maintenances, 200);
     }
 
     public function getMaintenance(Maintenance $maintenance)
     {
         $maintenance = $this->maintenanceInterface->getMaintenance($maintenance);
-        return response()->json($maintenance,200);
+        return response()->json($maintenance, 200);
     }
 
     public function store(storeRequest $request)
     {
-        $maintenance = $this->maintenanceInterface->create($request->only(['worker_id','customer_id','location_name','price']));
-        return response()->json($maintenance,201);
+
+        $maintenance = $this->maintenanceInterface->create($request->only([
+            'worker_id',
+            'customer_id',
+            'customer_name',
+            'location_name',
+            'location_id',
+            'address',
+            'description',
+            'contract_price',
+            'payments',
+            'visits',
+
+        ]));
+        return response()->json($maintenance, 201);
     }
 
     public function update(Request $request, Maintenance $maintenance)
     {
-        $maintenance = $this->maintenanceInterface->update($request->only(['worker_id','customer_id','location_name','price']),$maintenance);
-        return response()->json($maintenance,204);
+        $maintenance = $this->maintenanceInterface->update($request->only(['worker_id', 'customer_id', 'location_name', 'price']), $maintenance);
+        return response()->json($maintenance, 204);
     }
 
     public function delete(Maintenance $maintenance)
     {
-         $this->maintenanceInterface->delete($maintenance);
-        return response()->json(null,204);
+        $this->maintenanceInterface->delete($maintenance);
+        return response()->json(null, 204);
     }
 
+
+    public function updateMaintenanceVisit(Request $request, Maintenance $maintenance)
+    {
+
+        $request->validate([
+            'visits' => 'required|array',
+            'visits.*.date' => 'required|date',
+            'visits.*.status' => 'required|string',
+            'visits.*.description' => 'required',
+        ]);
+
+
+        $maintenance = $this->maintenanceInterface->updateMaintenanceVisit($request->only(['visits']), $maintenance);
+        return response()->json($maintenance, 204);
+    }
 }

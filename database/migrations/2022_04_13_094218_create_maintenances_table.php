@@ -15,10 +15,14 @@ class CreateMaintenancesTable extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('worker_id')->constrained();
-            $table->foreignId('customer_id')->constrained();
-            $table->string('location_name');
-            $table->double('price');
+            $table->integer('worker_id');
+            $table->integer('location_id')->nullable();
+            $table->integer('customer_id')->nullable();
+            $table->string('customer_name')->nullable();
+            $table->string('location_name')->nullable();
+            $table->string('address')->nullable();
+            $table->string('description');
+            $table->double('contract_price');
             $table->timestamps();
         });
     }

@@ -24,10 +24,15 @@ class storeRequest extends FormRequest
     public function rules()
     {
         return [
-            'worker_id' => 'required|exists:workers,id',
-            'customer_id' => 'required|exists:customers,id',
-            'location_name' => 'required|string',
-            'price' => 'required',
+            'worker_id' => 'required|integer',
+            'address' => 'required|string',
+            'description' => 'required|string',
+            'contract_price' => 'required|numeric',
+            'payments' => 'required|array',
+            'payments.*' => 'required',
+            'visits' => 'required|array',
+            'visits.*' => 'required',
+
         ];
     }
 }
