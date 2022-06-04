@@ -38,7 +38,8 @@ class LocationController extends Controller
             'delivery_date',
             'products',
             'payment_details',
-            "location_name"
+            'location_name',
+            'customer_name'
         ]));
 
         return response()->json($location, 201);

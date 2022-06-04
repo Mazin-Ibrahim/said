@@ -16,12 +16,13 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->integer('customer_id')->nullable();
+            $table->string('customer_name')->nullable();
             $table->string('location_name')->nullable();
             $table->text('address');
             $table->double('contract_price');
             $table->text('description');
             $table->date('received_date');
-            $table->date('delivery_date'); 
+            $table->date('delivery_date');
             $table->timestamps();
         });
     }

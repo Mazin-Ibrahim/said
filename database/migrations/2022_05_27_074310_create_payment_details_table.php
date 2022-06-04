@@ -18,7 +18,8 @@ class CreatePaymentDetailsTable extends Migration
             $table->integer('location_id');
             $table->double('amount');
             $table->date('payment_received_date');
-            $table->enum('status',['paid','not_paid'])->nullable();
+            $table->text('description')->nullable();
+            $table->enum('status', ['paid', 'not_paid'])->nullable();
             $table->timestamps();
         });
     }

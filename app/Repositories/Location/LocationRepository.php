@@ -24,6 +24,7 @@ class LocationRepository implements LocationRepositoryInterface
 
     public function create($data)
     {
+
         DB::beginTransaction();
         try {
             collect($data['products'])->each(function ($item) {
@@ -56,7 +57,8 @@ class LocationRepository implements LocationRepositoryInterface
                 'contract_price' => $data['contract_price'],
                 'received_date' => $data['received_date'],
                 'delivery_date' => $data['delivery_date'],
-                'location_name' => $data['location_name']
+                'location_name' => $data['location_name'],
+                'customer_name' => $data['customer_name']
             ]);
             $location->products()->sync($products);
 
@@ -96,6 +98,7 @@ class LocationRepository implements LocationRepositoryInterface
     {
         $location->paymentDetails()->find($request->payment_id)->update([
             'status' => $request->status,
+            'description' => $request->description,
         ]);
 
         return $location->load('paymentDetails');
@@ -109,6 +112,7 @@ class LocationRepository implements LocationRepositoryInterface
             $product->save();
             $location->products()->where('product_id', $item['id'])->update([
                 'status' => $item['status'],
+                'note' => $item['note'],
             ]);
         });
         return $location->load('products');

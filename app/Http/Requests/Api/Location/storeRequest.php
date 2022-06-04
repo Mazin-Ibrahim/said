@@ -21,19 +21,19 @@ class storeRequest extends FormRequest
      *
      * @return array
      */
-  
+
     public function rules()
     {
         return [
-           
-            'address' =>'required',
+
+            'address' => 'required',
             'contract_price' => 'required',
-            'description' =>'required',
+            'description' => 'required',
             'received_date' => 'required|date',
             'delivery_date' => 'required|date',
-            'products' =>'required|array',
+            'products' => 'required|array',
             'products.*' => 'required',
-            
+
             'payment_details' => 'required|array',
             'payment_details.*.amount' => 'required',
             'payment_details.*.payment_received_date' => 'required',

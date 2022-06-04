@@ -9,12 +9,12 @@ class Location extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customer_id','address','contract_price','description','received_date','delivery_date'];
+    protected $fillable = ['customer_id', 'address', 'contract_price', 'description', 'received_date', 'delivery_date', 'location_name', 'customer_name'];
 
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot(['qty','status']);
+        return $this->belongsToMany(Product::class)->withPivot(['qty', 'status', 'note']);
     }
 
     public function paymentDetails()
