@@ -99,6 +99,7 @@ class LocationRepository implements LocationRepositoryInterface
         $location->paymentDetails()->find($request->payment_id)->update([
             'status' => $request->status,
             'description' => $request->description,
+            'receiver_name' => $request->receiver_name
         ]);
 
         return $location->load('paymentDetails');

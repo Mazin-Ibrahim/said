@@ -28,8 +28,6 @@ class storeRequest extends FormRequest
             'address' => 'required|string',
             'description' => 'required|string',
             'contract_price' => 'required|numeric',
-            'payments' => 'required|array',
-            'payments.*' => 'required',
             'visits' => 'required|array',
             'visits.*' => 'required',
 

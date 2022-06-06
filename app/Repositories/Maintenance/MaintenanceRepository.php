@@ -11,12 +11,12 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
 {
     public function getAll()
     {
-        return Maintenance::with('maintenancesPaymentDetails', 'HistoryVisitsMaintenance')->get();
+        return Maintenance::with('location', 'customer', 'HistoryVisitsMaintenance.worker')->get();
     }
 
     public function getMaintenance($maintenance)
     {
-        return $maintenance->load('worker', 'customer', 'location', 'HistoryVisitsMaintenance', 'maintenancesPaymentDetails');
+        return $maintenance->load('customer', 'location', 'HistoryVisitsMaintenance.worker');
     }
 
     public function create($data)
@@ -27,7 +27,6 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
         DB::beginTransaction();
         try {
             $maintenance = new Maintenance();
-            $maintenance->worker_id = $data['worker_id'];
             $maintenance->customer_id = $data['customer_id'];
             $maintenance->customer_name = $data['customer_name'];
             $maintenance->location_name = $data['location_name'];
@@ -37,16 +36,11 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
             $maintenance->contract_price = $data['contract_price'];
             $maintenance->save();
 
-            collect($data['payments'])->each(function ($payment) use ($maintenance) {
-                $maintenance->maintenancesPaymentDetails()->create([
-                    'amount' => $payment['amount'],
-                    'date' => $payment['date'],
-                ]);
-            });
+
 
             collect($data['visits'])->each(function ($visit) use ($maintenance) {
                 $maintenance->HistoryVisitsMaintenance()->create([
-                    'date' => $visit['date']
+                    'date' => $visit['date'],
                 ]);
             });
             DB::commit();
@@ -75,6 +69,9 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
             $maintenance->HistoryVisitsMaintenance()->where('date', $visit['date'])->update([
                 'status' => $visit['status'],
                 'description' => $visit['description'],
+                'amount' => $visit['amount'],
+                'worker_name' => $visit['worker_name'],
+                'worker_id' => $visit['worker_id'],
             ]);
         });
 

@@ -20,6 +20,7 @@ class CreatePaymentDetailsTable extends Migration
             $table->date('payment_received_date');
             $table->text('description')->nullable();
             $table->enum('status', ['paid', 'not_paid'])->nullable();
+            $table->string('receiver_name')->nullable();
             $table->timestamps();
         });
     }

@@ -29,4 +29,14 @@ class Maintenance extends Model
     {
         return $this->hasMany(HistoryVisitsMaintenance::class, 'maintenance_id');
     }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 }

@@ -112,3 +112,20 @@
    }
    }
 </script>
+
+<style scoped>
+.imgsPreview .imageHolder .plus[data-v-69bb59a3] {
+    color: #2d3748;
+    background: #f7fafc;
+    border-radius: 50%;
+    font-size: 21pt;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    border: 1px dashed;
+    line-height: 23px;
+    position: absolute;
+    left: -42px;
+    bottom: 43%;
+}
+</style>

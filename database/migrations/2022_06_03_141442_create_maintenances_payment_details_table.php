@@ -20,6 +20,8 @@ class CreateMaintenancesPaymentDetailsTable extends Migration
             $table->double('amount');
             $table->date('date');
             $table->text('description')->nullable();
+            $table->integer('worker_id')->nullable();
+            $table->integer('worker_name')->nullable();
             $table->timestamps();
         });
     }

@@ -68,6 +68,8 @@ class MaintenanceController extends Controller
             'visits.*.date' => 'required|date',
             'visits.*.status' => 'required|string',
             'visits.*.description' => 'required',
+            'visits.*.amount' => 'required',
+
         ]);
 
 
