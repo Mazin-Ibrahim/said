@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\Auth\authController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CreditorController;
+use App\Http\Controllers\Api\CreditorDetailsController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\DailyReportController;
 use App\Http\Controllers\Api\DebtController;
@@ -148,4 +150,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/deportations', [DeportationController::class, 'store']);
     Route::put('/deportations/{deportation}', [DeportationController::class, 'update']);
     Route::delete('/deportations/{deportation}', [DeportationController::class, 'update']);
+
+
+    Route::post('/creditors', [CreditorController::class, 'store']);
+    Route::get('/creditors', [CreditorController::class, 'index']);
+    Route::get('/creditors/{creditor}', [CreditorController::class, 'show']);
+    Route::put('/creditors/{creditor}', [CreditorController::class, 'update']);
+    Route::delete('/creditors/{creditor}', [CreditorController::class, 'delete']);
+
+    Route::post('/creditors/{creditor}/creditorPayment', [CreditorDetailsController::class, 'creditorPayment']);
 });
