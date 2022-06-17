@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\Auth\authController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ContractorController;
+use App\Http\Controllers\Api\ContractorExpenseController;
 use App\Http\Controllers\Api\CreditorController;
 use App\Http\Controllers\Api\CreditorDetailsController;
 use App\Http\Controllers\Api\CustomerController;
@@ -159,4 +161,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::delete('/creditors/{creditor}', [CreditorController::class, 'delete']);
 
     Route::post('/creditors/{creditor}/creditorPayment', [CreditorDetailsController::class, 'creditorPayment']);
+
+
+    Route::post('contractors', [ContractorController::class, 'store']);
+    Route::get('contractors', [ContractorController::class, 'index']);
+    Route::get('contractors/{contractor}', [ContractorController::class, 'show']);
+    Route::put('contractors/{contractor}', [ContractorController::class, 'update']);
+    Route::delete('contractors/{contractor}', [ContractorController::class, 'delete']);
+
+    Route::post('contractors/{contractor}/expense', [ContractorExpenseController::class, 'createExpense']);
 });
