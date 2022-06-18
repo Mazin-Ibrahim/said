@@ -22,6 +22,7 @@ use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductReportController;
+use App\Http\Controllers\Api\SalaryController;
 use App\Http\Controllers\Api\WorkerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -170,4 +171,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::delete('contractors/{contractor}', [ContractorController::class, 'delete']);
 
     Route::post('contractors/{contractor}/expense', [ContractorExpenseController::class, 'createExpense']);
+
+    Route::post('/salaries', [SalaryController::class, 'store']);
+    Route::get('/salaries', [SalaryController::class, 'index']);
+    Route::get('/salaries/{salary}', [SalaryController::class, 'show']);
+    Route::put('/salaries/{salary}', [SalaryController::class, 'update']);
+    Route::delete('/salaries/{salary}', [SalaryController::class, 'delete']);
+    Route::get('/salaries/worker/{worker}', [SalaryController::class, 'getWorkerSalaries']);
 });

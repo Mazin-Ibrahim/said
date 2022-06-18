@@ -26,4 +26,9 @@ class Worker extends Model
     {
         return $this->hasMany(Debt::class);
     }
+
+    public function salaries()
+    {
+        return $this->hasMany(Salary::class);
+    }
 }
