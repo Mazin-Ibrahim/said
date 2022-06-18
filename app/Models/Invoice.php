@@ -27,8 +27,13 @@ class Invoice extends Model
         return $this->belongsTo(Customer::class);
     }
 
-   public static function calculateTotalAfterDiscount($total, $discount)
+    public static function calculateTotalAfterDiscount($total, $discount)
     {
         return $total - $discount;
+    }
+
+    public function additionalInvoiceInformation()
+    {
+        return $this->hasMany(AdditionalInvoiceInformation::class);
     }
 }

@@ -20,35 +20,33 @@ class InvoiceController extends Controller
     public function index(Request $request)
     {
         $invoices = $this->invocieInterface->getAll($request);
-        return response()->json($invoices,200);
+        return response()->json($invoices, 200);
     }
 
-    public function getInvoice(Invoice $invoice) 
+    public function getInvoice(Invoice $invoice)
     {
-       
+
         return $this->invocieInterface->getInvoice($invoice);
     }
 
     public function store(storeRequest $request)
     {
-        
+
         $invoice = $this->invocieInterface->create($request->only(
-            ['customer_id','total','discount','total_after_discount','type_of_payment','invoce_items']
+            ['customer_id', 'total', 'discount', 'total_after_discount', 'type_of_payment', 'invoce_items', 'additional_invoice_information']
         ));
 
-     
-        return response()->json($invoice,201);
+
+        return response()->json($invoice, 201);
     }
 
-    public function update(updateRequest $request,Invoice $invoice)
+    public function update(updateRequest $request, Invoice $invoice)
     {
-       
+
         $invoice = $this->invocieInterface->update($request->only(
-            ['customer_id','total','discount','total_after_discount','type_of_payment','invoce_items']
-        ),$invoice);
+            ['customer_id', 'total', 'discount', 'total_after_discount', 'type_of_payment', 'invoce_items']
+        ), $invoice);
 
         return $invoice;
     }
-   
-  
 }
