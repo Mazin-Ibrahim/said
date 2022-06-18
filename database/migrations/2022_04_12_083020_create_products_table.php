@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->double('profit')->nullable();
             $table->text('description');
             $table->integer('danger_amount');
+            $table->integer('selling_method_id');
             $table->timestamps();
         });
     }

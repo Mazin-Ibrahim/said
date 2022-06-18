@@ -16,7 +16,8 @@ class Product extends Model
         'sell_price',
         'category_id',
         'qty',
-        'danger_amount'
+        'danger_amount',
+        'selling_method_id'
     ];
 
     public function setProfit()
@@ -49,5 +50,10 @@ class Product extends Model
     public function locations()
     {
         return $this->belongsToMany(Location::class);
+    }
+
+    public function sellingMethod()
+    {
+        return $this->belongsTo(SellingMethod::class);
     }
 }

@@ -12,10 +12,10 @@ class SalaryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'worker_id' => 'required|integer',
             'salary' => 'required|numeric',
             'date' => 'required|date',
             'type' => 'required|string',
+            'description' => 'required|string',
         ]);
 
         $salary = Salary::create([
@@ -23,6 +23,8 @@ class SalaryController extends Controller
             'salary' => $request->salary,
             'date' => $request->date,
             'type' => $request->type,
+            'description' => $request->description,
+            'worker_name' => $request->worker_name,
         ]);
 
         return response()->json($salary, 201);
@@ -43,10 +45,12 @@ class SalaryController extends Controller
     public function update(Request $request, Salary $salary)
     {
         $request->validate([
-            'worker_id' => 'required|integer',
+
             'salary' => 'required|numeric',
             'date' => 'required|date',
             'type' => 'required|string',
+            'description' => 'required|string',
+
         ]);
 
         $salary->update([
@@ -54,6 +58,8 @@ class SalaryController extends Controller
             'salary' => $request->salary,
             'date' => $request->date,
             'type' => $request->type,
+            'description' => $request->description,
+            'worker_name' => $request->worker_name,
         ]);
 
         return response()->json($salary, 200);

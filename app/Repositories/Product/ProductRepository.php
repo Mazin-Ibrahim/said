@@ -13,14 +13,14 @@ use Carbon\Carbon;
 class ProductRepository implements ProductRepositoryInterface, ProductReportsInterface
 {
     public function getAll($request)
-    { 
-       
-        if($request->display_count){
+    {
 
-            return Product::with('images','category')->take($request->display_count)->get();
+        if ($request->display_count) {
+
+            return Product::with('images', 'category', 'sellingMethod')->take($request->display_count)->get();
         }
 
-        return Product::with('images','category')->get();
+        return Product::with('images', 'category')->get();
     }
 
     public function getProduct($product)
@@ -30,7 +30,7 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
 
     public function create($data)
     {
-       $product = Product::create([
+        $product = Product::create([
             'name' => $data['name'],
             'description' => $data['description'],
             'buy_price' => $data['buy_price'],
@@ -38,30 +38,29 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
             'category_id' => $data['category_id'],
             'danger_amount' => $data['danger_amount'],
             'qty' => $data['qty'],
+            'selling_method_id' => $data['selling_method_id']
         ]);
 
         $imagesPath = [];
-        if(array_key_exists("images",$data)){
+        if (array_key_exists("images", $data)) {
 
             foreach ($data['images'] as $image) {
                 $extension = $image->getClientOriginalExtension();
-                array_push($imagesPath, $image->move('images', time().'-'.rand(10, 10000).'.'.$extension));
+                array_push($imagesPath, $image->move('images', time() . '-' . rand(10, 10000) . '.' . $extension));
             }
 
             collect($imagesPath)->each(function ($image) use ($product) {
-                   Image::create([
-                       'path' => $image->getFilename(),
-                       'imageable_id' => $product->id,
-                       'imageable_type' => get_class($product),
-                   ]);
-               });
+                Image::create([
+                    'path' => $image->getFilename(),
+                    'imageable_id' => $product->id,
+                    'imageable_type' => get_class($product),
+                ]);
+            });
         }
 
-     
-       
-        return $product;
 
-       
+
+        return $product;
     }
 
     public function update($product, $data)
@@ -73,16 +72,17 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
             'sell_price' => $data['sell_price'],
             'category_id' => $data['category_id'],
             'qty' => $data['qty'],
-            'danger_amount' => $data['danger_amount']
+            'danger_amount' => $data['danger_amount'],
+            'selling_method_id' => $data['selling_method_id']
         ]);
-       
+
         $imagesPath = [];
-        if (array_key_exists("images",$data)){
+        if (array_key_exists("images", $data)) {
             foreach ($data['images'] as $image) {
                 $extension = $image->getClientOriginalExtension();
-                array_push($imagesPath, $image->move('images', time().'-'.rand(10, 10000).'.'.$extension));
+                array_push($imagesPath, $image->move('images', time() . '-' . rand(10, 10000) . '.' . $extension));
             }
-    
+
             collect($imagesPath)->each(function ($image) use ($product) {
                 $product->images()->update([
                     'path' => $image->getFilename(),
@@ -90,8 +90,8 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
                 ]);
             });
         }
-       
-        
+
+
 
 
         return $product;
@@ -100,7 +100,7 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
     public function delete($product)
     {
         $product->invoiceLines()->delete();
-       $product->delete();
+        $product->delete();
     }
 
     public function getProductsCount()
@@ -110,13 +110,13 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
 
     public function getProductsQuantity()
     {
-        
+
         return Product::sum('qty');
     }
 
     public function getProfitFromProducts()
     {
-      
+
         $products = Product::all();
         $profit = 0;
         foreach ($products as $product) {
@@ -129,49 +129,47 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
 
     public function getProductsPurchaseByDay($date)
     {
-       
+
         $invoices = Invoice::whereDate('created_at', Carbon::parse($date))->with('invoiceLines.product')->get();
         return $invoices;
-        
     }
 
     public function productsCreatedToday($date)
     {
-        
-       $products = Product::whereDate('created_at', Carbon::parse($date))->with('images')->get();
-       return $products;
+
+        $products = Product::whereDate('created_at', Carbon::parse($date))->with('images')->get();
+        return $products;
     }
 
     public function getStockInformations()
     {
-       $countProducts = Product::count();
-       $products = Product::all();
-       $totalWithoutProfit = 0;
-       foreach ($products as $product) {
-        $totalWithoutProfit  += $product->qty * $product->buy_price;
-     }
-       
-       $totalWithProfit  = 0;
-       foreach ($products as $product) {
-          $totalWithProfit  += $product->qty * $product->profit;
-       }
+        $countProducts = Product::count();
+        $products = Product::all();
+        $totalWithoutProfit = 0;
+        foreach ($products as $product) {
+            $totalWithoutProfit  += $product->qty * $product->buy_price;
+        }
 
-       $totalProfit = Product::sum('profit');
+        $totalWithProfit  = 0;
+        foreach ($products as $product) {
+            $totalWithProfit  += $product->qty * $product->profit;
+        }
 
-       return [
-           'countProducts' => $countProducts,
-           'totalWithoutProfit' => $totalWithoutProfit,
-           'totalWithProfit' => $totalWithProfit,
-           'totalProfit' => $totalProfit,
-       ];
+        $totalProfit = Product::sum('profit');
 
+        return [
+            'countProducts' => $countProducts,
+            'totalWithoutProfit' => $totalWithoutProfit,
+            'totalWithProfit' => $totalWithProfit,
+            'totalProfit' => $totalProfit,
+        ];
     }
 
 
     public function getProductsInDangerZone()
     {
-        
-        $products = Product::whereColumn('qty', '<=','danger_amount')->get();
+
+        $products = Product::whereColumn('qty', '<=', 'danger_amount')->get();
 
         return $products;
     }

@@ -14,5 +14,7 @@ class Salary extends Model
         'salary',
         'date',
         'type',
+        'worker_name',
+        'description'
     ];
 }

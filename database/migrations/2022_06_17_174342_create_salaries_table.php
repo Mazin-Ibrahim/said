@@ -15,10 +15,12 @@ class CreateSalariesTable extends Migration
     {
         Schema::create('salaries', function (Blueprint $table) {
             $table->id();
-            $table->integer('worker_id');
+            $table->integer('worker_id')->nullable();
             $table->double('salary');
             $table->date('date');
             $table->enum('type', ['حوافز', 'عمل أضافي', 'عمولة', 'مرتب']);
+            $table->string('worker_name')->nullable();
+            $table->text('description');
             $table->timestamps();
         });
     }

@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductReportController;
 use App\Http\Controllers\Api\SalaryController;
+use App\Http\Controllers\Api\SellingMethodController;
 use App\Http\Controllers\Api\WorkerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -178,4 +179,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::put('/salaries/{salary}', [SalaryController::class, 'update']);
     Route::delete('/salaries/{salary}', [SalaryController::class, 'delete']);
     Route::get('/salaries/worker/{worker}', [SalaryController::class, 'getWorkerSalaries']);
+
+    Route::post('sellingMethods', [SellingMethodController::class, 'store']);
+    Route::get('sellingMethods', [SellingMethodController::class, 'index']);
+    Route::get('sellingMethods/{sellingMethod}', [SellingMethodController::class, 'show']);
+    Route::put('sellingMethods/{sellingMethod}', [SellingMethodController::class, 'update']);
+    Route::delete('sellingMethods/{sellingMethod}', [SellingMethodController::class, 'delete']);
 });
