@@ -11,12 +11,12 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
 {
     public function getAll()
     {
-        return Maintenance::with('location', 'customer', 'HistoryVisitsMaintenance.worker')->get();
+        return Maintenance::with('location', 'customer', 'HistoryVisitsMaintenance.worker', 'maintenancesPaymentDetails')->get();
     }
 
     public function getMaintenance($maintenance)
     {
-        return $maintenance->load('customer', 'location', 'HistoryVisitsMaintenance.worker');
+        return $maintenance->load('customer', 'location', 'HistoryVisitsMaintenance.worker', 'maintenancesPaymentDetails');
     }
 
     public function create($data)
@@ -41,10 +41,13 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
             collect($data['visits'])->each(function ($visit) use ($maintenance) {
                 $maintenance->HistoryVisitsMaintenance()->create([
                     'date' => $visit['date'],
+                    'description' => $visit['description'],
+                    'worker_id' => $visit['worker_id'],
+                    'worker_name' => $visit['worker_name'],
                 ]);
             });
             DB::commit();
-            return $maintenance->load('maintenancesPaymentDetails', 'HistoryVisitsMaintenance');
+            return $maintenance->load('maintenancesPaymentDetails', 'HistoryVisitsMaintenance', 'maintenancesPaymentDetails');
         } catch (\Exception $e) {
             DB::rollback();
             throw $e;
@@ -81,9 +84,13 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
     {
 
         collect($data['payments'])->each(function ($payment) use ($maintenance) {
-            $maintenance->maintenancesPaymentDetails()->where('date', $payment['date'])->update([
+            $maintenance->maintenancesPaymentDetails()->create([
                 'status' => $payment['status'],
                 'description' => $payment['description'],
+                'reciver_name' => $payment['reciver_name'],
+                'recipient_name' => $payment['recipient_name'],
+                'amount' => $payment['amount'],
+                'date' => $payment['date'],
             ]);
         });
 

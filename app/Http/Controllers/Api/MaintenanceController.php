@@ -84,10 +84,15 @@ class MaintenanceController extends Controller
             'payments.*.date' => 'required|date',
             'payments.*.description' => 'required',
             'payments.*.status' => 'required',
+            'payments.*.reciver_name' => 'required',
+            'payments.*.recipient_name' => 'required',
+            'payments.*.amount' => 'required',
+
         ]);
+
 
         $maintenance = $this->maintenanceInterface->updateMaintenancePayment($request->only(['payments']), $maintenance);
 
-        return response()->json($maintenance, 204);
+        return response()->json($maintenance, 201);
     }
 }

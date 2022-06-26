@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class MaintenancesPaymentDetails extends Model
 {
     use HasFactory;
-    protected $fillable = ['maintenance_id', 'status', 'amount', 'date', 'description', 'worker_id', 'worker_name'];
+    protected $fillable = ['maintenance_id', 'status', 'amount', 'date', 'description', 'reciver_name', 'recipient_name'];
 }

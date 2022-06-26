@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\InvoiceMaintenanceController;
 use App\Http\Controllers\Api\InvoiceReportController;
 use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\MaintenanceController;
+use App\Http\Controllers\Api\MarketingClientController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductReportController;
 use App\Http\Controllers\Api\SalaryController;
@@ -185,4 +186,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('sellingMethods/{sellingMethod}', [SellingMethodController::class, 'show']);
     Route::put('sellingMethods/{sellingMethod}', [SellingMethodController::class, 'update']);
     Route::delete('sellingMethods/{sellingMethod}', [SellingMethodController::class, 'delete']);
+
+
+    Route::post('/marketingClients', [MarketingClientController::class, 'store']);
+    Route::post('/createMarketingClientDetails/{marketingClient}', [MarketingClientController::class, 'createMarketingClientDetails']);
+    Route::put('/marketingClients/{marketingClient}', [MarketingClientController::class, 'update']);
+    Route::get('/marketingClients/{marketingClient}', [MarketingClientController::class, 'show']);
+    Route::get('/marketingClients', [MarketingClientController::class, 'index']);
+    Route::delete('/marketingClients/{marketingClient}', [MarketingClientController::class, 'delete']);
 });
