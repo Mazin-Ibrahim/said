@@ -24,11 +24,11 @@ class DeportationRepository implements DeportationRepositoryInterface
 
     public function update($request, $deportation)
     {
-       return $deportation->update($request->all());
+        return $deportation->update($request->all());
     }
 
     public function delete($deportation)
     {
-       return  $deportation->delete();
+        return  $deportation->delete();
     }
 }

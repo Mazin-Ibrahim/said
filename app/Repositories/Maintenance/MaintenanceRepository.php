@@ -47,7 +47,7 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
                 ]);
             });
             DB::commit();
-            return $maintenance->load('maintenancesPaymentDetails', 'HistoryVisitsMaintenance', 'maintenancesPaymentDetails');
+            return $maintenance->load('maintenancesPaymentDetails', 'HistoryVisitsMaintenance', 'maintenancesPaymentDetails', 'location', 'customer');
         } catch (\Exception $e) {
             DB::rollback();
             throw $e;
@@ -67,7 +67,6 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
 
     public function updateMaintenanceVisit($data, $maintenance)
     {
-
         collect($data['visits'])->each(function ($visit) use ($maintenance) {
             $maintenance->HistoryVisitsMaintenance()->where('date', $visit['date'])->update([
                 'status' => $visit['status'],
@@ -82,7 +81,6 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
     }
     public function updateMaintenancePayment($data, $maintenance)
     {
-
         collect($data['payments'])->each(function ($payment) use ($maintenance) {
             $maintenance->maintenancesPaymentDetails()->create([
                 'status' => $payment['status'],

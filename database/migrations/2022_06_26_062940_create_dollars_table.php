@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCreditorsTable extends Migration
+class CreateDollarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateCreditorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('creditors', function (Blueprint $table) {
+        Schema::create('dollars', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->date('date');
-            $table->double('debit_amount');
-            $table->double('remaining');
-            $table->text('description');
+            $table->double('value');
             $table->timestamps();
         });
-    } 
+    }
 
     /**
      * Reverse the migrations.
@@ -31,6 +27,6 @@ class CreateCreditorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('creditors');
+        Schema::dropIfExists('dollars');
     }
 }

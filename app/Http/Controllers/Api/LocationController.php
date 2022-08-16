@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Location\storeRequest;
 use App\Interfaces\Location\LocationRepositoryInterface;
 use App\Models\Location;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -76,5 +77,62 @@ class LocationController extends Controller
         $location = $this->locationInterface->updateStatusProduct($location, $request);
 
         return response()->json($location, 204);
+    }
+
+
+    public function deleteProductsFromLocation(Location $location, Request $request)
+    {
+
+        $request->validate([
+
+            'qty' => 'required',
+            'id' => 'required',
+        ]);
+
+
+
+        $product = Product::find($request->id);
+        $product->qty += $request->qty;
+        $product->save();
+
+
+        $location->products()->wherePivot('product_id', '=', $request->id)->detach();
+
+
+        return response()->json(null, 204);
+    }
+
+
+    public function updateProductsFromLoaction(Location $location, Request $request)
+    {
+
+        $request->validate([
+            'qty' => 'required',
+            'id' => 'required',
+            'type' => 'required',
+        ]);
+
+        $product = Product::find($request->id);
+        if ($request->type == 'add') {
+            $product->qty -= $request->qty;
+            $product->save();
+
+            $pvoitQty =  $location->products()->where('product_id', $request->id)->first();
+            $newQty = $pvoitQty->pivot->qty + $request->qty;
+
+            $location->products()->updateExistingPivot($request->id, [
+                'qty' => $newQty,
+            ]);
+        } else {
+            $product->qty += $request->qty;
+            $product->save();
+
+            $pvoitQty =  $location->products()->where('product_id', $request->id)->first();
+            $newQty = $pvoitQty->pivot->qty - $request->qty;
+
+            $location->products()->updateExistingPivot($request->id, [
+                'qty' => $newQty,
+            ]);
+        }
     }
 }

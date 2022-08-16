@@ -41,7 +41,7 @@ class DeportationController extends Controller
         ]);
         $deportation = $this->deportationInterface->create($request);
 
-        return response()->json($deportation, 201);
+        return response()->json($deportation->load('location'), 201);
     }
 
     public function update(Request $request, Deportation $deportation)

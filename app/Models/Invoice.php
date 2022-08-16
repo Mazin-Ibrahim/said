@@ -36,4 +36,9 @@ class Invoice extends Model
     {
         return $this->hasMany(AdditionalInvoiceInformation::class);
     }
+
+    public function invoicePayment()
+    {
+        return $this->hasMany(InvoicePayment::class);
+    }
 }

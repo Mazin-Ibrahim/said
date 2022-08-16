@@ -26,7 +26,7 @@ class storeRequest extends FormRequest
     {
         return [
 
-            'address' => 'required',
+
             'contract_price' => 'required',
             'description' => 'required',
             'received_date' => 'required|date',

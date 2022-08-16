@@ -24,7 +24,7 @@ class MarketingClientController extends Controller
             'location_name' => $request->get('location_name'),
         ]);
 
-        return response()->json($market, 201);
+        return response()->json($market->load('location'), 201);
     }
 
     public function update(MarketingClient $marketingClient, Request $request)
@@ -47,18 +47,16 @@ class MarketingClientController extends Controller
 
     public function show(MarketingClient $marketingClient)
     {
-
-        return $marketingClient->load('marketingClientDetails');
+        return $marketingClient->load('location', 'marketingClientDetails');
     }
 
     public function index()
     {
-        return MarketingClient::all();
+        return MarketingClient::with('location')->get();
     }
 
     public function delete(MarketingClient $marketingClient)
     {
-
         $marketingClient->delete();
 
         return response()->json(null, 204);
@@ -73,6 +71,6 @@ class MarketingClientController extends Controller
             'description' => $request->get('description'),
         ]);
 
-        return $marketingClient->load('marketingClientDetails');
+        return $marketingClient->load('location', 'marketingClientDetails');
     }
 }

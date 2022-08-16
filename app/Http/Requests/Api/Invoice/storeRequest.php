@@ -33,10 +33,6 @@ class storeRequest extends FormRequest
             'invoce_items' => 'required|array',
             'invoce_items.*.product_id' => 'required|exists:products,id',
             'invoce_items.*.qty' => 'required|numeric',
-            'additional_invoice_information' => 'array',
-            'additional_invoice_information.*.service_name' => 'required|string',
-            'additional_invoice_information.*.service_price' => 'required|numeric',
-            'additional_invoice_information.*.description' => 'required|string',
         ];
     }
 }

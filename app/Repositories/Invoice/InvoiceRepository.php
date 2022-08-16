@@ -22,11 +22,11 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
 
             return Invoice::take($request->dispaly_count)->with('invoiceLines.product')->get();
         }
-        return Invoice::with('invoiceLines.product', 'customer', 'additionalInvoiceInformation')->get();
+        return Invoice::with('invoiceLines.product', 'customer', 'additionalInvoiceInformation', 'invoicePayment')->get();
     }
     public function getInvoice($invoce)
     {
-        return $invoce->load('invoiceLines.product', 'additionalInvoiceInformation');
+        return $invoce->load('invoiceLines.product', 'customer', 'additionalInvoiceInformation', 'invoicePayment');
     }
 
     public function create($data)
@@ -55,14 +55,16 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
                     'qty' => $item['qty']
                 ]);
             });
+            if (array_key_exists("additional_invoice_information", $data)) {
+                collect($data['additional_invoice_information'])->each(function ($item) use ($invoice) {
+                    $invoice->additionalInvoiceInformation()->create([
+                        'service_name' => $item['service_name'],
+                        'service_price' => $item['service_price'],
+                        'description' => $item['description']
+                    ]);
+                });
+            }
 
-            collect($data['additional_invoice_information'])->each(function ($item) use ($invoice) {
-                $invoice->additionalInvoiceInformation()->create([
-                    'service_name' => $item['service_name'],
-                    'service_price' => $item['service_price'],
-                    'description' => $item['description']
-                ]);
-            });
             DB::commit();
             return $invoice->load('invoiceLines.product', 'additionalInvoiceInformation');
         } catch (\Exception $e) {
@@ -115,7 +117,7 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
 
 
             DB::commit();
-            return $invoice->load('invoiceLines.product');
+            return $invoice->load('invoiceLines.product', 'customer', 'additionalInvoiceInformation', 'invoicePayment');
         } catch (\Exception $e) {
             DB::rollback();
             throw $e;
@@ -129,7 +131,7 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
 
     public function getInvoicesBayDay($date)
     {
-        return Invoice::whereDate('created_at', $date)->with('invoiceLines.product')->get();
+        return Invoice::whereDate('created_at', $date)->with('invoiceLines.product', 'customer', 'additionalInvoiceInformation', 'invoicePayment')->get();
     }
 
 
@@ -161,7 +163,7 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
                 ]);
             });
             DB::commit();
-            return $invoice->load('invoiceLines.product');
+            return $invoice->load('invoiceLines.product', 'customer', 'additionalInvoiceInformation', 'invoicePayment');
         } catch (\Exception $e) {
             DB::rollback();
             throw $e;

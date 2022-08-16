@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\DailyReport;
 
@@ -8,22 +8,21 @@ use App\Models\Income;
 use App\Models\Invoice;
 use Carbon\Carbon;
 
-class DailyReportRepository implements DailyReportInterface {
-   public function getInvoicesAndIncomesAndExpensesDaily()
-   {
-      
-       $expensesDay = Expense::whereDate('created_at', Carbon::today())->sum('value');
-       $incomesDay   = Income::whereDate('created_at', Carbon::today())->sum('value');
-       $totalBuyInvoices = Invoice::whereDate('created_at', Carbon::today())->sum('total');
-       $countInvoices = Invoice::whereDate('created_at', Carbon::today())->count();
+class DailyReportRepository implements DailyReportInterface
+{
+    public function getInvoicesAndIncomesAndExpensesDaily()
+    {
 
-       return [
-           'expensesDay' => $expensesDay,
-           'incomesDay' => $incomesDay,
-           'totalBuyInvoces' =>$totalBuyInvoices,
-           'countInvoices' =>$countInvoices
-       ];
-   }
+        $expensesDay = Expense::whereDate('created_at', Carbon::today())->sum('value');
+        $incomesDay   = Income::whereDate('created_at', Carbon::today())->sum('value');
+        $totalBuyInvoices = Invoice::whereDate('created_at', Carbon::today())->where('type_of_payment', '!=', 'credit')->sum('total');
+        $countInvoices = Invoice::whereDate('created_at', Carbon::today())->count();
+
+        return [
+            'expensesDay' => $expensesDay,
+            'incomesDay' => $incomesDay,
+            'totalBuyInvoces' => $totalBuyInvoices,
+            'countInvoices' => $countInvoices
+        ];
+    }
 }
-
-

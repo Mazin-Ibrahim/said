@@ -20,7 +20,7 @@ class SellingMethodController extends Controller
 
         return response()->json($sellingMethod, 201);
     }
-
+ 
     public function index()
     {
         $sellingMethods = SellingMethod::all();
@@ -41,7 +41,6 @@ class SellingMethodController extends Controller
 
     public function update(Request $request, SellingMethod $sellingMethod)
     {
-
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
@@ -56,8 +55,6 @@ class SellingMethodController extends Controller
 
     public function delete(SellingMethod $sellingMethod)
     {
-
-
         $sellingMethod->delete();
 
         return response()->json(null, 204);

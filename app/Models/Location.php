@@ -21,4 +21,9 @@ class Location extends Model
     {
         return $this->hasMany(PaymentDetails::class);
     }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }

@@ -17,10 +17,10 @@ class CreateInvoicesTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('customer_id');
-            $table->integer('total');
+            $table->double('total');
             $table->double('discount');
             $table->double('total_after_discount');
-            $table->enum('type_of_payment',['cash','credit']);
+            $table->enum('type_of_payment', ['cash', 'credit', 'bankak']);
             $table->foreignId('maintenance_id')->nullable();
             $table->timestamps();
         });

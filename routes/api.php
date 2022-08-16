@@ -11,12 +11,14 @@ use App\Http\Controllers\Api\DailyReportController;
 use App\Http\Controllers\Api\DebtController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\DeportationController;
+use App\Http\Controllers\Api\DollarController;
 use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\ExpenseReportController;
 use App\Http\Controllers\Api\IncomeController;
 use App\Http\Controllers\Api\IncomeReportController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\InvoiceMaintenanceController;
+use App\Http\Controllers\Api\InvoicePaymentController;
 use App\Http\Controllers\Api\InvoiceReportController;
 use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\MaintenanceController;
@@ -149,6 +151,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/locations/{location}/paymentDetails', [LocationController::class, 'getLocationPaymentDetails']);
     Route::post('/locations/{location}/collectionLocationPayment', [LocationController::class, 'collectionLocationPayment']);
     Route::put('/locations/{location}/updateProducts', [LocationController::class, 'updateProductsStatusBelongToLocation']);
+    Route::post('/locations/{location}/deleteProductsFromLocation', [LocationController::class, 'deleteProductsFromLocation']);
+    Route::post('/locations/{location}/updateProductsFromLoaction', [LocationController::class, 'updateProductsFromLoaction']);
 
 
     Route::get('/deportations', [DeportationController::class, 'index']);
@@ -194,4 +198,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/marketingClients/{marketingClient}', [MarketingClientController::class, 'show']);
     Route::get('/marketingClients', [MarketingClientController::class, 'index']);
     Route::delete('/marketingClients/{marketingClient}', [MarketingClientController::class, 'delete']);
+
+
+    Route::post('/dollar', [DollarController::class, 'store']);
+    Route::get('/dollar/{dollar}', [DollarController::class, 'getDollar']);
+    Route::put('/dollar/{dollar}', [DollarController::class, 'update']);
+
+    Route::post('/ivoices/{invoice}/payment', [InvoicePaymentController::class, 'store']);
 });

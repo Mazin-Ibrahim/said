@@ -11,10 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class LocationRepository implements LocationRepositoryInterface
 {
-
     public function getAll()
     {
-        return Location::with('products', 'paymentDetails')->get();
+        return Location::with('products', 'paymentDetails', 'customer')->get();
     }
 
     public function getLocation($location)
@@ -24,7 +23,6 @@ class LocationRepository implements LocationRepositoryInterface
 
     public function create($data)
     {
-
         DB::beginTransaction();
         try {
             collect($data['products'])->each(function ($item) {

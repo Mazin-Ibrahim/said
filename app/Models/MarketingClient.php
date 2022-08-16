@@ -15,4 +15,9 @@ class MarketingClient extends Model
     {
         return $this->hasMany(MarketingClientDetails::class);
     }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 }

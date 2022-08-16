@@ -18,7 +18,7 @@ class CreateHistoryVisitsMaintenancesTable extends Migration
             $table->integer('maintenance_id');
             $table->enum('status', ['paid', 'not_paid'])->nullable();
             $table->double('amount')->nullable();;
-            $table->date('date');
+            $table->date('date')->nullable();
             $table->text('description')->nullable();
             $table->integer('worker_id')->nullable();
             $table->string('worker_name')->nullable();

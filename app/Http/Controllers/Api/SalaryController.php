@@ -32,7 +32,7 @@ class SalaryController extends Controller
 
     public function index()
     {
-        $salaries = Salary::all();
+        $salaries = Salary::with('worker')->get();
 
         return response()->json($salaries, 200);
     }
