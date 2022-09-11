@@ -14,9 +14,7 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
 {
     public function getAll($request)
     {
-
         if ($request->display_count) {
-
             return Product::with('images', 'category', 'sellingMethod')->take($request->display_count)->get();
         }
 
@@ -43,7 +41,6 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
 
         $imagesPath = [];
         if (array_key_exists("images", $data)) {
-
             foreach ($data['images'] as $image) {
                 $extension = $image->getClientOriginalExtension();
                 array_push($imagesPath, $image->move('images', time() . '-' . rand(10, 10000) . '.' . $extension));
@@ -76,12 +73,17 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
             'selling_method_id' => $data['selling_method_id']
         ]);
 
+        
+
         $imagesPath = [];
         if (array_key_exists("images", $data)) {
             foreach ($data['images'] as $image) {
                 $extension = $image->getClientOriginalExtension();
                 array_push($imagesPath, $image->move('images', time() . '-' . rand(10, 10000) . '.' . $extension));
             }
+          
+
+            // $product->images()->delete();
 
             collect($imagesPath)->each(function ($image) use ($product) {
                 $product->images()->update([
@@ -110,13 +112,11 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
 
     public function getProductsQuantity()
     {
-
         return Product::sum('qty');
     }
 
     public function getProfitFromProducts()
     {
-
         $products = Product::all();
         $profit = 0;
         foreach ($products as $product) {
@@ -129,14 +129,12 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
 
     public function getProductsPurchaseByDay($date)
     {
-
         $invoices = Invoice::whereDate('created_at', Carbon::parse($date))->with('invoiceLines.product')->get();
         return $invoices;
     }
 
     public function productsCreatedToday($date)
     {
-
         $products = Product::whereDate('created_at', Carbon::parse($date))->with('images')->get();
         return $products;
     }
@@ -168,7 +166,6 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
 
     public function getProductsInDangerZone()
     {
-
         $products = Product::whereColumn('qty', '<=', 'danger_amount')->get();
 
         return $products;

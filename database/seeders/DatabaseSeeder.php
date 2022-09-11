@@ -15,10 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-     
-
-      
-
         DB::table('users')->insert([
             'email' => 'admin@app.com',
             'name' => 'admin',
@@ -45,17 +41,10 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             'email' => 'cashier@app.com',
-            'name' => 'cashier',
+            'name' => 'expense',
             'password' => Hash::make('password'),
-            'role' => 'cashier',
+            'role' => 'expense',
             'phone' => '444',
         ]);
-
-        
-
-
-
-
-
     }
 }
