@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\WorkerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Models\Expense;
+use App\Models\PaymentDetails;
 use Carbon\Carbon;
 
 /*
@@ -87,3 +88,17 @@ Route::get('/users', [CustomerController::class, 'index'])->name('users.index');
 Route::get('/users/{customer}/edit', [CustomerController::class, 'edit'])->name('users.edit');
 Route::put('/users/{customer}/update', [CustomerController::class, 'update'])->name('users.update');
 Route::delete('/users/{customer}/delete', [CustomerController::class, 'delete'])->name('customers.delete');
+
+
+
+
+Route::get('/workers/all', [WorkerController::class, 'getAllWorkers'])->name('workers.getAllWorkers');
+
+
+Route::get('/test-q', function () {
+    $startDate = Carbon::today();
+    $endDate = Carbon::today()->addDays(7);
+    $bb = PaymentDetails::whereBetween('payment_received_date', [$startDate,$endDate])->orderBy('payment_received_date', 'asc')->get();
+
+    dd($bb);
+});

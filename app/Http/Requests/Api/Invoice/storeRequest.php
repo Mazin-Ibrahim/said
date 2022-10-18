@@ -33,6 +33,7 @@ class storeRequest extends FormRequest
             'invoce_items' => 'required|array',
             'invoce_items.*.product_id' => 'required|exists:products,id',
             'invoce_items.*.qty' => 'required|numeric',
+        
         ];
     }
 }

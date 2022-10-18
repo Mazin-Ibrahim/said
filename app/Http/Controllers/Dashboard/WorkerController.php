@@ -9,6 +9,7 @@ use App\Interfaces\Worker\WorkerRepositoryInterface;
 use App\Models\Department;
 use App\Models\Worker;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class WorkerController extends Controller
 {
@@ -48,9 +49,9 @@ class WorkerController extends Controller
         ]);
     }
 
-    public function update(updateRequest $request,Worker $worker)
+    public function update(updateRequest $request, Worker $worker)
     {
-        $this->workerInterface->update($request->only(['name', 'department_id', 'salary', 'phone', 'description']),$worker);
+        $this->workerInterface->update($request->only(['name', 'department_id', 'salary', 'phone', 'description']), $worker);
         return redirect()->route('workers.index');
     }
 
@@ -58,5 +59,14 @@ class WorkerController extends Controller
     {
         $this->workerInterface->delete($worker);
         return redirect()->route('workers.index');
+    }
+
+    public function getAllWorkers()
+    {
+        $workers = Worker::all();
+
+        return Inertia::render('Dashboard/Worker/All', [
+            'workers' => $workers
+        ]);
     }
 }

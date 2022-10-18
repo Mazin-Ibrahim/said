@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\InvoiceReportController;
 use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\MarketingClientController;
+use App\Http\Controllers\Api\PaymentReportController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductReportController;
 use App\Http\Controllers\Api\SalaryController;
@@ -205,4 +206,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::put('/dollar/{dollar}', [DollarController::class, 'update']);
 
     Route::post('/ivoices/{invoice}/payment', [InvoicePaymentController::class, 'store']);
+
+
+
+    Route::get('/payments/reports',[PaymentReportController::class, 'getPaymentsReport']);
 });

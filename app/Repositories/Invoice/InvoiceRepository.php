@@ -15,11 +15,9 @@ use Illuminate\Support\Facades\DB;
 
 class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInterface, InvoiceMaintenanceInterface
 {
-
     public function getAll($request)
     {
         if ($request->display_count) {
-
             return Invoice::take($request->dispaly_count)->with('invoiceLines.product')->get();
         }
         return Invoice::with('invoiceLines.product', 'customer', 'additionalInvoiceInformation', 'invoicePayment')->get();
@@ -31,7 +29,6 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
 
     public function create($data)
     {
-
         DB::beginTransaction();
         try {
             $invoice = new Invoice();
@@ -78,6 +75,7 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
         // $dd = $invoice->invoiceLines()->where('product_id', 5)->first()->qty;
         // dd($dd);
 
+
         DB::beginTransaction();
         try {
             $invoice->customer_id = $data['customer_id'];
@@ -104,12 +102,12 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
                 if ($item['type'] == 'add') {
                     InvoiceLine::where('product_id', $item['product_id'])->where('invoice_id', $invoice->id)->update([
                         'product_id' => $item['product_id'],
-                        'qty' => $invoice->invoiceLines()->where('product_id',  $item['product_id'])->first()->qty +  $item['qty']
+                        'qty' => $invoice->invoiceLines()->where('product_id', $item['product_id'])->first()->qty +  $item['qty']
                     ]);
                 } elseif ($item['type'] == 'sub') {
                     InvoiceLine::where('product_id', $item['product_id'])->where('invoice_id', $invoice->id)->update([
                         'product_id' => $item['product_id'],
-                        'qty' => $invoice->invoiceLines()->where('product_id',  $item['product_id'])->first()->qty -  $item['qty']
+                        'qty' => $invoice->invoiceLines()->where('product_id', $item['product_id'])->first()->qty -  $item['qty']
                     ]);
                 }
             });
@@ -221,7 +219,6 @@ class InvoiceRepository implements InvocieRepositoryInterface, InvocieReportsInt
 
 
         $totalSales = $months->map(function ($month) use ($convertMonths) {
-
             return [
 
                 // $convertMonths[$month] => Invoice::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',$month)->sum('total')

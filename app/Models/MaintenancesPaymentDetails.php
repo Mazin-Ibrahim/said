@@ -9,4 +9,10 @@ class MaintenancesPaymentDetails extends Model
 {
     use HasFactory;
     protected $fillable = ['maintenance_id', 'status', 'amount', 'date', 'description', 'reciver_name', 'recipient_name'];
+
+
+    public function maintenance()
+    {
+        return $this->belongsTo(Maintenance::class);
+    }
 }
