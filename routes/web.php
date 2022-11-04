@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\CustomerController;
 use App\Http\Controllers\Dashboard\DepartmentController;
 use App\Http\Controllers\Dashboard\InvoiceController;
+use App\Http\Controllers\Dashboard\LocationController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\WorkerController;
@@ -40,6 +41,13 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('/categories/{category}/update', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{category}/delete', [CategoryController::class, 'delete'])->name('categories.delete');
+
+Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
+Route::post('/locations', [LocationController::class, 'store'])->name('locations.store');
+Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
+Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');
+Route::put('/locations/{location}/update', [LocationController::class, 'update'])->name('locations.update');
+Route::delete('/locations/{location}/delete', [LocationController::class, 'delete'])->name('locations.delete');
 
 
 Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');

@@ -26,4 +26,9 @@ class Location extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+    public function locationExpenses()
+    {
+        return $this->hasMany(LocationExpense::class);
+    }
 }

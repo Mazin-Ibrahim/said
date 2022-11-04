@@ -8,6 +8,7 @@ use App\Http\Requests\Api\Product\updateRequest;
 use App\Interfaces\Product\ProductRepositoryInterface;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\SellingMethod;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -22,7 +23,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = $this->productInterface->getAll($request);
-        return inertia('Dashboard/Product/index',[
+        return inertia('Dashboard/Product/index', [
             'products' => $products
         ]);
     }
@@ -30,41 +31,42 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
+
+        $sellingMethods = SellingMethod::all();
         // dd($categories);
-        return inertia('Dashboard/Product/create',[
-            'categories' => $categories
-        
+        return inertia('Dashboard/Product/create', [
+            'categories' => $categories,
+            'sellingMethods' => $sellingMethods
         ]);
     }
 
     public function store(storeRequest $request)
     {
-        
-        $this->productInterface->create($request->only(['name','category_id','buy_price','sell_price','qty','profit','description','images']));
+        $this->productInterface->create($request->only(['name','selling_method_id','category_id','buy_price','sell_price','qty','profit','description','images','danger_amount']));
         return redirect()->route('products.index');
     }
 
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return inertia('Dashboard/Product/edit',[
+        $sellingMethods = SellingMethod::all();
+        return inertia('Dashboard/Product/edit', [
             'product' => $product,
-            'categories' => $categories
+            'categories' => $categories,
+            'sellingMethods' => $sellingMethods
         ]);
     }
 
     public function update(updateRequest $request, Product $product)
     {
-        $this->productInterface->update($product, $request->only(['name','category_id','buy_price','sell_price','qty','profit','description','images']));
+        $this->productInterface->update($product, $request->only(['selling_method_id','name','category_id','buy_price','sell_price','qty','profit','description','images','danger_amount']));
         return redirect()->route('products.index');
     }
 
     public function delete(Product $product)
-    { 
+    {
         $product->images()->delete();
         $product->delete();
         return redirect()->route('products.index');
-
     }
- 
 }

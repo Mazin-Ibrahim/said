@@ -15,7 +15,9 @@
                         <th>سعر الشراء</th>
                         <th>سعر البيع</th>
                         <th>الكمية</th>
-                        <th>الكمية</th>
+                        <th>أقل كمية</th>
+                        <th>طريقة البيع</th>
+                        <th>التحكم</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -34,6 +36,12 @@
                         </td>
                         <td>
                            {{ product.qty}}
+                        </td>
+                        <td>
+                           {{ product.danger_amount}}
+                        </td>
+                        <td>
+                           {{ product.selling_method.name}}
                         </td>
                         <td>
                            <button class="btn btn-success"  @click="edit(product)">تعديل</button>

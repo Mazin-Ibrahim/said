@@ -18,7 +18,7 @@ class ProductRepository implements ProductRepositoryInterface, ProductReportsInt
             return Product::with('images', 'category', 'sellingMethod')->take($request->display_count)->get();
         }
 
-        return Product::with('images', 'category')->get();
+        return Product::with('images', 'category', 'sellingMethod')->get();
     }
 
     public function getProduct($product)

@@ -29,8 +29,7 @@ class storeRequest extends FormRequest
             'buy_price' => 'required|numeric',
             'sell_price' => 'required|numeric',
             'category_id' => 'required|numeric|exists:categories,id',
-            'qty' => 'required|numeric',
-           
+            'qty' => 'required|numeric'
             
         ];
     }

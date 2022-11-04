@@ -29,7 +29,6 @@ class LocationController extends Controller
 
     public function store(storeRequest $request)
     {
-
         $location =  $this->locationInterface->create($request->only([
             'customer_id',
             'address',
@@ -69,7 +68,6 @@ class LocationController extends Controller
 
     public function updateProductsStatusBelongToLocation(Location $location, Request $request)
     {
-
         $request->validate([
             'products' => 'required|array',
             'products.*' => 'required',
@@ -82,7 +80,6 @@ class LocationController extends Controller
 
     public function deleteProductsFromLocation(Location $location, Request $request)
     {
-
         $request->validate([
 
             'qty' => 'required',
@@ -105,7 +102,6 @@ class LocationController extends Controller
 
     public function updateProductsFromLoaction(Location $location, Request $request)
     {
-
         $request->validate([
             'qty' => 'required',
             'id' => 'required',

@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\InvoiceMaintenanceController;
 use App\Http\Controllers\Api\InvoicePaymentController;
 use App\Http\Controllers\Api\InvoiceReportController;
 use App\Http\Controllers\Api\LocationController;
+use App\Http\Controllers\Api\LocationExpenseController;
 use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\MarketingClientController;
 use App\Http\Controllers\Api\PaymentReportController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductReportController;
 use App\Http\Controllers\Api\SalaryController;
 use App\Http\Controllers\Api\SellingMethodController;
+use App\Http\Controllers\Api\SeparateLocationController;
 use App\Http\Controllers\Api\WorkerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -209,5 +211,14 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
 
 
-    Route::get('/payments/reports',[PaymentReportController::class, 'getPaymentsReport']);
+    Route::get('/payments/reports', [PaymentReportController::class, 'getPaymentsReport']);
+
+
+    Route::post('/separate-location', [SeparateLocationController::class,'store']);
+    Route::post('/assing-products-location', [SeparateLocationController::class,'assingProductsToLocation']);
+
+
+    Route::post('/location/expenses', [LocationExpenseController::class, 'store']);
+    Route::put('/location/expenses/{locationExpense}', [LocationExpenseController::class, 'update']);
+    Route::get('/location/{location}/expenses', [LocationExpenseController::class, 'getlocationExpenses']);
 });

@@ -34,12 +34,27 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="quantity">أقل كمية لتلقي الاشعار</label>
+                    <input type="number" class="form-control" id="qty" v-model="form.danger_amount">
+                    <span v-if="errors.danger_amount" class="text-danger mt-2">{{ errors.danger_amount }}</span>
+                </div>
+
+                <div class="form-group">
                     <label for="category">الاصناف</label>
                     <select class="form-control" id="category" v-model="form.category_id">
                         <option value="">اختار الصنف</option>
                         <option v-for="category in categories" :value="category.id" :key="category.id">{{ category.name }}</option>
                     </select>
                     <span v-if="errors.category_id" class="text-danger mt-2">{{ errors.category_id }}</span>  
+                </div>
+
+                <div class="form-group">
+                    <label for="category">طرق البيع</label>
+                    <select class="form-control" id="category" v-model="form.selling_method_id">
+                        <option value="">أختار طريقة البيع</option>
+                        <option v-for="sellingMethod in sellingMethods" :value="sellingMethod.id" :key="sellingMethod.id">{{ sellingMethod.name }}</option>
+                    </select>
+                    <span v-if="errors.selling_method_id" class="text-danger mt-2">{{ errors.selling_method_id }}</span>  
                 </div>
 
                 <div class="form-group">
@@ -66,7 +81,8 @@
        props:{
            errors:{},
           categories:[],
-          product:{}
+          product:{},
+          sellingMethods:[]
        },
        created(){
            
@@ -80,7 +96,9 @@
                    buy_price:this.product.buy_price,
                    sell_price:this.product.sell_price,
                    qty:this.product.qty,
-                   category_id:this.product.category_id
+                   category_id:this.product.category_id,
+                   danger_amount:this.product.danger_amount,
+                  selling_method_id:this.product.selling_method_id
 
                }),
            }
@@ -99,6 +117,8 @@
             data.append('sell_price',this.form.sell_price)
             data.append('qty',this.form.qty)
             data.append('category_id',this.form.category_id)
+            data.append('selling_method_id',this.form.selling_method_id)
+            data.append('danger_amount',this.form.danger_amount)
             data.append('_method','PUT')
             this.$inertia.post(
                 this.route("products.update", this.product.id),

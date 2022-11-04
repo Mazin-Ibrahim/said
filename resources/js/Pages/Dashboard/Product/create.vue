@@ -32,6 +32,11 @@
                     <input type="number" class="form-control" id="qty" v-model="form.qty">
                     <span v-if="errors.qty" class="text-danger mt-2">{{ errors.qty }}</span>
                 </div>
+                <div class="form-group">
+                    <label for="quantity">أقل كمية لتلقي الاشعار</label>
+                    <input type="number" class="form-control" id="qty" v-model="form.danger_amount">
+                    <span v-if="errors.danger_amount" class="text-danger mt-2">{{ errors.danger_amount }}</span>
+                </div>
 
                 <div class="form-group">
                     <label for="category">الاصناف</label>
@@ -41,11 +46,19 @@
                     </select>
                     <span v-if="errors.category_id" class="text-danger mt-2">{{ errors.category_id }}</span>  
                 </div>
+                <div class="form-group">
+                    <label for="category">طرق البيع</label>
+                    <select class="form-control" id="category" v-model="form.selling_method_id">
+                        <option value="">أختار طريقة البيع</option>
+                        <option v-for="sellingMethod in sellingMethods" :value="sellingMethod.id" :key="sellingMethod.id">{{ sellingMethod.name }}</option>
+                    </select>
+                    <span v-if="errors.selling_method_id" class="text-danger mt-2">{{ errors.selling_method_id }}</span>  
+                </div>
 
                 <div class="form-group">
                     <label for="category">الصور</label>
                     <UploadImages uploadMsg="أرفع صور المنتج " @changed="handleImage" />
-                    <span v-if="errors.category_id" class="text-danger mt-2">{{ errors.category_id }}</span>  
+                    <span v-if="errors.images" class="text-danger mt-2">{{ errors.images }}</span>  
                 </div>
                <div class="form-group">
                   <button @click="save()" class="btn btn-primary">حفظ</button>
@@ -65,7 +78,8 @@
        },
        props:{
            errors:{},
-          categories:[]
+          categories:[],
+          sellingMethods:[]
        },
        created(){
            
@@ -79,7 +93,9 @@
                    buy_price:'',
                    sell_price:'',
                    qty:'',
-                   category_id:''
+                   category_id:'',
+                   danger_amount:'',
+                  selling_method_id:''
 
                }),
            }
@@ -98,6 +114,8 @@
             data.append('sell_price',this.form.sell_price)
             data.append('qty',this.form.qty)
             data.append('category_id',this.form.category_id)
+            data.append('selling_method_id',this.form.selling_method_id)
+            data.append('danger_amount',this.form.danger_amount)
             this.$inertia.post("/products", data);
           
            },

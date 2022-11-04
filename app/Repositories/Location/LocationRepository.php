@@ -7,7 +7,7 @@ use App\Interfaces\Location\LocationRepositoryInterface;
 use App\Models\Location;
 use App\Models\Product;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB; 
 
 class LocationRepository implements LocationRepositoryInterface
 {
@@ -58,7 +58,7 @@ class LocationRepository implements LocationRepositoryInterface
                 'location_name' => $data['location_name'],
                 'customer_name' => $data['customer_name']
             ]);
-            $location->products()->sync($products);
+            $location->products()->attach($products);
 
 
             collect($data['payment_details'])->each(function ($payment) use ($location) {
