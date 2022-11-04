@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\CustomerController;
 use App\Http\Controllers\Dashboard\DepartmentController;
 use App\Http\Controllers\Dashboard\InvoiceController;
 use App\Http\Controllers\Dashboard\LocationController;
+use App\Http\Controllers\Dashboard\MaintenanceController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\WorkerController;
@@ -48,6 +49,13 @@ Route::get('/locations', [LocationController::class, 'index'])->name('locations.
 Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');
 Route::put('/locations/{location}/update', [LocationController::class, 'update'])->name('locations.update');
 Route::delete('/locations/{location}/delete', [LocationController::class, 'delete'])->name('locations.delete');
+
+Route::get('/maintenances/create', [MaintenanceController::class, 'create'])->name('maintenances.create');
+Route::post('/maintenances', [MaintenanceController::class, 'store'])->name('maintenances.store');
+Route::get('/maintenances', [MaintenanceController::class, 'index'])->name('maintenances.index');
+Route::get('/maintenances/{maintenance}/edit', [MaintenanceController::class, 'edit'])->name('maintenances.edit');
+Route::put('/maintenances/{maintenance}/update', [MaintenanceController::class, 'update'])->name('maintenances.update');
+Route::delete('/maintenances/{maintenance}/delete', [MaintenanceController::class, 'delete'])->name('maintenances.delete');
 
 
 Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');

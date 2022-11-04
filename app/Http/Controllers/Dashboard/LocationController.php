@@ -41,6 +41,8 @@ class LocationController extends Controller
             'location_name',
             'customer_name'
         ]));
+
+        return redirect()->route('locations.index');
     }
 
     public function index()
