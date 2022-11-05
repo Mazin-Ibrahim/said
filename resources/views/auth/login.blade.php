@@ -19,10 +19,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-5FS8GGP');</script>
 		<!-- End Google Tag Manager -->
 		<meta charset="utf-8" />
-		<title>Sign In | Keenthemes</title>
-		<meta name="description" content="Singin page example" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		<link rel="canonical" href="https://keenthemes.com/metronic" />
+		<title>تسجيل دخول</title>
+	
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
@@ -63,18 +61,18 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!--begin::Aside Top-->
 					<div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
 						<!--begin::Aside header-->
-						<a href="#" class="login-logo text-center pt-lg-25 pb-10">
+						{{-- <a href="#" class="login-logo text-center pt-lg-25 pb-10">
 							<img src="assets/media/logos/logo-1.png" class="max-h-70px" alt="" />
-						</a>
+						</a> --}}
 						<!--end::Aside header-->
 						<!--begin::Aside Title-->
-						<h3 class="font-weight-bolder text-center font-size-h4 text-dark-50 line-height-xl">User Experience &amp; Interface Design 
-						<br />Strategy SaaS Solutions</h3>
+						{{-- <h3 class="font-weight-bolder text-center font-size-h4 text-dark-50 line-height-xl">User Experience &amp; Interface Design 
+						<br />Strategy SaaS Solutions</h3> --}}
 						<!--end::Aside Title-->
 					</div>
 					<!--end::Aside Top-->
 					<!--begin::Aside Bottom-->
-					<div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-x-center" style="background-position-y: calc(100% + 5rem); background-image: url(assets/media/svg/illustrations/login-visual-5.svg)"></div>
+					{{-- <div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-x-center" style="background-position-y: calc(100% + 5rem); background-image: url(assets/media/svg/illustrations/login-visual-5.svg)"></div> --}}
 					<!--end::Aside Bottom-->
 				</div>
 				<!--begin::Aside-->
@@ -155,7 +153,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="https://keenthemes.com/metronic/assets/js/engage_code.js"></script>
 		<!--end::Global Theme Bundle-->
 		<!--begin::Page Scripts(used by this page)-->
-		<script src="assets/js/pages/custom/login/login-3.js"></script>
+		{{-- <script src="assets/js/pages/custom/login/login-3.js"></script> --}}
 		<!--end::Page Scripts-->
 	</body>
 	<!--end::Body-->

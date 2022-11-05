@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'email' => 'admin@app.com',
+          
             'name' => 'admin',
             'password' => Hash::make('password'),
             'role' => 'admin',
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'email' => 'stocker@app.com',
+      
             'name' => 'stocker',
             'password' => Hash::make('password'),
             'role' => 'stocker',
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'email' => 'sub-admin@app.com',
+       
             'name' => 'sub-admin',
             'password' => Hash::make('password'),
             'role' => 'sub-admin',
@@ -40,7 +40,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'email' => 'cashier@app.com',
             'name' => 'expense',
             'password' => Hash::make('password'),
             'role' => 'expense',

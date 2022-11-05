@@ -2,7 +2,7 @@
     <div class="col-12">
        <div class="card shadow-sm">
           <div class="card-header">
-             <h2 class="card-title">العملاء</h2>
+             <h2 class="card-title">المواقع</h2>
              <Link href="/locations/create" class="btn btn-primary btn-sm">أنشاء موقع جديد</Link>
           </div>
           <div class="card-body">

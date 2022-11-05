@@ -14,7 +14,7 @@
                
                 <div class="form-group">
                   <label for="name">رقم الهاتف</label>
-                  <input type="text" class="form-control" id="name" v-model="form.phone">
+                  <input type="tel" class="form-control" id="name" v-model="form.phone">
                   <span v-if="errors.phone" class="text-danger mt-2">{{ errors.phone }}</span>
                 </div>
 
@@ -25,10 +25,12 @@
                 </div>
 
                  <div class="form-group">
-                    <select class="form-control" id="role">
+                    <select class="form-control" id="role" v-model="form.role">
                     <option value="stocker">مخزنجي</option>
                     <option value="sub-admin">مدير أقل</option>
                     <option value="expense">الصارف</option>
+
+                    <span v-if="errors.role" class="text-danger mt-2">{{ errors.role }}</span>
                  </select>
                  </div>
                <div class="form-group">
@@ -54,13 +56,14 @@
                 form:this.$inertia.form({
                    name:'',
                    phone:'',
-                   address:'',
+                   role:'',
+                   password:''
                }),
            }
        },
        methods: {
            save(){
-              this.form.post(this.route('customers.store'))
+              this.form.post(this.route('users.store'))
           
            }
        }

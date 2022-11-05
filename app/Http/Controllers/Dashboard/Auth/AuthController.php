@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -14,16 +15,21 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-         
         $request->validate([
             'phone' => 'required',
             'password' => 'required'
         ]);
 
-        if (auth()->attempt(['phone' => $request->phone, 'password' => $request->password])) {
-            return redirect()->route('home');
+        $user = User::where('phone', '=', $request->phone)->first();
+
+        if ($user->role != 'admin') {
+            return redirect()->back()->withErrors(['phone' => 'You are not allowed to login']);
         }
 
-        return redirect()->back()->withErrors(['email' => 'Email or password is incorrect']);
+        if (auth()->attempt(['phone' => $request->phone, 'password' => $request->password])) {
+            return redirect()->route('users.index');
+        }
+
+        return redirect()->back()->withErrors(['phone' => 'Phone or password is incorrect']);
     }
 }
