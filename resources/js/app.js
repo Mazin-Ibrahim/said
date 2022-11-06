@@ -29,5 +29,7 @@ createInertiaApp({
 });
 
 
+
+
 require('./bootstrap');
 
