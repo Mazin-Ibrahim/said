@@ -18,6 +18,10 @@ class Salary extends Model
         'description'
     ];
 
+    protected $casts = [
+        'worker_id' => 'integer'
+    ];
+
     public function worker()
     {
         return $this->belongsTo(Worker::class, 'worker_id');

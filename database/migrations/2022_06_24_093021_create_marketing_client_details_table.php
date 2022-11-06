@@ -15,7 +15,7 @@ class CreateMarketingClientDetailsTable extends Migration
     {
         Schema::create('marketing_client_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('marketing_client_id');
+            $table->foreignId('marketing_client_id');
             $table->date('date');
             $table->double('payment_amount');
             $table->text('description');

@@ -15,7 +15,7 @@ class CreatePaymentDetailsTable extends Migration
     {
         Schema::create('payment_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('location_id');
+            $table->foreignId('location_id');
             $table->double('amount');
             $table->date('payment_received_date');
             $table->text('description')->nullable();

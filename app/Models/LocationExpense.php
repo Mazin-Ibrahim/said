@@ -11,6 +11,11 @@ class LocationExpense extends Model
 
     protected $fillable = ['location_id', 'description','date','value'];
 
+    protected $casts = [
+        'location_id' => 'integer'
+
+    ];
+
     public function location()
     {
         return $this->belongsTo(Location::class);

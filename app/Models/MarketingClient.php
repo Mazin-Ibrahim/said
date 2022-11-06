@@ -10,6 +10,10 @@ class MarketingClient extends Model
     use HasFactory;
 
     protected $fillable = ['cutomer_name', 'location_id', 'location_name', 'amount', 'description'];
+    
+    protected $casts = [
+        'location_id' => 'integer'
+    ];
 
     public function marketingClientDetails()
     {

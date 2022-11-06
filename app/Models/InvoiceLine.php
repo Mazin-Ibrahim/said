@@ -13,12 +13,18 @@ class InvoiceLine extends Model
         'product_id',
         'qty',
     ];
-   public function invoice()
+
+    protected $casts = [
+        'invoice_id' => 'integer',
+        'product_id' => 'integer',
+    ];
+    public function invoice()
     {
         return $this->belongsTo(Invoice::class);
     }
 
-    public function product(){
-        return $this->belongsTo(Product::class);
-    }
+     public function product()
+     {
+         return $this->belongsTo(Product::class);
+     }
 }

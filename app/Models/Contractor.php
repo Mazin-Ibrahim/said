@@ -18,6 +18,10 @@ class Contractor extends Model
         'description',
     ];
 
+    protected $casts = [
+        'location_id' => 'integer',
+    ];
+
     public function expenses()
     {
         return $this->hasMany(ContractorExpense::class);

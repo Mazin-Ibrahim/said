@@ -16,6 +16,10 @@ class AdditionalInvoiceInformation extends Model
         'description',
     ];
 
+    protected $casts = [
+        'invoice_id' => 'integer',
+    ];
+
     public function invoice()
     {
         return $this->belongsTo(Invoice::class);

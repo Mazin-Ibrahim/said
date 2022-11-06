@@ -15,7 +15,7 @@ class CreateSalariesTable extends Migration
     {
         Schema::create('salaries', function (Blueprint $table) {
             $table->id();
-            $table->integer('worker_id')->nullable();
+            $table->foreignId('worker_id')->nullable();
             $table->double('salary');
             $table->date('date');
             $table->enum('type', ['حوافز', 'عمل أضافي', 'عمولة', 'مرتب','سلفية','تأمينات']);

@@ -15,7 +15,7 @@ class CreateDeportationsTable extends Migration
     {
         Schema::create('deportations', function (Blueprint $table) {
             $table->id();
-            $table->integer('location_id')->nullable();
+            $table->foreignId('location_id')->nullable();
             $table->text('description');
             $table->string('product_name');
             $table->string('location_name')->nullable();

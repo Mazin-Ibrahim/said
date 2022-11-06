@@ -17,6 +17,11 @@ class Invoice extends Model
         'type_of_payment',
     ];
 
+    protected $casts = [
+        'customer_id' => 'integer',
+        'user_id' => 'integer',
+    ];
+
     public function invoiceLines()
     {
         return $this->hasMany(InvoiceLine::class);

@@ -16,7 +16,7 @@ class CreateMarketingClientsTable extends Migration
         Schema::create('marketing_clients', function (Blueprint $table) {
             $table->id();
             $table->string('cutomer_name');
-            $table->integer('location_id')->nullable();
+            $table->foreignId('location_id')->nullable();
             $table->string('location_name')->nullable();
             $table->double('amount');
             $table->text('description');

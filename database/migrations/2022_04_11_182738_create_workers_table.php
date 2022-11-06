@@ -16,7 +16,7 @@ class CreateWorkersTable extends Migration
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('department_id');
+            $table->foreignId('department_id');
             $table->double('salary');
             $table->string('phone');
             $table->text('description');

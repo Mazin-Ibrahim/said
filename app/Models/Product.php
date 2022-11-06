@@ -20,6 +20,11 @@ class Product extends Model
         'selling_method_id'
     ];
 
+    protected $casts = [
+        'category_id' => 'integer',
+        'selling_method_id' => 'integer',
+    ];
+
     public function setProfit()
     {
         return $this->update([

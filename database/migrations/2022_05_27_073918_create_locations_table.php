@@ -15,7 +15,7 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer_id')->nullable();
+            $table->foreignId('customer_id')->nullable();
             $table->string('customer_name')->nullable();
             $table->string('location_name')->nullable();
             $table->text('address');

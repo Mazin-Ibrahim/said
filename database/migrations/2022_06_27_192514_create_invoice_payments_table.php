@@ -18,7 +18,7 @@ class CreateInvoicePaymentsTable extends Migration
             $table->date('date');
             $table->string('receiver_name');
             $table->text('description');
-            $table->integer('invoice_id');
+            $table->foreignId('invoice_id');
             $table->double('amount');
             $table->timestamps();
         });

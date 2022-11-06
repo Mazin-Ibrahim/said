@@ -15,8 +15,8 @@ class CreateLocationProducts extends Migration
     {
         Schema::create('location_product', function (Blueprint $table) {
             $table->id();
-            $table->integer('location_id')->unsigned();
-            $table->integer('product_id')->unsigned();
+            $table->foreignId('location_id')->unsigned();
+            $table->foreignId('product_id')->unsigned();
             $table->timestamps();
         });
     }

@@ -18,6 +18,10 @@ class Deportation extends Model
         'deported_name'
     ];
 
+    protected $casts = [
+        'location_id' => 'integer',
+    ];
+
     public function location()
     {
         return $this->belongsTo(Location::class);

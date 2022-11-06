@@ -15,7 +15,7 @@ class CreateMaintenancesPaymentDetailsTable extends Migration
     {
         Schema::create('maintenances_payment_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('maintenance_id');
+            $table->foreignId('maintenance_id');
             $table->enum('status', ['paid', 'not_paid']);
             $table->double('amount');
             $table->date('date');

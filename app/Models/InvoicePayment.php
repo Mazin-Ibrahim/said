@@ -10,4 +10,8 @@ class InvoicePayment extends Model
     use HasFactory;
 
     protected $fillable  = ['receiver_name', 'date', 'invoice_id', 'description', 'amount'];
+
+    protected $casts = [
+        'invoice_id' => 'integer'
+    ];
 }

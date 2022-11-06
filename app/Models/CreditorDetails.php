@@ -15,4 +15,8 @@ class CreditorDetails extends Model
         'amount_paid',
         'description',
     ];
+
+    protected $casts = [
+        'creditor_id' => 'integer',
+    ];
 }

@@ -12,6 +12,9 @@ class Debt extends Model
     protected $fillable = ['worker_id','value','date','description'];
 
 
+    protected $casts = [
+        'worker_id' => 'integer',
+    ];
     public function worker()
     {
         return $this->belongsTo(Worker::class);

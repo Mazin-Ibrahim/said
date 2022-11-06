@@ -15,7 +15,7 @@ class CreateDebtsTable extends Migration
     {
         Schema::create('debts', function (Blueprint $table) {
             $table->id();
-            $table->integer('worker_id');
+            $table->foreignId('worker_id');
             $table->double('value');
             $table->date('date');
             $table->text('description');

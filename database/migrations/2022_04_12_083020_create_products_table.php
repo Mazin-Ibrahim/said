@@ -16,14 +16,14 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('category_id');
+            $table->foreignId('category_id');
             $table->double('buy_price');
             $table->double('sell_price');
             $table->integer('qty');
             $table->double('profit')->nullable();
             $table->text('description');
-            $table->integer('danger_amount');
-            $table->integer('selling_method_id');
+            $table->double('danger_amount');
+            $table->foreignId('selling_method_id');
             $table->timestamps();
         });
     }

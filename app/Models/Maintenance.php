@@ -20,6 +20,11 @@ class Maintenance extends Model
         'contract_price'
     ];
 
+    protected $casts = [
+        'location_id' => 'integer',
+        'worker_id' => 'integer'
+    ];
+
     public function maintenancesPaymentDetails()
     {
         return $this->hasMany(MaintenancesPaymentDetails::class, 'maintenance_id');

@@ -15,7 +15,7 @@ class CreateCreditorDetailsTable extends Migration
     {
         Schema::create('creditor_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('creditor_id');
+            $table->foreignId('creditor_id');
             $table->date('date');
             $table->double('amount_paid');
             $table->text('description');

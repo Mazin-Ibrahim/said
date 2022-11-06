@@ -15,4 +15,8 @@ class ContractorExpense extends Model
         'amount_paid',
         'description',
     ];
+
+    protected $casts = [
+        'contractor_id' => 'integer',
+    ];
 }

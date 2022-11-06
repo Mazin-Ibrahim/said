@@ -15,7 +15,7 @@ class CreateAdditionalInvoiceInformationTable extends Migration
     {
         Schema::create('additional_invoice_information', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('invoice_id');
+            $table->foreignId('invoice_id');
             $table->string('service_name');
             $table->double('service_price');
             $table->text('description');

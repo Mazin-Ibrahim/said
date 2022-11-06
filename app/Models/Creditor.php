@@ -17,6 +17,8 @@ class Creditor extends Model
         'description',
     ];
 
+    
+
     public function creditorDetails()
     {
         return $this->hasMany(CreditorDetails::class);

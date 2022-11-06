@@ -15,7 +15,7 @@ class CreateContractorExpensesTable extends Migration
     {
         Schema::create('contractor_expenses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('contractor_id');
+            $table->foreignId('contractor_id');
             $table->date('date');
             $table->double('amount_paid');
             $table->text('description');

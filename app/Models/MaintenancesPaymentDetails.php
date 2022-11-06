@@ -10,6 +10,9 @@ class MaintenancesPaymentDetails extends Model
     use HasFactory;
     protected $fillable = ['maintenance_id', 'status', 'amount', 'date', 'description', 'reciver_name', 'recipient_name'];
 
+    protected $casts = [
+        'maintenance_id' => 'integer'
+    ];
 
     public function maintenance()
     {

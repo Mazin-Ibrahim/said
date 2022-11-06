@@ -15,12 +15,12 @@ class CreateHistoryVisitsMaintenancesTable extends Migration
     {
         Schema::create('history_visits_maintenances', function (Blueprint $table) {
             $table->id();
-            $table->integer('maintenance_id');
+            $table->foreignId('maintenance_id');
             $table->enum('status', ['paid', 'not_paid'])->nullable();
-            $table->double('amount')->nullable();;
+            $table->double('amount')->nullable();
             $table->date('date')->nullable();
             $table->text('description')->nullable();
-            $table->integer('worker_id')->nullable();
+            $table->foreignId('worker_id')->nullable();
             $table->string('worker_name')->nullable();
             $table->timestamps();
         });

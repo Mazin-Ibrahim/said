@@ -17,7 +17,7 @@ class CreateContractorsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('location_name')->nullable();
-            $table->integer('location_id')->nullable();
+            $table->foreignId('location_id')->nullable();
             $table->date('work_starting_date');
             $table->double('agreement_amount');
             $table->string('description');
