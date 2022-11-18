@@ -22,14 +22,12 @@ class CategoryController extends Controller
         $categories = $this->categoryInterface->getAll();
       
         
-        return inertia('Dashboard/Category/index', [
-            'categories' => $categories
-        ]);
+        return view('dashboard.categories.index', compact('categories'));
     }
    
     public function create()
     {
-        return inertia()->render('Dashboard/Category/create');
+        return view('dashboard.categories.create');
     }
 
     public function store(storeRequest $request)
@@ -40,14 +38,12 @@ class CategoryController extends Controller
     }
     public function edit(Category $category)
     {
-        return inertia()->render('Dashboard/Category/edit', [
-            'category' => $category
-        ]);
+        return view('dashboard.categories.edit', compact('category'));
     }
     public function update(Category $category, updateRequest $request)
     {
         $this->categoryInterface->update($category, $request->only(['name']));
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
     }
     public function delete(Category $category)
     {

@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = $this->productInterface->getAll($request);
-        return inertia('Dashboard/Product/index', [
+        return view('dashboard.products.index', [
             'products' => $products
         ]);
     }
@@ -34,7 +34,7 @@ class ProductController extends Controller
 
         $sellingMethods = SellingMethod::all();
         // dd($categories);
-        return inertia('Dashboard/Product/create', [
+        return view('dashboard.products.create', [
             'categories' => $categories,
             'sellingMethods' => $sellingMethods
         ]);
@@ -51,10 +51,10 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $sellingMethods = SellingMethod::all();
-        return inertia('Dashboard/Product/edit', [
-            'product' => $product,
+        return view('dashboard.products.edit', [
             'categories' => $categories,
-            'sellingMethods' => $sellingMethods
+            'sellingMethods' => $sellingMethods,
+            'product' => $product
         ]);
     }
 

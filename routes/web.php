@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');
     Route::put('/locations/{location}/update', [LocationController::class, 'update'])->name('locations.update');
     Route::delete('/locations/{location}/delete', [LocationController::class, 'delete'])->name('locations.delete');
+    Route::get('/locations/{location}/details', [LocationController::class, 'details'])->name('locations.details');
 
     Route::get('/maintenances/create', [MaintenanceController::class, 'create'])->name('maintenances.create');
     Route::post('/maintenances', [MaintenanceController::class, 'store'])->name('maintenances.store');

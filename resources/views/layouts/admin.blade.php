@@ -29,6 +29,10 @@
     <link href="{{ asset('new-assets/themes/layout/header/menu/light.rtl.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('new-assets/themes/layout/brand/dark.rtl.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('new-assets/themes/layout/aside/dark.rtl.css') }}" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
+        <script  src="https://unpkg.com/vue-multiselect@2.1.0"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -412,7 +416,7 @@
 
                             <div class="row g-5 g-xl-8">
 
-                                @include('sweetalert::alert')
+                               
                                 @yield('content')
 
                             </div>
@@ -503,6 +507,8 @@
     </script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
+
+    @yield('scripts')
 </body>
 <!--end::Body-->
 
