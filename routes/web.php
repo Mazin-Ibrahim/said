@@ -120,3 +120,7 @@ Route::get('/test-q', function () {
 
     dd($bb);
 });
+
+
+
+Route::view('admin', 'layouts.admin');
