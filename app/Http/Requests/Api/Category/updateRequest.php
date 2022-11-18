@@ -28,4 +28,11 @@ class updateRequest extends FormRequest
             'parent_id' => 'nullable|integer',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'يجب أدخال أسم التصنيف'
+        ];
+    }
 }

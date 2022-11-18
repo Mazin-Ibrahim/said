@@ -21,11 +21,12 @@
                         </td>
                         <td>
                            <button class="btn btn-success"  @click="edit(category)">تعديل</button>
-                           <button class="btn btn-danger" @click="remove(category)">حذف</button>
+                           <!-- <button class="btn btn-danger" @click="remove(category)">حذف</button> -->
                         </td>
                      </tr>
                   </tbody>
                </table>
+              
             </div>
          </div>
       </div>
@@ -34,9 +35,11 @@
 <script>
    import { Link } from '@inertiajs/inertia-vue'
    import Layout from "../../shared/layout";
+   import Pagination from '../../shared/pagination.vue'
    export default {
        components:{
-           Link
+           Link,
+           Pagination
        },
        layout: Layout,
        props:{

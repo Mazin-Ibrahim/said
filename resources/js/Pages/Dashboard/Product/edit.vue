@@ -19,13 +19,13 @@
                 <div class="form-group">
                     <label for="price">سعر الشراء</label>
                     <input type="number" class="form-control" id="buy_price" v-model="form.buy_price">
-                    <span v-if="errors.price" class="text-danger mt-2">{{ errors.buy_price }}</span>
+                    <span v-if="errors.buy_price" class="text-danger mt-2">{{ errors.buy_price }}</span>
                 </div>
 
                  <div class="form-group">
                     <label for="price">سعر البيع</label>
                     <input type="number" class="form-control" id="sell_price" v-model="form.sell_price">
-                    <span v-if="errors.price" class="text-danger mt-2">{{ errors.sell_price }}</span>
+                    <span v-if="errors.sell_price" class="text-danger mt-2">{{ errors.sell_price }}</span>
                 </div>
                 <div class="form-group">
                     <label for="quantity">الكمية</label>

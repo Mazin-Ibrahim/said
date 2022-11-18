@@ -31,4 +31,13 @@ class storeRequest extends FormRequest
 
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'description.required' => 'يجب أدخال وصف للصيانة',
+            'contract_price.required' => 'يجب أدخال قيمة العقد',
+            'visits.required' => 'يجب أضافة الزيارات',
+        ];
+    }
 }

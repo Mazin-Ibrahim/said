@@ -61,9 +61,9 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!--begin::Aside Top-->
 					<div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
 						<!--begin::Aside header-->
-						{{-- <a href="#" class="login-logo text-center pt-lg-25 pb-10">
-							<img src="assets/media/logos/logo-1.png" class="max-h-70px" alt="" />
-						</a> --}}
+						<a href="#" class="login-logo text-center pt-lg-25 pb-10">
+							<img src="{{ asset('ha.jpeg') }}" width="400px" alt="" />
+						</a>
 						<!--end::Aside header-->
 						<!--begin::Aside Title-->
 						{{-- <h3 class="font-weight-bolder text-center font-size-h4 text-dark-50 line-height-xl">User Experience &amp; Interface Design 

@@ -21,6 +21,11 @@ class UserController extends Controller
             'password' => 'required',
             'phone' => 'required',
             'role' => 'required',
+        ], [
+            'name.required' => 'يجب أدخال الاسم',
+            'password.required' => 'يجب ادخال كلمة المرور',
+            'phone.required' => 'يجب ادخال رقم الجوال',
+            'role.required' => 'يجب ادخال الدور'
         ]);
 
         User::create([
@@ -55,6 +60,10 @@ class UserController extends Controller
             'name' => 'required',
             'phone' => 'required',
             'role' => 'required',
+        ], [
+            'name.required' => 'يجب أدخال الاسم',
+            'phone.required' => 'يجب ادخال رقم الجوال',
+            'role.required' => 'يجب ادخال الدور'
         ]);
              
         $password = null;

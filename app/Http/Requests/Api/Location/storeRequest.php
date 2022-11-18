@@ -39,4 +39,19 @@ class storeRequest extends FormRequest
             'payment_details.*.payment_received_date' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'contract_price.required' => 'يجب أدخال قيمة العقد',
+            'description.required' => 'يجب أدخال وصف الموقع',
+            'received_date.required' => 'يجب أدخال تاريخ الاستلام',
+            'delivery_date.required' => 'يجب أدخال تاريخ التسليم',
+            'products.*.required' => 'يجب أدخال قيمة',
+            'payment_details.*.amount.required' => 'يجب أدخال الكمية',
+            'payment_details.*.payment_received_date.required' => 'يجب أدخال تاريخ الدفعة',
+
+
+        ];
+    }
 }

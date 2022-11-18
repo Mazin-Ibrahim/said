@@ -43,7 +43,8 @@ class ProductController extends Controller
     public function store(storeRequest $request)
     {
         $this->productInterface->create($request->only(['name','selling_method_id','category_id','buy_price','sell_price','qty','profit','description','images','danger_amount']));
-        return redirect()->route('products.index');
+     
+        return redirect()->route('products.index')->with('message', 'تم أضافة منتج جديد');
     }
 
     public function edit(Product $product)

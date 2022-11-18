@@ -453,6 +453,59 @@
                            <i class="menu-arrow"></i>
                            </Link>
                         </li>
+
+                        <li
+                           class="menu-item menu-item-submenu"
+                           aria-haspopup="true"
+                           data-menu-toggle="hover"
+                           >
+                           <a 
+                              href="/logout"
+                              class="menu-link menu-toggle"
+                              >
+                           <span class="svg-icon menu-icon">
+                              <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Barcode-read.svg-->
+                              <svg
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 width="24px"
+                                 height="24px"
+                                 viewBox="0 0 24 24"
+                                 version="1.1"
+                                 >
+                                 <g
+                                    stroke="none"
+                                    stroke-width="1"
+                                    fill="none"
+                                    fill-rule="evenodd"
+                                    >
+                                    <rect
+                                       x="0"
+                                       y="0"
+                                       width="24"
+                                       height="24"
+                                       />
+                                    <rect
+                                       fill="#000000"
+                                       opacity="0.3"
+                                       x="4"
+                                       y="4"
+                                       width="8"
+                                       height="16"
+                                       />
+                                    <path
+                                       d="M6,18 L9,18 C9.66666667,18.1143819 10,18.4477153 10,19 C10,19.5522847 9.66666667,19.8856181 9,20 L4,20 L4,15 C4,14.3333333 4.33333333,14 5,14 C5.66666667,14 6,14.3333333 6,15 L6,18 Z M18,18 L18,15 C18.1143819,14.3333333 18.4477153,14 19,14 C19.5522847,14 19.8856181,14.3333333 20,15 L20,20 L15,20 C14.3333333,20 14,19.6666667 14,19 C14,18.3333333 14.3333333,18 15,18 L18,18 Z M18,6 L15,6 C14.3333333,5.88561808 14,5.55228475 14,5 C14,4.44771525 14.3333333,4.11438192 15,4 L20,4 L20,9 C20,9.66666667 19.6666667,10 19,10 C18.3333333,10 18,9.66666667 18,9 L18,6 Z M6,6 L6,9 C5.88561808,9.66666667 5.55228475,10 5,10 C4.44771525,10 4.11438192,9.66666667 4,9 L4,4 L9,4 C9.66666667,4 10,4.33333333 10,5 C10,5.66666667 9.66666667,6 9,6 L6,6 Z"
+                                       fill="#000000"
+                                       fill-rule="nonzero"
+                                       />
+                                 </g>
+                              </svg>
+                              <!--end::Svg Icon-->
+                           </span>
+                           <span class="menu-text">تسجيل خروج</span>
+                           <i class="menu-arrow"></i>
+                        </a>
+                        </li>
                         
 
 
@@ -506,45 +559,7 @@
                               <div
                                  class="btn btn-icon btn-clean btn-lg btn-dropdown mr-1"
                                  >
-                                 <span
-                                    class="svg-icon svg-icon-xl svg-icon-primary"
-                                    >
-                                    <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
-                                    <svg
-                                       xmlns="http://www.w3.org/2000/svg"
-                                       xmlns:xlink="http://www.w3.org/1999/xlink"
-                                       width="24px"
-                                       height="24px"
-                                       viewBox="0 0 24 24"
-                                       version="1.1"
-                                       >
-                                       <g
-                                          stroke="none"
-                                          stroke-width="1"
-                                          fill="none"
-                                          fill-rule="evenodd"
-                                          >
-                                          <rect
-                                             x="0"
-                                             y="0"
-                                             width="24"
-                                             height="24"
-                                             />
-                                          <path
-                                             d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
-                                             fill="#000000"
-                                             fill-rule="nonzero"
-                                             opacity="0.3"
-                                             />
-                                          <path
-                                             d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
-                                             fill="#000000"
-                                             fill-rule="nonzero"
-                                             />
-                                       </g>
-                                    </svg>
-                                    <!--end::Svg Icon-->
-                                 </span>
+                              
                               </div>
                            </div>
                            <!--end::Toggle-->
@@ -552,136 +567,21 @@
                            <div
                               class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg"
                               >
-                              <div
-                                 class="quick-search quick-search-dropdown"
-                                 id="kt_quick_search_dropdown"
-                                 >
-                                 <!--begin:Form-->
-                                 <form
-                                    method="get"
-                                    class="quick-search-form"
-                                    >
-                                    <div class="input-group">
-                                       <div
-                                          class="input-group-prepend"
-                                          >
-                                          <span
-                                             class="input-group-text"
-                                             >
-                                             <span
-                                                class="svg-icon svg-icon-lg"
-                                                >
-                                                <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
-                                                <svg
-                                                   xmlns="http://www.w3.org/2000/svg"
-                                                   xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                   width="24px"
-                                                   height="24px"
-                                                   viewBox="0 0 24 24"
-                                                   version="1.1"
-                                                   >
-                                                   <g
-                                                      stroke="none"
-                                                      stroke-width="1"
-                                                      fill="none"
-                                                      fill-rule="evenodd"
-                                                      >
-                                                      <rect
-                                                         x="0"
-                                                         y="0"
-                                                         width="24"
-                                                         height="24"
-                                                         />
-                                                      <path
-                                                         d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
-                                                         fill="#000000"
-                                                         fill-rule="nonzero"
-                                                         opacity="0.3"
-                                                         />
-                                                      <path
-                                                         d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
-                                                         fill="#000000"
-                                                         fill-rule="nonzero"
-                                                         />
-                                                   </g>
-                                                </svg>
-                                                <!--end::Svg Icon-->
-                                             </span>
-                                          </span>
-                                       </div>
-                                       <input
-                                          type="text"
-                                          class="form-control"
-                                          placeholder="Search..."
-                                          />
-                                       <div
-                                          class="input-group-append"
-                                          >
-                                          <span
-                                             class="input-group-text"
-                                             >
-                                          <i
-                                             class="quick-search-close ki ki-close icon-sm text-muted"
-                                             ></i>
-                                          </span>
-                                       </div>
-                                    </div>
-                                 </form>
-                                 <!--end::Form-->
-                                 <!--begin::Scroll-->
-                                 <div
-                                    class="quick-search-wrapper scroll"
-                                    data-scroll="true"
-                                    data-height="325"
-                                    data-mobile-height="200"
-                                    ></div>
-                                 <!--end::Scroll-->
-                              </div>
+                              
                            </div>
                            <!--end::Dropdown-->
                         </div>
                         <!--begin::Languages-->
                         <div class="dropdown">
                            <!--begin::Toggle-->
-                           <div
-                              class="topbar-item"
-                              data-toggle="dropdown"
-                              data-offset="10px,0px"
-                              >
-                              <div
-                                 class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1"
-                                 >
-                                 <img
-                                    class="h-20px w-20px rounded-sm"
-                                    src="assets/media/svg/flags/226-united-states.svg"
-                                    alt=""
-                                    />
-                              </div>
-                           </div>
+                          
                            <!--end::Toggle-->
                            <!--begin::Dropdown-->
                            <div
-                              class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right"
+                              class="dropdownnpm install --save toastr-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right"
                               >
                               <!--begin::Nav-->
-                              <ul class="navi navi-hover py-4">
-                                 <!--begin::Item-->
-                                 <li class="navi-item">
-                                    <a href="#" class="navi-link">
-                                    <span
-                                       class="symbol symbol-20 mr-3"
-                                       >
-                                    <img
-                                       src="assets/media/svg/flags/226-united-states.svg"
-                                       alt=""
-                                       />
-                                    </span>
-                                    <span class="navi-text"
-                                       >English</span
-                                       >
-                                    </a>
-                                 </li>
-                              </ul>
+                            
                               <!--end::Nav-->
                            </div>
                            <!--end::Dropdown-->
@@ -735,39 +635,10 @@
                      class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between"
                      >
                      <!--begin::Copyright-->
-                     <div class="text-dark order-2 order-md-1">
-                        <span class="text-muted font-weight-bold mr-2"
-                           >2020©</span
-                           >
-                        <a
-                           href="http://keenthemes.com/metronic"
-                           target="_blank"
-                           class="text-dark-75 text-hover-primary"
-                           >Keenthemes</a
-                           >
-                     </div>
+                     
                      <!--end::Copyright-->
                      <!--begin::Nav-->
-                     <div class="nav nav-dark">
-                        <a
-                           href="http://keenthemes.com/metronic"
-                           target="_blank"
-                           class="nav-link pl-0 pr-5"
-                           >About</a
-                           >
-                        <a
-                           href="http://keenthemes.com/metronic"
-                           target="_blank"
-                           class="nav-link pl-0 pr-5"
-                           >Team</a
-                           >
-                        <a
-                           href="http://keenthemes.com/metronic"
-                           target="_blank"
-                           class="nav-link pl-0 pr-0"
-                           >Contact</a
-                           >
-                     </div>
+                     
                      <!--end::Nav-->
                   </div>
                   <!--end::Container-->
@@ -782,6 +653,7 @@
       </div>
       <!--end::Main-->
       <!-- begin::User Panel-->
+
    </div>
 </template>
 <script>

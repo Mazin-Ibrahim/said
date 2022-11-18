@@ -32,6 +32,7 @@ class MaintenanceController extends Controller
 
     public function store(storeRequest $request)
     {
+        // dd($request->all());
         $this->maintenanceInterface->create($request->only([
                'worker_id',
                'customer_id',

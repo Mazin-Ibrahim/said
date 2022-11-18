@@ -20,7 +20,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->categoryInterface->getAll();
-        return inertia('Dashboard/Category/index',[
+      
+        
+        return inertia('Dashboard/Category/index', [
             'categories' => $categories
         ]);
     }
@@ -32,21 +34,19 @@ class CategoryController extends Controller
 
     public function store(storeRequest $request)
     {
-        
         $this->categoryInterface->create($request->only(['name']));
         
-        return redirect()->route('categories.index')->with('success','Category created successfully');
-       
+        return redirect()->route('categories.index')->with('success', 'Category created successfully');
     }
     public function edit(Category $category)
     {
-        return inertia()->render('Dashboard/Category/edit',[
+        return inertia()->render('Dashboard/Category/edit', [
             'category' => $category
         ]);
     }
     public function update(Category $category, updateRequest $request)
     {
-        $this->categoryInterface->update($category,$request->only(['name']));
+        $this->categoryInterface->update($category, $request->only(['name']));
         return redirect()->route('categories.index');
     }
     public function delete(Category $category)
@@ -54,5 +54,4 @@ class CategoryController extends Controller
         $this->categoryInterface->delete($category);
         return redirect()->route('categories.index');
     }
- 
 }

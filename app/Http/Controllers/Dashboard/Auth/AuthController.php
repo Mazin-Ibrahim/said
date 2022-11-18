@@ -32,4 +32,11 @@ class AuthController extends Controller
 
         return redirect()->back()->withErrors(['phone' => 'Phone or password is incorrect']);
     }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return redirect()->route('showLoginForm');
+    }
 }

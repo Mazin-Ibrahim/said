@@ -53,7 +53,7 @@
                 </div>
                    <div class="form-group">
                     <label for="">وصف الموقع</label>
-                      <textarea name="" id="" cols="30" rows="10" v-model="form.description" class="form-control"> class="form-control"></textarea>
+                      <textarea name="" id="" cols="30" rows="10" v-model="form.description" class="form-control"></textarea>
                       <span v-if="errors.description" class="text-danger mt-2">{{ errors.description }}</span>
                 </div>
                 <div class="form-group">
@@ -84,6 +84,7 @@
                                     
                                 >
                                 </v-Multiselect>
+                                <span v-if="errors.description" class="text-danger mt-2">{{ errors.description }}</span>
                             </div>
                         </div>
                         <div class="col-4">
@@ -106,13 +107,15 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="">المبلغ</label>
-                                 <input type="number" class="form-control" v-model="payemnt.amount">
+                                 <input type="number" class="form-control" v-model="payemnt.amount" required>
+                                 <!-- <span v-if="errors.payment_details[index].amount" class="text-danger mt-2">{{ errors.payment_details[index].amount }}</span> -->
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="">تاريخ الدفعه</label>
-                                <input type="date" class="form-control" v-model="payemnt.payment_received_date">
+                                <input type="date" class="form-control" v-model="payemnt.payment_received_date" required>
+                                <!-- <span v-if="errors.payment_details[index].payment_received_date" class="text-danger mt-2">{{ errors.payment_details[index].payment_received_date }}</span> -->
                             </div>
                         </div>
                      </div>

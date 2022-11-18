@@ -30,7 +30,23 @@ class updateRequest extends FormRequest
             'sell_price' => 'required|numeric',
             'category_id' => 'required|numeric|exists:categories,id',
             'qty' => 'required|numeric',
-            
+            'selling_method_id' => 'required',
+            'danger_amount' => 'required'
+        ];
+    }
+
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'يجب ادخال أسم المنتج',
+            'description.required' => 'يجب أدخال وصف المنتج',
+            'buy_price.required' => 'يجب أدخال سعر الشراء',
+             'sell_price.required' => 'يجب ادخال سعر البيع',
+             'category_id.required' => 'يجب اختيار التصنيف',
+             'qty.required' => 'يجب أدخال الكمية',
+             'selling_method_id.required' => 'يجب اختيار طريقة البيع',
+             'danger_amount.required' => 'يجب ادخال الحد الادنى للتنبيه'
         ];
     }
 }

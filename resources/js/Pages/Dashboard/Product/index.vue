@@ -45,7 +45,7 @@
                         </td>
                         <td>
                            <button class="btn btn-success"  @click="edit(product)">تعديل</button>
-                           <button class="btn btn-danger" @click="remove(product)">حذف</button>
+                           <!-- <button class="btn btn-danger" @click="remove(product)">حذف</button> -->
                         </td>
                      </tr>
                   </tbody>

@@ -162,14 +162,17 @@
            data.append('description', this.form.description)
         
           
-           console.log(this.form);
+           
          
 
-            let visits = this.visits.map( function(item) {     
+            let visits = this.visits.map( function(item) {
+                            let worker_id;
+                            if(Object.keys(item.worker).length > 0) worker_id = item.worker.id;
+                             worker_id = "";     
                          return  {
                                date:item.date,
                                description:item.description,
-                               worker_id:item.worker.id,
+                               worker_id:worker_id,
                                worker_name:item.worker_name
                 };
      
