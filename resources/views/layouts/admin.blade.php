@@ -182,7 +182,7 @@
                 <!--end::Aside menu-->
                 <!--begin::Footer-->
                 <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
-                    <a href=""
+                    <a href="{{ route('logout') }}"
                         class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover"
                         data-bs-dismiss-="click" title="">
                         <span class="btn-label">تسجيل خروج</span>

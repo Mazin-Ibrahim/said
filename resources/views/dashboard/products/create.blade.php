@@ -17,7 +17,7 @@
             <span class="required">أسم المنتج</span>
             </label>
             <!--end::Label-->
-            <input type="text" class="form-control form-control-solid"
+            <input type="text" class="form-control"
                name="name">
             @error('name')
             <div class="fv-plugins-message-container invalid-feedback">
@@ -46,7 +46,7 @@
             <span class="required">التصنيف</span>
             </label>
             <!--end::Label-->
-            <select  id="" class="form-control form-control-solid" name="category_id">
+            <select  id="" class="form-control" name="category_id">
                  @foreach ($categories as $category)
                      
                  <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -66,7 +66,7 @@
             <span class="required"> سعر الشراء</span>
             </label>
             <!--end::Label-->
-            <input type="number" class="form-control form-control-solid"
+            <input type="number" class="form-control"
                name="buy_price">
             @error('buy_price')
             <div class="fv-plugins-message-container invalid-feedback">
@@ -82,7 +82,7 @@
             <span class="required"> سعر البيع</span>
             </label>
             <!--end::Label-->
-            <input type="number" class="form-control form-control-solid"
+            <input type="number" class="form-control"
                name="sell_price">
             @error('sell_price')
             <div class="fv-plugins-message-container invalid-feedback">
@@ -97,7 +97,7 @@
             <span class="required"> الكمية</span>
             </label>
             <!--end::Label-->
-            <input type="number" class="form-control form-control-solid"
+            <input type="number" class="form-control"
                name="qty">
             @error('qty')
             <div class="fv-plugins-message-container invalid-feedback">
@@ -113,7 +113,7 @@
             <span class="required"> أقل كمية لتلقي الاشعار</span>
             </label>
             <!--end::Label-->
-            <input type="number" class="form-control form-control-solid"
+            <input type="number" class="form-control"
                name="danger_amount">
             @error('danger_amount')
             <div class="fv-plugins-message-container invalid-feedback">
@@ -128,7 +128,7 @@
             <span class="required">طرق البيع</span>
             </label>
             <!--end::Label--> 
-            <select  id="" class="form-control form-control-solid" name="selling_method_id">
+            <select  id="" class="form-control" name="selling_method_id">
                  @foreach ($sellingMethods as $sellingMethod)
                      
                  <option value="{{ $sellingMethod->id }}">{{ $sellingMethod->name }}</option>
@@ -148,7 +148,7 @@
             <span>الصور</span>
             </label>
             <!--end::Label-->
-            <input type="file" class="form-control form-control-solid" multiple
+            <input type="file" class="form-control" multiple
                name="images[]">
          </div>
 

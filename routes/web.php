@@ -110,7 +110,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('showLoginForm');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/logout', [AuthController::class,'logout']);
+Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 
 Route::get('/workers/all', [WorkerController::class, 'getAllWorkers'])->name('workers.getAllWorkers');
 
