@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function create()
     {
-        return inertia('Dashboard/User/create');
+        return view('dashboard.users.create');
     }
 
     public function store(Request $request)
@@ -42,14 +42,14 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return inertia('Dashboard/User/index', [
+        return view('dashboard.users.index', [
             'users' => $users
         ]);
     }
 
     public function edit(User $user)
     {
-        return inertia('Dashboard/User/edit', [
+        return view('dashboard.users.edit', [
             'user' => $user
         ]);
     }
