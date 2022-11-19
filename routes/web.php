@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/maintenances/{maintenance}/edit', [MaintenanceController::class, 'edit'])->name('maintenances.edit');
     Route::put('/maintenances/{maintenance}/update', [MaintenanceController::class, 'update'])->name('maintenances.update');
     Route::delete('/maintenances/{maintenance}/delete', [MaintenanceController::class, 'delete'])->name('maintenances.delete');
+    Route::get('/maintenances/{maintenance}/details', [MaintenanceController::class, 'details'])->name('maintenances.details');
 
 
     Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
