@@ -104,7 +104,7 @@
 
 
                             <div class="menu-item">
-                                <a class="menu-link" href="">
+                                <a class="menu-link" href="{{ route('users.index') }}">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                                         <span class="fa fa-users">
@@ -112,10 +112,10 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    <span class="menu-title">الاستاذه</span>
+                                    <span class="menu-title">المستخدمين</span>
                                 </a>
 
-                                <a class="menu-link" href="">
+                                <a class="menu-link" href="{{route('products.index')}}">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                                         <span class="fa fa-book">
@@ -123,21 +123,21 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    <span class="menu-title">الكورسات</span>
+                                    <span class="menu-title">المنتجات</span>
                                 </a>
 
-                                <a class="menu-link" href="">
+                                <a class="menu-link" href="{{route('categories.index')}}">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                        <span class="fa fa-cubes">
-                                           
+                                        <span class="fa fa-book">
+                                          
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    <span class="menu-title">الاشتراكات</span>
+                                    <span class="menu-title">الاصناف</span>
                                 </a>
 
-                                <a class="menu-link" href="">
+                                <a class="menu-link" href="{{ route('maintenances.index') }}">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                                         <span class="fa fa-server">
@@ -145,42 +145,15 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    <span class="menu-title">خدمات المركز</span>
+                                    <span class="menu-title">الصيانات</span>
                                 </a>
-                                <a class="menu-link" href="">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                        <span class="fa fa-bookmark">
-                                           
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title"> اعلانات المركز</span>
-                                </a>            
+                                         
                                 
-                                <a class="menu-link" href="">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                        <span class="fa-solid fa-user-graduate">
-                                            
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">المستخدمين</span>
-                                </a>  
                                 
-                                <a class="menu-link" href="">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                        <span class="fa-solid fa-people-group">
-                                           
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">أراء الجمهور</span>
-                                </a> 
+                                
+                              
                                
-                                <a class="menu-link" href="">
+                                <a class="menu-link" href="{{ route('locations.index') }}">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                                         <span class="fa-solid fa-location-dot">
@@ -188,93 +161,18 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    <span class="menu-title">المناطق</span>
+                                    <span class="menu-title">المواقع</span>
                                 </a> 
 
-                                <a class="menu-link" href="">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                        <span class="fa-solid fa-group-arrows-rotate">
-                                            
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">data flow</span>
-                                </a> 
+                             
 
-                                <a class="menu-link" href="">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                        <span class="fa-solid fa-certificate">
-                                            {{-- <i class="fa-solid fa-certificate"></i> --}}
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">طلبات الشهادات </span>
-                                </a> 
+                               
 
-                                <a class="menu-link" href="">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                        <span class="fa-solid fa-certificate">
-                                            {{-- <i class="fa-solid fa-certificate"></i> --}}
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title"> المنتجات</span>
-                                </a> 
 
-                                <a class="menu-link" href="">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                        <span class="fa-solid fa-certificate">
-                                            {{-- <i class="fa-solid fa-certificate"></i> --}}
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title"> العمليات</span>
-                                </a> 
+                             
                                 
                             </div>
                            
-                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/abstract/abs042.svg-->
-                                        <span class="fa-solid fa-barst">
-                                            <i class="fa-solid fa-align-justify"></i>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">الاقسام</span>
-                                    <span class="menu-arrow"></span>
-                                </span>
-                                <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                    <div class="menu-item">
-                                        <a class="menu-link" href="">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">الاقسام الرئيسية</span>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                                {{-- <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                    <div class="menu-item">
-                                        <a class="menu-link" href="{{ route('sub-categories.index') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">الاقسام الفرعية</span>
-                                        </a>
-                                    </div>
-
-
-                                </div> --}}
-                            </div>
 
                         </div>
                         <!--end::Menu-->
@@ -502,11 +400,36 @@
     <script src="{{ asset('new-assets/js/custom/utilities/modals/create-app.js') }}"></script>
     <script src="{{ asset('new-assets/js/custom/utilities/modals/users-search.js') }}"></script>
     <script src="{{ asset('new-assets/js/custom/utilities/modals/create-account.js') }}"></script>
+    <script src="{{ asset('new-assets/js/custom/documentation/general/toastr.js') }}"></script>
     <script>
         $('div.alert').delay(3000).slideUp(300);
     </script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
+   
+    <script> 
+            
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toastr-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+            };    
+            @if ($message = Session::get('success'))
+            toastr.success("{{ $message }}");
+            @endif
+    </script>
 
     @yield('scripts')
 </body>

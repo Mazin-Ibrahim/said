@@ -42,19 +42,20 @@ class MaintenanceController extends Controller
             'contract_price.required' => 'يجب أدخال قيمة العقد',
             'visits.required' => 'يجب أضافة الزيارات',
         ]);
-
+        
         $data = $request->all();
-
+        
         $data['visits'] = json_decode($request->visits, true);
+     
         $this->maintenanceInterface->create($data);
 
-        return redirect()->route('maintenances.index');
+        return redirect()->route('maintenances.index')->with('success', 'تم أضافة البيانات بنجاح');
     }
 
     public function index()
     {
-        $maintenances = $this->maintenanceInterface->getAll();
-
+        $maintenances = Maintenance::with('location', 'customer', 'HistoryVisitsMaintenance.worker', 'maintenancesPaymentDetails')->paginate(10);
+ 
         return view('dashboard.maintenances.index', [
             'maintenances' => $maintenances,
         ]);

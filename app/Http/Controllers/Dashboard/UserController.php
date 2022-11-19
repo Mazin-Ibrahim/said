@@ -35,12 +35,12 @@ class UserController extends Controller
             'role' => $request->role
         ]);
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'تم أضافة البيانات بنجاح');
     }
 
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
 
         return view('dashboard.users.index', [
             'users' => $users
@@ -82,6 +82,6 @@ class UserController extends Controller
         
         
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'تم تعديل البيانات بنجاح');
     }
 }

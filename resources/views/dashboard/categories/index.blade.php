@@ -79,6 +79,7 @@
                     <!--end::Table body-->
                 </table>
                 <!--end::Table-->
+                <x-paginator :paginator="$categories" />
             </div>
             <!--end::Table container-->
         </div>

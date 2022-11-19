@@ -75,6 +75,7 @@
                     <!--end::Table body-->
                 </table>
                 <!--end::Table-->
+                <x-paginator :paginator="$maintenances" />
             </div>
             <!--end::Table container-->
         </div>

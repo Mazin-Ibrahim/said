@@ -103,6 +103,7 @@
                     <!--end::Table body-->
                 </table>
                 <!--end::Table-->
+                <x-paginator :paginator="$products" />
             </div>
             <!--end::Table container-->
         </div>

@@ -55,12 +55,12 @@ class LocationController extends Controller
         // dd($data);
         $location =  $this->locationInterface->create($data);
 
-        return redirect()->route('locations.index');
+        return redirect()->route('locations.index')->with('success', 'تم أضافة البيانات بنجاح');
     }
 
     public function index()
     {
-        $locations = $this->locationInterface->getAll();
+        $locations =Location::with('products', 'paymentDetails', 'customer')->paginate(10);
 
         return view('dashboard.locations.index', [
             'locations' => $locations,

@@ -39,10 +39,14 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
 
 
             collect($data['visits'])->each(function ($visit) use ($maintenance) {
+                $worker_id = null;
+                if ($visit['worker_id'] != '') {
+                    $worker_id == $visit['worker_id'];
+                }
                 $maintenance->HistoryVisitsMaintenance()->create([
                     'date' => $visit['date'],
                     'description' => $visit['description'],
-                    'worker_id' => $visit['worker_id'],
+                    'worker_id' => null,
                     'worker_name' => $visit['worker_name'],
                 ]);
             });

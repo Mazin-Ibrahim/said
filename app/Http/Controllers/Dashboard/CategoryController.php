@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = $this->categoryInterface->getAll();
+        $categories = Category::paginate(10);
       
         
         return view('dashboard.categories.index', compact('categories'));
@@ -34,7 +34,7 @@ class CategoryController extends Controller
     {
         $this->categoryInterface->create($request->only(['name']));
         
-        return redirect()->route('categories.index')->with('success', 'Category created successfully');
+        return redirect()->route('categories.index')-> with('success', 'تم أضافة البيانات بنجاح');
     }
     public function edit(Category $category)
     {
@@ -43,7 +43,7 @@ class CategoryController extends Controller
     public function update(Category $category, updateRequest $request)
     {
         $this->categoryInterface->update($category, $request->only(['name']));
-        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
+        return redirect()->route('categories.index')-> with('success', 'تم تعديل البيانات بنجاح');
     }
     public function delete(Category $category)
     {

@@ -87,6 +87,7 @@
                     <!--end::Table body-->
                 </table>
                 <!--end::Table-->
+                <x-paginator :paginator="$users" />
             </div>
             <!--end::Table container-->
         </div>
