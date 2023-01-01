@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function create()
     {
-        return inertia('Dashboard/User/create');
+        return view('dashboard.users.create');
     }
 
     public function store(Request $request)
@@ -35,21 +35,21 @@ class UserController extends Controller
             'role' => $request->role
         ]);
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'تم أضافة البيانات بنجاح');
     }
 
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
 
-        return inertia('Dashboard/User/index', [
+        return view('dashboard.users.index', [
             'users' => $users
         ]);
     }
 
     public function edit(User $user)
     {
-        return inertia('Dashboard/User/edit', [
+        return view('dashboard.users.edit', [
             'user' => $user
         ]);
     }
@@ -82,6 +82,6 @@ class UserController extends Controller
         
         
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'تم تعديل البيانات بنجاح');
     }
 }

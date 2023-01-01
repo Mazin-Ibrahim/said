@@ -22,8 +22,8 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $products = $this->productInterface->getAll($request);
-        return inertia('Dashboard/Product/index', [
+        $products = Product::with('images', 'category', 'sellingMethod')->paginate(10);
+        return view('dashboard.products.index', [
             'products' => $products
         ]);
     }
@@ -34,7 +34,7 @@ class ProductController extends Controller
 
         $sellingMethods = SellingMethod::all();
         // dd($categories);
-        return inertia('Dashboard/Product/create', [
+        return view('dashboard.products.create', [
             'categories' => $categories,
             'sellingMethods' => $sellingMethods
         ]);
@@ -44,24 +44,24 @@ class ProductController extends Controller
     {
         $this->productInterface->create($request->only(['name','selling_method_id','category_id','buy_price','sell_price','qty','profit','description','images','danger_amount']));
      
-        return redirect()->route('products.index')->with('message', 'تم أضافة منتج جديد');
+        return redirect()->route('products.index')->with('success', 'تم أضافة البيانات بنجاح');
     }
 
     public function edit(Product $product)
     {
         $categories = Category::all();
         $sellingMethods = SellingMethod::all();
-        return inertia('Dashboard/Product/edit', [
-            'product' => $product,
+        return view('dashboard.products.edit', [
             'categories' => $categories,
-            'sellingMethods' => $sellingMethods
+            'sellingMethods' => $sellingMethods,
+            'product' => $product
         ]);
     }
 
     public function update(updateRequest $request, Product $product)
     {
         $this->productInterface->update($product, $request->only(['selling_method_id','name','category_id','buy_price','sell_price','qty','profit','description','images','danger_amount']));
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('success', 'تم تعديل البيانات بنجاح');
     }
 
     public function delete(Product $product)

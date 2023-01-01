@@ -4,7 +4,7 @@ require("./bootstrap");
 
 // window.Vue = require("vue");
 import Vue from "vue/dist/vue.js";
-import { createInertiaApp } from "@inertiajs/inertia-vue";
+// import { createInertiaApp } from "@inertiajs/inertia-vue";
 // import { InertiaProgress } from '@inertiajs/progress'
 import Multiselect from 'vue-multiselect'
 import UploadImage from "vue-upload-image";
@@ -17,16 +17,16 @@ Vue.component("v-Multiselect", Multiselect);
 
 
 
-createInertiaApp({
-    resolve: (name) => require(`./Pages/${name}`),
-    setup({ el, App, props, plugin }) {
-        Vue.use(plugin);
+// createInertiaApp({
+//     resolve: (name) => require(`./Pages/${name}`),
+//     setup({ el, App, props, plugin }) {
+//         Vue.use(plugin);
 
-        new Vue({
-            render: (h) => h(App, props),
-        }).$mount(el);
-    },
-});
+//         new Vue({
+//             render: (h) => h(App, props),
+//         }).$mount(el);
+//     },
+// });
 
 
 

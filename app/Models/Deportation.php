@@ -15,7 +15,8 @@ class Deportation extends Model
         'product_name',
         'location_name',
         'value',
-        'deported_name'
+        'deported_name',
+        'date'
     ];
 
     protected $casts = [

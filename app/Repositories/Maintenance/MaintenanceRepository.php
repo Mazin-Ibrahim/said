@@ -39,10 +39,14 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
 
 
             collect($data['visits'])->each(function ($visit) use ($maintenance) {
+                $worker_id = null;
+                if ($visit['worker_id'] != '') {
+                    $worker_id == $visit['worker_id'];
+                }
                 $maintenance->HistoryVisitsMaintenance()->create([
                     'date' => $visit['date'],
                     'description' => $visit['description'],
-                    'worker_id' => $visit['worker_id'],
+                    'worker_id' => $worker_id,
                     'worker_name' => $visit['worker_name'],
                 ]);
             });
@@ -56,13 +60,25 @@ class MaintenanceRepository implements MaintenanceRepositoryInterface
 
     public function update($data, $maintenance)
     {
-        $maintenance->update($data);
+        $maintenance->customer_id = $data['customer_id'];
+        $maintenance->customer_name = $data['customer_name'];
+        $maintenance->location_name = $data['location_name'];
+        $maintenance->location_id = $data['location_id'];
+        $maintenance->address = $data['address'];
+        $maintenance->description = $data['description'];
+        $maintenance->contract_price = $data['contract_price'];
+        $maintenance->save();
         return $maintenance;
     }
 
     public function delete($maintenance)
     {
-        return $maintenance->delete();
+        $maintenance->maintenancesPaymentDetails()->delete();
+        $maintenance->HistoryVisitsMaintenance()->delete();
+        $maintenance->customer()->delete();
+        $maintenance->location()->delete();
+
+        return  $maintenance->delete();
     }
 
     public function updateMaintenanceVisit($data, $maintenance)

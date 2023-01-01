@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'phone'
+        'phone',
+        'role'
     ];
 
     /**
@@ -33,6 +34,21 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function getRole()
+    {
+        if ($this->role == 'admin') {
+            return 'مدير';
+        } elseif ($this->role == 'user') {
+            return 'مستخدم';
+        } elseif ($this->role == 'stocker') {
+            return 'مخزنجي';
+        } elseif ($this->role == 'sub-admin') {
+            return 'نائب مدير';
+        } else {
+            return 'محاسب';
+        }
+    }
 
     /**
      * The attributes that should be cast to native types.

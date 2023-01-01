@@ -19,35 +19,31 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = $this->categoryInterface->getAll();
+        $categories = Category::paginate(10);
       
         
-        return inertia('Dashboard/Category/index', [
-            'categories' => $categories
-        ]);
+        return view('dashboard.categories.index', compact('categories'));
     }
    
     public function create()
     {
-        return inertia()->render('Dashboard/Category/create');
+        return view('dashboard.categories.create');
     }
 
     public function store(storeRequest $request)
     {
         $this->categoryInterface->create($request->only(['name']));
         
-        return redirect()->route('categories.index')->with('success', 'Category created successfully');
+        return redirect()->route('categories.index')-> with('success', 'تم أضافة البيانات بنجاح');
     }
     public function edit(Category $category)
     {
-        return inertia()->render('Dashboard/Category/edit', [
-            'category' => $category
-        ]);
+        return view('dashboard.categories.edit', compact('category'));
     }
     public function update(Category $category, updateRequest $request)
     {
         $this->categoryInterface->update($category, $request->only(['name']));
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')-> with('success', 'تم تعديل البيانات بنجاح');
     }
     public function delete(Category $category)
     {

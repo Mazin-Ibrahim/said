@@ -5,7 +5,7 @@
              <h3 class="card-title">المواقع</h3>
           </div>
           <div class="card-body">
-              
+               
                 <div class="row">
                     <div class="col-5">
                 <div class="form-group">
@@ -81,6 +81,7 @@
                                     label="name"
                                     :options="products"
                                     v-model="product.product"
+                                    
                                     
                                 >
                                 </v-Multiselect>

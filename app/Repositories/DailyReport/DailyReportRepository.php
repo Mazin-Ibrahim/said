@@ -12,10 +12,9 @@ class DailyReportRepository implements DailyReportInterface
 {
     public function getInvoicesAndIncomesAndExpensesDaily()
     {
-
-        $expensesDay = Expense::whereDate('created_at', Carbon::today())->sum('value');
-        $incomesDay   = Income::whereDate('created_at', Carbon::today())->sum('value');
-        $totalBuyInvoices = Invoice::whereDate('created_at', Carbon::today())->where('type_of_payment', '!=', 'credit')->sum('total');
+        $expensesDay = (float)Expense::whereDate('created_at', Carbon::today())->sum('value');
+        $incomesDay   = (float)Income::whereDate('created_at', Carbon::today())->sum('value');
+        $totalBuyInvoices = (float)Invoice::whereDate('created_at', Carbon::today())->where('type_of_payment', '!=', 'credit')->sum('total');
         $countInvoices = Invoice::whereDate('created_at', Carbon::today())->count();
 
         return [

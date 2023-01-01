@@ -28,7 +28,7 @@ class storeRequest extends FormRequest
             'contract_price' => 'required|numeric',
             'visits' => 'required|array',
             'visits.*' => 'required',
-
+ 
         ];
     }
 

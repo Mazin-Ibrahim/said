@@ -30,7 +30,6 @@ class MaintenanceController extends Controller
 
     public function store(storeRequest $request)
     {
-
         $maintenance = $this->maintenanceInterface->create($request->only([
             'worker_id',
             'customer_id',
@@ -49,7 +48,11 @@ class MaintenanceController extends Controller
 
     public function update(Request $request, Maintenance $maintenance)
     {
-        $maintenance = $this->maintenanceInterface->update($request->only(['worker_id', 'customer_id', 'location_name', 'price']), $maintenance);
+        $request->validate([
+            'description' => 'required|string',
+            'contract_price' => 'required|numeric',
+        ]);
+        $maintenance = $this->maintenanceInterface->update($request->all(), $maintenance);
         return response()->json($maintenance, 204);
     }
 
@@ -62,7 +65,6 @@ class MaintenanceController extends Controller
 
     public function updateMaintenanceVisit(Request $request, Maintenance $maintenance)
     {
-
         $request->validate([
             'visits' => 'required|array',
             'visits.*.date' => 'required|date',

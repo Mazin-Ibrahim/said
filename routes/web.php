@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');
     Route::put('/locations/{location}/update', [LocationController::class, 'update'])->name('locations.update');
     Route::delete('/locations/{location}/delete', [LocationController::class, 'delete'])->name('locations.delete');
+    Route::get('/locations/{location}/details', [LocationController::class, 'details'])->name('locations.details');
 
     Route::get('/maintenances/create', [MaintenanceController::class, 'create'])->name('maintenances.create');
     Route::post('/maintenances', [MaintenanceController::class, 'store'])->name('maintenances.store');
@@ -56,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/maintenances/{maintenance}/edit', [MaintenanceController::class, 'edit'])->name('maintenances.edit');
     Route::put('/maintenances/{maintenance}/update', [MaintenanceController::class, 'update'])->name('maintenances.update');
     Route::delete('/maintenances/{maintenance}/delete', [MaintenanceController::class, 'delete'])->name('maintenances.delete');
+    Route::get('/maintenances/{maintenance}/details', [MaintenanceController::class, 'details'])->name('maintenances.details');
 
 
     Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
@@ -108,7 +110,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('showLoginForm');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/logout', [AuthController::class,'logout']);
+Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 
 Route::get('/workers/all', [WorkerController::class, 'getAllWorkers'])->name('workers.getAllWorkers');
 
@@ -120,3 +122,7 @@ Route::get('/test-q', function () {
 
     dd($bb);
 });
+
+
+
+Route::view('admin', 'layouts.admin');
