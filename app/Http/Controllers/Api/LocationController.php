@@ -8,6 +8,8 @@ use App\Interfaces\Location\LocationRepositoryInterface;
 use App\Models\Location;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
 {
@@ -131,4 +133,43 @@ class LocationController extends Controller
             ]);
         }
     }
+    public function updateLocation(Request $request, Location $location)
+    {
+        $request->validate([
+            'contract_price' => 'required',
+            'description' => 'required',
+            'received_date' => 'required|date',
+            'delivery_date' => 'required|date',
+        ]);
+
+        $data = $request->all();
+
+        $location->update([
+            'customer_id' => $data['customer_id'] ?? null,
+            'address' => $data['address'] ?? null,
+            'description' => $data['description'] ?? null,
+            'contract_price' => $data['contract_price'] ?? null,
+            'received_date' => $data['received_date'] ?? null,
+            'delivery_date' => $data['delivery_date'] ?? null,
+            'location_name' => $data['location_name'] ?? null,
+            'customer_name' => $data['customer_name']?? null
+        ]);
+            
+        return response()->json(204);
+    }
+
+        public function delete(Location $location)
+        {
+            $location->paymentDetails()->delete();
+
+            if ($location->customer()->exists()) {
+                $location->customer()->delete();
+            }
+
+            $location->locationExpenses()->delete();
+
+            $location->delete();
+
+            return response()->json(204);
+        }
 }
