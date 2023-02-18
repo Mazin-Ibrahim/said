@@ -225,10 +225,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/location/expenses', [LocationExpenseController::class, 'store']);
     Route::put('/location/expenses/{locationExpense}', [LocationExpenseController::class, 'update']);
     Route::get('/location/{location}/expenses', [LocationExpenseController::class, 'getlocationExpenses']);
-
-
-
-    Route::post('/users/store', [UserController::class, 'store']);
-    Route::get('/users', [UserController::class, 'getAllUsers']);
-    Route::put('/users/{user}/update', [UserController::class, 'update']);
 });
+
+
+Route::post('/users/store', [UserController::class, 'store']);
+Route::get('/users', [UserController::class, 'getAllUsers']);
+Route::put('/users/{user}/update', [UserController::class, 'update']);
