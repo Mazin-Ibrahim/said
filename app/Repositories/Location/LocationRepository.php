@@ -7,7 +7,7 @@ use App\Interfaces\Location\LocationRepositoryInterface;
 use App\Models\Location;
 use App\Models\Product;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB; 
+use Illuminate\Support\Facades\DB;
 
 class LocationRepository implements LocationRepositoryInterface
 {
@@ -83,7 +83,12 @@ class LocationRepository implements LocationRepositoryInterface
 
     public function delete($location)
     {
-        # code...
+        $location->products()->delete();
+        $location->paymentDetails()->delete();
+        $location->locationExpenses()->delete();
+        $location->delete();
+
+        return null;
     }
 
 

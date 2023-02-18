@@ -160,6 +160,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::put('/locations/{location}/updateProducts', [LocationController::class, 'updateProductsStatusBelongToLocation']);
     Route::post('/locations/{location}/deleteProductsFromLocation', [LocationController::class, 'deleteProductsFromLocation']);
     Route::post('/locations/{location}/updateProductsFromLoaction', [LocationController::class, 'updateProductsFromLoaction']);
+    Route::delete('/locations/{location}/delete', [LocationController::class, 'delete']);
 
 
     Route::get('/deportations', [DeportationController::class, 'index']);
