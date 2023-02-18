@@ -166,6 +166,9 @@ class LocationController extends Controller
                 $location->customer()->delete();
             }
 
+            $location->products()->delete();
+          
+
             $location->locationExpenses()->delete();
 
             $location->delete();

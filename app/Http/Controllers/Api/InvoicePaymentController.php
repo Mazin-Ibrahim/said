@@ -10,8 +10,6 @@ class InvoicePaymentController extends Controller
 {
     public function store(Request $request, Invoice $invoice)
     {
-
-
         $request->validate([
             'description' => 'required',
             'receiver_name' => 'required',

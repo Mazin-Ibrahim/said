@@ -59,4 +59,14 @@ class UserController extends Controller
 
         return $user;
     }
+
+
+    public function updateRole(User $user, Request $request)
+    {
+        $user->update([
+            'role' => $request->role
+        ]);
+
+        return response()->json($user, 204);
+    }
 }
