@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 class authController extends Controller
 {
-    
     public function login(Request $request)
     {
-
         $request->validate([
             'phone' => 'required',
             'password' => 'required|string',
@@ -20,13 +18,14 @@ class authController extends Controller
 
         $user = User::where('phone', $request->phone)->first();
         
-        if(!$user){
+        if (!$user) {
             return response()->json([
                 'message' => 'User not found'
-            ], 404);
+            ], 404)->header('Content-Type', 'application/json');
         }
+        
 
-        if(!$user || !Hash::check($request->password, $user->password)){
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'message' => 'Invalid credentials'
             ], 401);
@@ -35,6 +34,6 @@ class authController extends Controller
         return response()->json([
             'user' => $user,
             'token' => $token,
-        ]);
+        ])->header('Content-Type', 'application/json');
     }
 }
