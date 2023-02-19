@@ -51,7 +51,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/login', [authController::class, 'login']);
+Route::post('/auth/login', [authController::class, 'login']);
 
 
 
@@ -233,3 +233,4 @@ Route::post('/users/store', [UserController::class, 'store']);
 Route::get('/users', [UserController::class, 'getAllUsers']);
 Route::put('/users/{user}/update', [UserController::class, 'update']);
 Route::post('/users/{user}/update-role', [UserController::class, 'updateRole']);
+Route::delete('/users/{user}/delete', [UserController::class, 'deleteUser']);
