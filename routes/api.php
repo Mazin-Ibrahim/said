@@ -51,7 +51,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/login-api', [authController::class, 'login']);
+Route::post('logintest', [authController::class, 'login']);
 
 
 

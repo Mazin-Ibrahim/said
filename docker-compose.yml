@@ -1,0 +1,39 @@
+version: "3"
+networks:
+  app_network:
+  db:
+    external: true
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    container_name: ${APP_NAME}_app
+    # command: chown -R www-data:www-data .
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "9001:9000"
+    restart: unless-stopped
+    networks:
+      - app_network
+      - db
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: ${APP_NAME}_nginx
+    ports:
+      - "8001:80"
+    restart: unless-stopped
+    links:
+      - php
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/site.conf:/etc/nginx/conf.d/default.conf:rw
+      - ./docker/logs/nginx:/var/logs/nginx:rw
+    depends_on:
+      - php
+    networks:
+      - app_network
+      - db
