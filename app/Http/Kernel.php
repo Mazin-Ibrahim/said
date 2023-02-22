@@ -13,6 +13,10 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+
+    protected $middlewarePriority = [
+        \App\Http\Middleware\ResponseApi::class
+    ];
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
@@ -44,6 +48,7 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            \App\Http\Middleware\ResponseApi::class
         ],
     ];
 
