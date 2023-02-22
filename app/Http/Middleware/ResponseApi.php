@@ -16,14 +16,8 @@ class ResponseApi
      */
     public function handle(Request $request, Closure $next)
     {
-        // dd("mazin");
-        // dd($request);
-        $response = $next($request);
+        $request->headers->set('Accept', 'application/json');
 
-        if (in_array($response->status(), [200, 201, 404, 401, 422,204])) {
-            $response->header('Content-Type', 'application/json');
-        }
-
-        return $response;
+        return $next($request);
     }
 }
