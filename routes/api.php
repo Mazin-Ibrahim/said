@@ -55,7 +55,7 @@ Route::post('logintest', [authController::class, 'login']);
 
 
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
+Route::group(['middleware' => ['auth:sanctum','api.response']], function () {
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/categories/{category}', [CategoryController::class, 'getCategory']);
     Route::post('/categories', [CategoryController::class, 'store']);
