@@ -24,7 +24,8 @@ class DeportationRepository implements DeportationRepositoryInterface
 
     public function update($request, $deportation)
     {
-        return $deportation->update($request->all());
+        $deportation->update($request->all());
+        return $deportation;
     }
 
     public function delete($deportation)

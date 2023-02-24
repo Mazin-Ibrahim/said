@@ -56,10 +56,10 @@ class DeportationController extends Controller
         ]);
         $deportation = $this->deportationInterface->update($request, $deportation);
 
-        return response()->json($deportation, 200);
+        return response()->json($deportation, 204);
     }
 
-    public function delete($deportation)
+    public function delete(Deportation $deportation)
     {
         $this->deportationInterface->delete($deportation);
 

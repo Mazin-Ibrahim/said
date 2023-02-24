@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Expense;
 use App\Models\Location;
 use App\Models\LocationExpense;
 use Illuminate\Http\Request;
@@ -53,5 +54,20 @@ class LocationExpenseController extends Controller
     public function getlocationExpenses(Location $location)
     {
         return $location->load('locationExpenses');
+    }
+
+
+    public function getAllExpenses()
+    {
+        $expenses = LocationExpense::all();
+
+        return response()->json($expenses, 200);
+    }
+
+    public function delete(LocationExpense $locationExpense)
+    {
+        $locationExpense->delete();
+
+        return response()->json(null, 204);
     }
 }

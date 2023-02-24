@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function getAllUsers()
+    {
+        $users = User::all();
+
+        return response()->json($users, 200);
+    }
     public function store(Request $request)
     {
         $request->validate([
@@ -28,12 +34,7 @@ class UserController extends Controller
         return $user;
     }
 
-    public function getAllUsers()
-    {
-        $users = User::all();
-
-        return $users;
-    }
+ 
 
     public function update(User $user, Request $request)
     {
