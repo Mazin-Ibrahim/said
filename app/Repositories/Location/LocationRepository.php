@@ -112,6 +112,7 @@ class LocationRepository implements LocationRepositoryInterface
     {
         collect($request->products)->each(function ($item) use ($location) {
             $product = Product::find($item['id']);
+            
             $product->qty = $product->qty - $item['qty'];
             $product->save();
             $location->products()->where('product_id', $item['id'])->update([

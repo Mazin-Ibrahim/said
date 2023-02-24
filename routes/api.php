@@ -51,7 +51,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/login-api', [authController::class, 'login']);
+Route::post('/login', [authController::class, 'login']);
 
 
 
@@ -160,13 +160,14 @@ Route::group(['middleware' => ['auth:sanctum','api.response']], function () {
     Route::put('/locations/{location}/updateProducts', [LocationController::class, 'updateProductsStatusBelongToLocation']);
     Route::post('/locations/{location}/deleteProductsFromLocation', [LocationController::class, 'deleteProductsFromLocation']);
     Route::post('/locations/{location}/updateProductsFromLoaction', [LocationController::class, 'updateProductsFromLoaction']);
+    Route::post('/locations/{location}/add-products', [LocationController::class,'addPoductsToLocation']);
     // Route::delete('/locations/{location}/delete', [LocationController::class, 'delete']);
 
 
     Route::get('/deportations', [DeportationController::class, 'index']);
     Route::post('/deportations', [DeportationController::class, 'store']);
     Route::put('/deportations/{deportation}', [DeportationController::class, 'update']);
-    Route::delete('/deportations/{deportation}', [DeportationController::class, 'update']);
+    Route::delete('/deportations/{deportation}', [DeportationController::class, 'delete']);
 
 
     Route::post('/creditors', [CreditorController::class, 'store']);
@@ -226,11 +227,13 @@ Route::group(['middleware' => ['auth:sanctum','api.response']], function () {
     Route::post('/location/expenses', [LocationExpenseController::class, 'store']);
     Route::put('/location/expenses/{locationExpense}', [LocationExpenseController::class, 'update']);
     Route::get('/location/{location}/expenses', [LocationExpenseController::class, 'getlocationExpenses']);
+    Route::delete('/location/expenses/{locationExpense}/delete', [LocationExpenseController::class, 'delete']);
+    Route::get('/location/expenses-all', [LocationExpenseController::class, 'getAllExpenses']);
 });
 
 
 Route::post('/users/store', [UserController::class, 'store']);
-Route::get('/users', [UserController::class, 'getAllUsers']);
+Route::get('/all-users', [UserController::class, 'getAllUsers']);
 Route::put('/users/{user}/update', [UserController::class, 'update']);
 Route::post('/users/{user}/update-role', [UserController::class, 'updateRole']);
 Route::delete('/users/{user}/delete', [UserController::class, 'deleteUser']);

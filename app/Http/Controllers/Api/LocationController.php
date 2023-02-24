@@ -74,6 +74,7 @@ class LocationController extends Controller
             'products' => 'required|array',
             'products.*' => 'required',
         ]);
+        
         $location = $this->locationInterface->updateStatusProduct($location, $request);
 
         return response()->json($location, 204);
@@ -133,6 +134,42 @@ class LocationController extends Controller
             ]);
         }
     }
+
+    public function addPoductsToLocation(Location $location, Request $request)
+    {
+        $request->validate([
+            'products' => 'required|array',
+            'products.*' => 'required',
+        ]);
+
+        $data = $request->all();
+
+        collect($data['products'])->each(function ($item) {
+            if ($item['status'] == 'delivered') {
+                $product = Product::find($item['id']);
+                $data['productsQty1'] = $product->qty;
+                $data['ItemQty'] = $item['qty'];
+                $product->qty = $product->qty - $item['qty'];
+                $product->save();
+                $data['productsQty2'] = $product->qty;
+            }
+        });
+        $productLocationData = collect($data['products'])->groupBy('id')->toArray();
+        $productLocationDataCollection = new Collection($productLocationData);
+        $products = $productLocationDataCollection->map(function ($item, $key) {
+            return collect($item)->map(function ($item) {
+                return [
+
+                    'qty' => $item['qty'],
+                    'status' => $item['status']
+                ];
+            })->collapse();
+        })->toArray();
+
+        $location->products()->attach($products);
+
+        return $location->load('products', 'paymentDetails');
+    }
     public function updateLocation(Request $request, Location $location)
     {
         $request->validate([
@@ -155,7 +192,7 @@ class LocationController extends Controller
             'customer_name' => $data['customer_name']?? null
         ]);
             
-        return response()->json(204);
+        return response()->json(null, 204);
     }
 
         public function delete(Location $location)
@@ -173,6 +210,6 @@ class LocationController extends Controller
 
             $location->delete();
 
-            return response()->json(204);
+            return response()->json(null, 204);
         }
 }
